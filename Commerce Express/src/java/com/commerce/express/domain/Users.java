@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Ronald
  */
-public interface User extends Serializable{
+public interface Users extends Serializable{
 
     public List<Address> getAddresses();
 
