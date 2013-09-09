@@ -24,7 +24,7 @@ import javax.persistence.Temporal;
  * @author Ronald
  */
 @Entity
-public class Administrator implements User, Serializable {
+public class Administrator implements Users, Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
