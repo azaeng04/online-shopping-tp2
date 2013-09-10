@@ -7,8 +7,7 @@ package com.commerce.express.app.factory;
 import com.commerce.express.domain.AccessDetails;
 import com.commerce.express.domain.Address;
 import com.commerce.express.domain.Contact;
-import com.commerce.express.domain.Customer;
-import com.commerce.express.domain.AccessDetails;
+import com.commerce.express.domain.Administrator;
 import java.util.Date;
 import java.util.List;
 
@@ -16,10 +15,11 @@ import java.util.List;
  *
  * @author Owner
  */
-public class CustomerFactory {
+public class AdministratorFactory {
+
     public static class Builder {
 
-        private String customerNumber = "CUS_";
+        private String administratorNumber = "ADM_";
         private String firstName;
         private String lastName;
         private String middleName;
@@ -29,8 +29,8 @@ public class CustomerFactory {
         private AccessDetails accessDetails;
         private List<Address> addresses;
 
-        public Builder(String customerNumber, AccessDetails accessDetails1) {
-            this.customerNumber += customerNumber;
+        public Builder(String administratorNumber, AccessDetails accessDetails1) {
+            this.administratorNumber += administratorNumber;
             this.accessDetails = accessDetails1;
         }
 
@@ -69,22 +69,22 @@ public class CustomerFactory {
             return this;
         }
 
-        public Customer buildCustomer() {
-            return buildCustomer(this);
+        public Administrator buildAdministrator() {
+            return buildAdministrator(this);
         }
 
-        private Customer buildCustomer(Builder object) {
-            Customer customer = new Customer();
-            customer.setUserID(object.customerNumber);
-            customer.setAccessDetails(object.accessDetails);
-            customer.setAddresses(object.addresses);
-            customer.setDateOfBirth(object.dateOfBirth);
-            customer.setFirstName(object.firstName);
-            customer.setGender(object.gender);
-            customer.setLastName(object.lastName);
-            customer.setMiddleName(object.middleName);
-            customer.setContact(object.contact);
-            return customer;
+        private Administrator buildAdministrator(Builder object) {
+            Administrator administrator = new Administrator();
+            administrator.setUserID(object.administratorNumber);
+            administrator.setAccessDetails(object.accessDetails);
+            administrator.setAddresses(object.addresses);
+            administrator.setDateOfBirth(object.dateOfBirth);
+            administrator.setFirstName(object.firstName);
+            administrator.setGender(object.gender);
+            administrator.setLastName(object.lastName);
+            administrator.setMiddleName(object.middleName);
+            administrator.setContact(object.contact);
+            return administrator;
         }
     }
 }
