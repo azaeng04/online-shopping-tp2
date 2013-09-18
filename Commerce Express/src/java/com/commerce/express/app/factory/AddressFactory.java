@@ -5,7 +5,6 @@
 package com.commerce.express.app.factory;
 
 import com.commerce.express.domain.Address;
-import java.util.Map;
 
 /**
  *
@@ -13,11 +12,11 @@ import java.util.Map;
  */
 public class AddressFactory {
 
-    public static Address getAddress(Map<String, String> values) {
+    public static Address getAddress(String postalAddress, String physicalAddress, String postalCode) {
         Address address = new Address();
-        address.setPostalAddress(values.get("postalAddress"));
-        address.setPhysicalAddress(values.get("physicalAddress"));
-        address.setPostalCode(values.get("postalCode"));
+        address.setPostalAddress(postalAddress);
+        address.setPhysicalAddress(physicalAddress);
+        address.setPostalCode(postalCode);
         return address;
     }
 }
