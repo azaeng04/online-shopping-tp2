@@ -5,7 +5,6 @@
 package com.commerce.express.app.factory;
 
 import com.commerce.express.domain.Contact;
-import java.util.Map;
 
 /**
  *
@@ -13,12 +12,12 @@ import java.util.Map;
  */
 public class ContactFactory {
 
-    public static Contact getContact(Map<String, String> values) {
+    public static Contact getContact(String emailAddress, String cellPhoneNumber, String homeNumber, String officeNumber) {
         Contact contact = new Contact();
-        contact.setEmailAddress(values.get("emailAddress"));
-        contact.setCellPhoneNumber(values.get("cellPhoneNumber"));
-        contact.setHomeNumber(values.get("homeNumber"));
-        contact.setOfficeNumber(values.get("officeNumber"));
+        contact.setEmailAddress(emailAddress);
+        contact.setCellPhoneNumber(cellPhoneNumber);
+        contact.setHomeNumber(homeNumber);
+        contact.setOfficeNumber(officeNumber);
         return contact;
     }
 }

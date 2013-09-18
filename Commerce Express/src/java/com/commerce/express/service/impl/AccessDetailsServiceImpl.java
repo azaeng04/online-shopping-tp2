@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  *
  * @author Owner
  */
-@Service("AdministratorService")
+@Service("AccessDetailsService")
 public class AccessDetailsServiceImpl implements AdministratorService {
 
     @Autowired

@@ -14,10 +14,10 @@ import java.util.List;
  */
 public class AccessDetailsFactory {
 
-    public static AccessDetails getAccessDetails(String userName, String Password,Boolean enabled, List<Roles> roles) {
+    public static AccessDetails getAccessDetails(String userName, String password, Boolean enabled, List<Roles> roles) {
         AccessDetails accessdetails = new AccessDetails();
         accessdetails.setUsername(userName);
-        accessdetails.setPassword(Password);
+        accessdetails.setPassword(password);
         accessdetails.setEnabled(enabled);
         accessdetails.setRoles(roles);
         return accessdetails;
