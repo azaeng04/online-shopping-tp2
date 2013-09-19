@@ -34,7 +34,7 @@ import org.testng.annotations.Test;
 public class AdministratorTest {
 
     private static ApplicationContext ctx;
-    private AdministratorCrudService AdministratorCrudService;
+    private static AdministratorCrudService administratorCrudService;
     private static Long administratorID;
 
     public AdministratorTest() {
@@ -48,6 +48,7 @@ public class AdministratorTest {
     @BeforeClass
     public static void setUpClass() throws Exception {
         ctx = new ClassPathXmlApplicationContext("classpath:com/commerce/express/app/config/applicationContext-*.xml");
+        administratorCrudService = (AdministratorCrudService) ctx.getBean("AdministratorCrudService");
     }
 
     @AfterClass
@@ -71,8 +72,8 @@ public class AdministratorTest {
         Contact contact = ContactFactory.getContact("johndoe@gmail.com", "0725643456", "0215463456", "0215647569");
 
         List<Roles> roles = new ArrayList<Roles>();
-        Roles role1 = RolesFactory.getRoles("Administrator", "View products", "johnDoe1234");
-        Roles role2 = RolesFactory.getRoles("Administrator", "Write products", "johnDoe1234");
+        Roles role1 = RolesFactory.getRoles("ADMIN", "View products", "johnDoe1234");
+        Roles role2 = RolesFactory.getRoles("ADMIN", "Write products", "johnDoe1234");
         roles.add(role1);
         roles.add(role2);
 
@@ -88,43 +89,43 @@ public class AdministratorTest {
                 .setMiddleName("Mary")
                 .buildAdministrator();
 
-        AdministratorCrudService.persist(administrator);
+        administratorCrudService.persist(administrator);
 
         administratorID = administrator.getId();
     }
 
     @Test(dependsOnMethods = "createAdministrator")
     public void readAdministrator() {
-        Administrator administrator = AdministratorCrudService.findById(administratorID);
+        Administrator administrator = administratorCrudService.findById(administratorID);
 
         assertNotNull(administrator);
     }
 
     @Test(dependsOnMethods = "readAdministrator")
     public void readAdministrators() {
-        List<Administrator> administrator = AdministratorCrudService.findAll();
+        List<Administrator> administrator = administratorCrudService.findAll();
 
         assertTrue(administrator.size() > 0);
     }
 
     @Test(dependsOnMethods = "readAdministrators")
     public void updateAdministrator() {
-        Administrator administrator = AdministratorCrudService.findById(administratorID);
+        Administrator administrator = administratorCrudService.findById(administratorID);
         assertNotNull(administrator);
         administrator.setFirstName("Jack");
 
-        AdministratorCrudService.merge(administrator);
-        Administrator administrator1 = AdministratorCrudService.findById(administratorID);
+        administratorCrudService.merge(administrator);
+        Administrator administrator1 = administratorCrudService.findById(administratorID);
 
         assertEquals(administrator1.getFirstName(), "Jack");
     }
 
     @Test(dependsOnMethods = "updateAdministrator")
     public void deleteAdministrator() {
-        Administrator administrator = AdministratorCrudService.findById(administratorID);
-        AdministratorCrudService.remove(administrator);
+        Administrator administrator = administratorCrudService.findById(administratorID);
+        administratorCrudService.remove(administrator);
 
-        Administrator administrator1 = AdministratorCrudService.findById(administratorID);
+        Administrator administrator1 = administratorCrudService.findById(administratorID);
 
         assertNull(administrator1);
     }
