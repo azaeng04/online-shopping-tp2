@@ -5,7 +5,6 @@
 package com.commerce.express.app.factory;
 
 import com.commerce.express.domain.FAQ;
-import java.util.Map;
 
 /**
  *
@@ -13,10 +12,11 @@ import java.util.Map;
  */
 public class FAQFactory {
 
-    public static FAQ getFAQ(Map<String, String> values) {
+    public static FAQ getFAQ(String faqID,String question, String answer) {
         FAQ faq = new FAQ();
-        faq.setQuestion(values.get("question"));
-        faq.setAnswer(values.get("answer"));
+        faq.setFaqID(faqID);
+        faq.setQuestion(question);
+        faq.setAnswer(answer);
         return faq;
     }
 }

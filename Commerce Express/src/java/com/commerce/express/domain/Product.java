@@ -5,6 +5,7 @@
 package com.commerce.express.domain;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,9 +22,11 @@ public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(unique = true)
     private String productID;
     private String productName;
     private String description;
+    @Column(unique = true)
     private String imageURL;
     @Embedded
     private ProductStatus productStatus;

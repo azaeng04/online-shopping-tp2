@@ -14,8 +14,9 @@ import java.util.List;
  */
 public class CategoryFactory {
 
-    public static Category getCategory(String categoryName,List<Product> product) {
+    public static Category getCategory(String categoryID, String categoryName, List<Product> product) {
         Category category = new Category();
+        category.setCategoryID(categoryID);
         category.setCategoryName(categoryName);
         category.setProducts(product);
         return category;

@@ -32,6 +32,8 @@ public class Orders implements Serializable {
     private String orderID;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateCreated;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dateModified;
     private String status;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "order_ID")
@@ -51,6 +53,14 @@ public class Orders implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Date getDateModified() {
+        return dateModified;
+    }
+
+    public void setDateModified(Date dateModified) {
+        this.dateModified = dateModified;
     }
 
     public String getOrderID() {

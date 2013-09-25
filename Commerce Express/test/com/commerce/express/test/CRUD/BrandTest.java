@@ -12,17 +12,15 @@ import com.commerce.express.domain.Product;
 import com.commerce.express.domain.ProductStatus;
 import com.commerce.express.service.crud.BrandCrudService;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 
 /**
  *
@@ -31,8 +29,8 @@ import org.testng.annotations.Test;
 public class BrandTest {
 
     private static ApplicationContext ctx;
-    private BrandCrudService BrandCrudService;
-    private Long id;
+    private static BrandCrudService brandCrudService;
+    private static Long brandID;
 
     public BrandTest() {
     }
@@ -45,6 +43,7 @@ public class BrandTest {
     @BeforeClass
     public static void setUpClass() throws Exception {
         ctx = new ClassPathXmlApplicationContext("classpath:com/commerce/express/app/config/applicationContext-*.xml");
+        brandCrudService = (BrandCrudService) ctx.getBean("BrandCrudService");
     }
 
     @AfterClass
@@ -61,64 +60,60 @@ public class BrandTest {
 
     @Test
     public void createBrand() {
-
-        Map<String, String> valuesProduct = new HashMap<String, String>();
-        valuesProduct.put("productName", "Milk");
-        valuesProduct.put("description", "On Special");
-        valuesProduct.put("imageURL", "www.google.com");
-
         ProductStatus productStatus = ProductStatusFactory.getProductStatus("InStock", 100);
 
-        Product product = ProductFactory.getProduct(valuesProduct, productStatus);
+        Product product = new ProductFactory.Builder("7384728171")
+                .setDescription("On Special")
+                .setImageURL("www.google.com")
+                .setProductName("Milk")
+                .setProductStatus(productStatus)
+                .buildProduct();
+
         List<Product> productList = new ArrayList<Product>();
         productList.add(product);
 
-        Map<String, String> valuesBrand = new HashMap<String, String>();
-        valuesBrand.put("brandName", "Milk");
-        valuesBrand.put("logoURL", "www.google.com");
-        valuesBrand.put("description", "On Special");
+        Brand brand = new BrandFactory.Builder("7384728371")
+                .setBrandName("Clover")
+                .setDescription("On Special")
+                .setLogoURL("www.google.com")
+                .setProducts(productList)
+                .buildBrand();
 
-        Brand brand = BrandFactory.getBrand(valuesBrand, productList); 
-        BrandCrudService = (BrandCrudService) ctx.getBean("BrandCrudService");
-        BrandCrudService.persist(brand);
-        id = brand.getId();
+        brandCrudService.persist(brand);
+        brandID = brand.getId();
 
-        Assert.assertNotNull(brand);
+        assertNotNull(brand);
     }
 
     @Test(dependsOnMethods = "createBrand")
     public void readBrand() {
-        BrandCrudService = (BrandCrudService) ctx.getBean("BrandCrudService");
-        Brand brand = BrandCrudService.findById(id);
+        Brand brand = brandCrudService.findById(brandID);
 
-        Assert.assertNotNull(brand);
+        assertNotNull(brand);
     }
 
     @Test(dependsOnMethods = "readBrand")
     public void updateBrand() {
-        BrandCrudService = (BrandCrudService) ctx.getBean("BrandCrudService");
-        Brand brand = BrandCrudService.findById(id);
+        Brand brand = brandCrudService.findById(brandID);
         brand.setBrandName("Pepsi");
-        BrandCrudService.merge(brand);
+        brandCrudService.merge(brand);
 
-        Brand update = BrandCrudService.findById(id);
-        Assert.assertEquals(update.getBrandName(), "Pepsi");
+        Brand brand1 = brandCrudService.findById(brandID);
+        assertEquals(brand1.getBrandName(), "Pepsi");
     }
 
     @Test(dependsOnMethods = "updateBrand")
     public void readBrandS() {
-        BrandCrudService = (BrandCrudService) ctx.getBean("BrandCrudService");
-        List<Brand> brand = BrandCrudService.findAll();
+        List<Brand> brand = brandCrudService.findAll();
 
-        Assert.assertTrue(brand.size() > 0);
+        assertTrue(brand.size() > 0);
     }
 
     @Test(dependsOnMethods = "readBrandS")
     public void deleteBrand() {
-        BrandCrudService = (BrandCrudService) ctx.getBean("BrandCrudService");
-        Brand faq = BrandCrudService.findById(id);
-        BrandCrudService.remove(faq);
-        Brand deleted = BrandCrudService.findById(id);
-        Assert.assertNull(deleted);
+        Brand brand = brandCrudService.findById(brandID);
+        brandCrudService.remove(brand);
+        Brand brand1 = brandCrudService.findById(brandID);
+        assertNull(brand1);
     }
 }

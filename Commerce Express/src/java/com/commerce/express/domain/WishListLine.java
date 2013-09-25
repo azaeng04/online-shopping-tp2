@@ -17,18 +17,17 @@ import javax.persistence.OneToOne;
  * @author Owner
  */
 @Entity
-public class Rating implements Serializable {
+public class WishListLine implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(unique = true)
-    private String ratingID;
-    private Integer ratingNumber;
-    private String ratingStatus;
-    private Integer ratingQuantity;
+    private String wishListLineID;
+    private Integer quantity;
     @OneToOne
-    private Product product;
+    private Product product;    
     
     public Long getId() {
         return id;
@@ -46,36 +45,20 @@ public class Rating implements Serializable {
         this.product = product;
     }
 
-    public String getRatingID() {
-        return ratingID;
+    public String getWishListLineID() {
+        return wishListLineID;
     }
 
-    public void setRatingID(String ratingID) {
-        this.ratingID = ratingID;
+    public void setWishListLineID(String wishListLineID) {
+        this.wishListLineID = wishListLineID;
+    }
+    
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public Integer getRatingNumber() {
-        return ratingNumber;
-    }
-
-    public void setRatingNumber(Integer ratingNumber) {
-        this.ratingNumber = ratingNumber;
-    }
-
-    public String getRatingStatus() {
-        return ratingStatus;
-    }
-
-    public void setRatingStatus(String ratingStatus) {
-        this.ratingStatus = ratingStatus;
-    }
-
-    public Integer getRatingQuantity() {
-        return ratingQuantity;
-    }
-
-    public void setRatingQuantity(Integer ratingQuantity) {
-        this.ratingQuantity = ratingQuantity;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     @Override
@@ -88,10 +71,10 @@ public class Rating implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Rating)) {
+        if (!(object instanceof WishListLine)) {
             return false;
         }
-        Rating other = (Rating) object;
+        WishListLine other = (WishListLine) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -100,7 +83,6 @@ public class Rating implements Serializable {
 
     @Override
     public String toString() {
-        return "com.commerce.express.domain.Rating[ id=" + id + " ]";
+        return "com.commerce.express.domain.OrderLine[ id=" + id + " ]";
     }
-    
 }

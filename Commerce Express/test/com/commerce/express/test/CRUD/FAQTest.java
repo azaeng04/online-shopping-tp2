@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.testng.Assert;
+import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -26,8 +26,8 @@ import org.testng.annotations.Test;
 public class FAQTest {
 
     private static ApplicationContext ctx;
-    private Long id;
-    private FAQCrudService FAQCrudService;
+    private static Long faqID;
+    private static FAQCrudService fAQCrudService;
 
     public FAQTest() {
     }
@@ -40,6 +40,7 @@ public class FAQTest {
     @BeforeClass
     public static void setUpClass() throws Exception {
         ctx = new ClassPathXmlApplicationContext("classpath:com/commerce/express/app/config/applicationContext-*.xml");
+        fAQCrudService = (FAQCrudService) ctx.getBean("FAQCrudService");
     }
 
     @AfterClass
@@ -56,51 +57,43 @@ public class FAQTest {
 
     @Test
     public void createFAQ() {
-        Map<String, String> values = new HashMap<String, String>();
-        values.put("question", "How Can I Pay?");
-        values.put("answer", "By Eft");
-        FAQ faq = FAQFactory.getFAQ(values);
+        FAQ faq = FAQFactory.getFAQ("748374827", "How Can I Pay?", "By EFT");
+        
+        fAQCrudService.persist(faq);
+        faqID = faq.getId();
 
-        FAQCrudService = (FAQCrudService) ctx.getBean("FAQCrudService");
-        FAQCrudService.persist(faq);
-        id = faq.getId();
-
-        Assert.assertNotNull(faq);
+        assertNotNull(faq);
     }
 
     @Test(dependsOnMethods = "createFAQ")
     public void readFAQ() {
-        FAQCrudService = (FAQCrudService) ctx.getBean("FAQCrudService");
-        FAQ faq = FAQCrudService.findById(id);
+        FAQ faq = fAQCrudService.findById(faqID);
 
-        Assert.assertNotNull(faq);
+        assertNotNull(faq);
     }
 
     @Test(dependsOnMethods = "readFAQ")
     public void updateFAQ() {
-        FAQCrudService = (FAQCrudService) ctx.getBean("FAQCrudService");
-        FAQ faq = FAQCrudService.findById(id);
+        FAQ faq = fAQCrudService.findById(faqID);
         faq.setQuestion("Where is the bussiness?");
-        FAQCrudService.merge(faq);
+        fAQCrudService.merge(faq);
 
-        FAQ update = FAQCrudService.findById(id);
-        Assert.assertEquals(update.getQuestion(), "Where is the bussiness?");
+        FAQ update = fAQCrudService.findById(faqID);
+        assertEquals(update.getQuestion(), "Where is the bussiness?");
     }
 
     @Test(dependsOnMethods = "updateFAQ")
     public void readFAQS() {
-        FAQCrudService = (FAQCrudService) ctx.getBean("FAQCrudService");
-        List<FAQ> faq = FAQCrudService.findAll();
+        List<FAQ> faq = fAQCrudService.findAll();
 
-        Assert.assertTrue(faq.size() > 0);
+        assertTrue(faq.size() > 0);
     }
 
     @Test(dependsOnMethods = "readFAQS")
     public void deleteFAQ() {
-        FAQCrudService = (FAQCrudService) ctx.getBean("FAQCrudService");
-        FAQ faq = FAQCrudService.findById(id);
-        FAQCrudService.remove(faq);
-        FAQ deleted = FAQCrudService.findById(id);
-        Assert.assertNull(deleted);
+        FAQ faq = fAQCrudService.findById(faqID);
+        fAQCrudService.remove(faq);
+        FAQ deleted = fAQCrudService.findById(faqID);
+        assertNull(deleted);
     }
 }
