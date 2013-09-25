@@ -7,6 +7,7 @@ package com.commerce.express.domain;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,8 +25,10 @@ public class Brand implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(unique = true)
     private String brandID;
     private String brandName;
+    @Column(unique = true)
     private String logoURL;
     private String description;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

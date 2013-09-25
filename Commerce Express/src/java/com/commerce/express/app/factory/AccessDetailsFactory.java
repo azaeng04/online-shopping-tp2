@@ -15,11 +15,11 @@ import java.util.List;
 public class AccessDetailsFactory {
 
     public static AccessDetails getAccessDetails(String userName, String password, Boolean enabled, List<Roles> roles) {
-        AccessDetails accessdetails = new AccessDetails();
-        accessdetails.setUsername(userName);
-        accessdetails.setPassword(password);
-        accessdetails.setEnabled(enabled);
-        accessdetails.setRoles(roles);
-        return accessdetails;
+        AccessDetails accessDetails = new AccessDetails();
+        accessDetails.setUsername(userName);
+        accessDetails.setPassword(password);
+        accessDetails.setEnabled(enabled);
+        accessDetails.setRoles(roles);
+        return accessDetails;
     }
 }

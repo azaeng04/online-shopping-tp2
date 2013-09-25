@@ -13,9 +13,9 @@ import com.commerce.express.domain.ProductStatus;
 public class ProductStatusFactory {
 
     public static ProductStatus getProductStatus(String Status, int inStock) {
-        ProductStatus productstatus = new ProductStatus();
-        productstatus.setStatus(Status);
-        productstatus.setInStock(inStock);
-        return productstatus;
+        ProductStatus productStatus = new ProductStatus();
+        productStatus.setStatus(Status);
+        productStatus.setInStock(inStock);
+        return productStatus;
     }
 }

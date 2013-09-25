@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,15 +27,15 @@ public class WishList implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(unique = true)
     private String wishListID;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateCreated;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateModified;
-    private Integer quantity;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "wishList_ID")
-    private List<Product> products;
+    @JoinColumn(name = "wishListID")
+    private List<WishListLine> wishListLines;
     
     public Long getId() {
         return id;
@@ -44,6 +45,14 @@ public class WishList implements Serializable {
         this.id = id;
     }
 
+    public List<WishListLine> getWishListLines() {
+        return wishListLines;
+    }
+
+    public void setWishListLines(List<WishListLine> wishListLines) {
+        this.wishListLines = wishListLines;
+    }
+    
     public String getWishListID() {
         return wishListID;
     }
@@ -67,23 +76,7 @@ public class WishList implements Serializable {
     public void setDateModified(Date dateModified) {
         this.dateModified = dateModified;
     }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
+        
     @Override
     public int hashCode() {
         int hash = 0;

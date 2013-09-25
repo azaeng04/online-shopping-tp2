@@ -4,8 +4,8 @@
  */
 package com.commerce.express.app.factory;
 
-import com.commerce.express.domain.Product;
 import com.commerce.express.domain.WishList;
+import com.commerce.express.domain.WishListLine;
 import java.util.Date;
 import java.util.List;
 
@@ -15,12 +15,12 @@ import java.util.List;
  */
 public class WishListFactory {
 
-    public static WishList getWishList(Date dateCreated, Date dateModified, int quantity, List<Product> products) {
-        WishList wishlist = new WishList();
-        wishlist.setDateCreated(dateCreated);
-        wishlist.setDateModified(dateModified);
-        wishlist.setQuantity(quantity);
-        wishlist.setProducts(products);
-        return wishlist;
+    public static WishList getWishList(String wishListID, Date dateCreated, Date dateModified, List<WishListLine> wishListLines) {
+        WishList wishList = new WishList();
+        wishList.setDateCreated(dateCreated);
+        wishList.setDateModified(dateModified);
+        wishList.setWishListLines(wishListLines);
+        wishList.setWishListID(wishListID);
+        return wishList;
     }
 }

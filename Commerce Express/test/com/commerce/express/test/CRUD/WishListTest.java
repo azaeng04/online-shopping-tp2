@@ -4,22 +4,25 @@
  */
 package com.commerce.express.test.CRUD;
 
+import com.commerce.express.app.factory.CategoryFactory;
 import com.commerce.express.app.factory.ProductFactory;
 import com.commerce.express.app.factory.ProductStatusFactory;
 import com.commerce.express.app.factory.WishListFactory;
+import com.commerce.express.app.factory.WishListLineFactory;
+import com.commerce.express.domain.Category;
 import com.commerce.express.domain.Product;
 import com.commerce.express.domain.ProductStatus;
 import com.commerce.express.domain.WishList;
+import com.commerce.express.domain.WishListLine;
+import com.commerce.express.service.crud.CategoryCrudService;
 import com.commerce.express.service.crud.WishListCrudService;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.joda.time.DateTime;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.testng.Assert;
+import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -33,8 +36,10 @@ import org.testng.annotations.Test;
 public class WishListTest {
 
     private static ApplicationContext ctx;
-    private WishListCrudService WishListCrudService;
-    private Long id;
+    private static WishListCrudService wishListCrudService;
+    private static CategoryCrudService categoryCrudService;
+    private static Long categoryID;
+    private static Long wishListID;
 
     public WishListTest() {
     }
@@ -47,10 +52,14 @@ public class WishListTest {
     @BeforeClass
     public static void setUpClass() throws Exception {
         ctx = new ClassPathXmlApplicationContext("classpath:com/commerce/express/app/config/applicationContext-*.xml");
+        wishListCrudService = (WishListCrudService) ctx.getBean("WishListCrudService");
+        categoryCrudService = (CategoryCrudService) ctx.getBean("CategoryCrudService");
     }
 
     @AfterClass
     public static void tearDownClass() throws Exception {
+        Category category = categoryCrudService.findById(categoryID);
+        categoryCrudService.remove(category);
     }
 
     @BeforeMethod
@@ -63,65 +72,67 @@ public class WishListTest {
 
     @Test
     public void createWishList() {
-
-        Map<String, String> valuesProduct = new HashMap<String, String>();
-        valuesProduct.put("productName", "Milk");
-        valuesProduct.put("description", "On Special");
-        valuesProduct.put("imageURL", "www.google.com");
-
         ProductStatus productStatus = ProductStatusFactory.getProductStatus("InStock", 100);
 
-        Product product = ProductFactory.getProduct(valuesProduct, productStatus);
+        Product product = new ProductFactory.Builder("7384728171")
+                .setDescription("On Special")
+                .setImageURL("www.google.com")
+                .setProductName("Milk")
+                .setProductStatus(productStatus)
+                .buildProduct();
+
         List<Product> productList = new ArrayList<Product>();
         productList.add(product);
 
-        Date dateCreated = new DateTime(2012, 12, 26, 0, 0).toDate();
-        Date dateModified = new DateTime(2012, 12, 27, 0, 0).toDate();
+        Category category = CategoryFactory.getCategory("74837839482", "Dairy", productList);
 
-        WishList wishList = WishListFactory.getWishList(dateCreated, dateModified, 100, productList);
+        categoryCrudService.persist(category);
 
-        WishListCrudService = (WishListCrudService) ctx.getBean("WishListCrudService");
-        WishListCrudService.persist(wishList);
-        id = wishList.getId();
+        assertNotNull(category);
 
-        Assert.assertNotNull(wishList);
+        WishListLine wishListLine = WishListLineFactory.getWishListLine("748374828", 100, product);
+        List<WishListLine> wishListLines = new ArrayList<WishListLine>();
+        wishListLines.add(wishListLine);
+
+        Date date = new DateTime(2012, 12, 27, 0, 0).toDate();
+        WishList wishList = WishListFactory.getWishList("78374892213", date, date, wishListLines);                
+
+        wishListCrudService.persist(wishList);
+        wishListID = wishList.getId();
+        
+        assertNotNull(wishList);
     }
 
     @Test(dependsOnMethods = "createWishList")
     public void readWishList() {
-        WishListCrudService = (WishListCrudService) ctx.getBean("WishListCrudService");
-        WishList wishList = WishListCrudService.findById(id);
+        WishList wishList = wishListCrudService.findById(wishListID);
 
-        Assert.assertNotNull(wishList);
+        assertNotNull(wishList);
     }
 
     @Test(dependsOnMethods = "readWishList")
     public void updateWishList() {
-        WishListCrudService = (WishListCrudService) ctx.getBean("WishListCrudService");
-        WishList wishList = WishListCrudService.findById(id);
-        Date dateCreated = new DateTime(2012, 11, 26, 0, 0).toDate();
-        wishList.setDateCreated(dateCreated);
-        WishListCrudService.merge(wishList);
+        WishList wishList = wishListCrudService.findById(wishListID);
+        wishList.setWishListID("7845793475789");
+        wishListCrudService.merge(wishList);
 
-        WishList update = WishListCrudService.findById(id);
-        
-        Assert.assertEquals(update.getDateCreated(), dateCreated);
+        WishList wishList1 = wishListCrudService.findById(wishListID);
+
+        assertEquals(wishList1.getWishListID(), "7845793475789");
     }
 
     @Test(dependsOnMethods = "updateWishList")
     public void readWishListS() {
-        WishListCrudService = (WishListCrudService) ctx.getBean("WishListCrudService");
-        List<WishList> wishList = WishListCrudService.findAll();
+        List<WishList> wishList = wishListCrudService.findAll();
 
-        Assert.assertTrue(wishList.size() > 0);
+        assertTrue(wishList.size() > 0);
     }
 
     @Test(dependsOnMethods = "readWishListS")
     public void deleteWishList() {
-        WishListCrudService = (WishListCrudService) ctx.getBean("WishListCrudService");
-        WishList faq = WishListCrudService.findById(id);
-        WishListCrudService.remove(faq);
-        WishList deleted = WishListCrudService.findById(id);
-        Assert.assertNull(deleted);
+        WishList wishList = wishListCrudService.findById(wishListID);
+        wishListCrudService.remove(wishList);
+        WishList wishList1 = wishListCrudService.findById(wishListID);
+        assertNull(wishList1);
     }
 }

@@ -19,7 +19,7 @@ public class AdministratorFactory {
 
     public static class Builder {
 
-        private String administratorNumber = "ADM_";
+        private String administratorNumber = "ADM";
         private String firstName;
         private String lastName;
         private String middleName;

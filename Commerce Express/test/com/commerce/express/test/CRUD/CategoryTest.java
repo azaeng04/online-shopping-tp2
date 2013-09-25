@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.testng.Assert;
+import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -31,8 +31,8 @@ import org.testng.annotations.Test;
 public class CategoryTest {
 
     private static ApplicationContext ctx;
-    private CategoryCrudService CategoryCrudService;
-    private Long id;
+    private static CategoryCrudService categoryCrudService;
+    private static Long categoryID;
 
     public CategoryTest() {
     }
@@ -45,6 +45,7 @@ public class CategoryTest {
     @BeforeClass
     public static void setUpClass() throws Exception {
         ctx = new ClassPathXmlApplicationContext("classpath:com/commerce/express/app/config/applicationContext-*.xml");
+        categoryCrudService = (CategoryCrudService) ctx.getBean("CategoryCrudService");
     }
 
     @AfterClass
@@ -61,59 +62,56 @@ public class CategoryTest {
 
     @Test
     public void createCategory() {
-        Map<String, String> valuesProduct = new HashMap<String, String>();
-        valuesProduct.put("productName", "Milk");
-        valuesProduct.put("description", "On Special");
-        valuesProduct.put("imageURL", "www.google.com");
-
         ProductStatus productStatus = ProductStatusFactory.getProductStatus("InStock", 100);
 
-        Product product = ProductFactory.getProduct(valuesProduct, productStatus);
+        Product product = new ProductFactory.Builder("7384728171")
+                .setDescription("On Special")
+                .setImageURL("www.google.com")
+                .setProductName("Milk")
+                .setProductStatus(productStatus)
+                .buildProduct();
+
         List<Product> productList = new ArrayList<Product>();
         productList.add(product);
 
-        Category category = CategoryFactory.getCategory("Dairy", productList);
+        Category category = CategoryFactory.getCategory("74837839482", "Dairy", productList);
         
-        CategoryCrudService = (CategoryCrudService) ctx.getBean("CategoryCrudService");
-        CategoryCrudService.persist(category);
-        id = category.getId();
+        categoryCrudService.persist(category);
+        categoryID = category.getId();
 
-        Assert.assertNotNull(category);
+        assertNotNull(category);
     }
 
     @Test(dependsOnMethods = "createCategory")
     public void readCategory() {
-        CategoryCrudService = (CategoryCrudService) ctx.getBean("CategoryCrudService");
-        Category category = CategoryCrudService.findById(id);
+        categoryCrudService = (CategoryCrudService) ctx.getBean("CategoryCrudService");
+        Category category = categoryCrudService.findById(categoryID);
 
-        Assert.assertNotNull(category);
+        assertNotNull(category);
     }
 
     @Test(dependsOnMethods = "readCategory")
     public void updateCategory() {
-        CategoryCrudService = (CategoryCrudService) ctx.getBean("CategoryCrudService");
-        Category category = CategoryCrudService.findById(id);
+        Category category = categoryCrudService.findById(categoryID);
         category.setCategoryName("Pepsi");
-        CategoryCrudService.merge(category);
+        categoryCrudService.merge(category);
 
-        Category update = CategoryCrudService.findById(id);
-        Assert.assertEquals(update.getCategoryName(), "Pepsi");
+        Category category1 = categoryCrudService.findById(categoryID);
+        assertEquals(category1.getCategoryName(), "Pepsi");
     }
 
     @Test(dependsOnMethods = "updateCategory")
     public void readCategoryS() {
-        CategoryCrudService = (CategoryCrudService) ctx.getBean("CategoryCrudService");
-        List<Category> category = CategoryCrudService.findAll();
+        List<Category> category = categoryCrudService.findAll();
 
-        Assert.assertTrue(category.size() > 0);
+        assertTrue(category.size() > 0);
     }
 
     @Test(dependsOnMethods = "readCategoryS")
     public void deleteCategory() {
-        CategoryCrudService = (CategoryCrudService) ctx.getBean("CategoryCrudService");
-        Category faq = CategoryCrudService.findById(id);
-        CategoryCrudService.remove(faq);
-        Category deleted = CategoryCrudService.findById(id);
-        Assert.assertNull(deleted);
+        Category category = categoryCrudService.findById(categoryID);
+        categoryCrudService.remove(category);
+        Category category1 = categoryCrudService.findById(categoryID);
+        assertNull(category1);
     }
 }

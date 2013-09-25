@@ -19,7 +19,7 @@ import java.util.List;
 public class CustomerFactory {
     public static class Builder {
 
-        private String customerNumber = "CUS_";
+        private String customerNumber = "CUS";
         private String firstName;
         private String lastName;
         private String middleName;

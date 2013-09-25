@@ -13,10 +13,11 @@ import com.commerce.express.domain.Product;
  */
 public class OrderLineFactory {
 
-    public static OrderLine getOrderLine(int quantity,Product product) {
+    public static OrderLine getOrderLine(String orderLineID, Integer quantity, Product product) {
         OrderLine orderline = new OrderLine();
+        orderline.setOrderLineID(orderLineID);
         orderline.setQuantity(quantity);
-        orderline.setProduct(null);
+        orderline.setProduct(product);
         return orderline;
     }
 }
