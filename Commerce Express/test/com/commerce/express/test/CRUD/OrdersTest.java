@@ -95,7 +95,7 @@ public class OrdersTest {
         List<OrderLine> ordersList = new ArrayList<OrderLine>();
         ordersList.add(orderLine);
         
-        Date date = new DateTime(2012, 12, 27, 0, 0).toDate();
+        Date date = new DateTime().toDate();
         Orders orders = new OrdersFactory.Builder("8394829381")
                 .setDateCreated(date)
                 .setDateModified(date)
