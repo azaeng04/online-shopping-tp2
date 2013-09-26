@@ -94,7 +94,7 @@ public class WishListTest {
         List<WishListLine> wishListLines = new ArrayList<WishListLine>();
         wishListLines.add(wishListLine);
 
-        Date date = new DateTime(2012, 12, 27, 0, 0).toDate();
+        Date date = new DateTime().toDate();
         WishList wishList = WishListFactory.getWishList("78374892213", date, date, wishListLines);                
 
         wishListCrudService.persist(wishList);
