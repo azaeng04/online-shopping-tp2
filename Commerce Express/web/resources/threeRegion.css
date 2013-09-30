@@ -1,0 +1,64 @@
+h1{
+	color: rgb(0,0,150);
+}
+h2{
+	color: rgb(0,0,150);
+	font-style: italic;
+}
+body{
+	font-family: san-serif;
+	background-color: rgb(0,0,150);
+}
+.navigationbar
+{
+	
+	
+}
+.topnavigationlink
+{
+	clear: left;
+	/*margin-left: 1em;*/
+	font-size: 1.1em;
+}
+.sidenavigation
+{
+    float: left;
+	height: 500px;
+	width: 10%;
+	color: white;
+/*	//background-color: white;*/
+      margin-left:1.1em;
+	
+}
+.content
+{
+	margin-left: 10em;
+        padding-top: 0px;
+        padding-bottom: 40px;
+/*	//color:red;*/
+/*	//background-color:green;*/
+}
+.pagefooter
+{
+	clear: left;
+	font-weight: bold;
+	font-style: italic;
+	font-size: .7em;
+	color: white;
+/*	//background-color: rgb(0,0,150);*/
+	text-align: center;
+}
+.categoryFont
+{
+	font-size:30px;
+}
+.positiningTopNavigation{
+	margin-left:10em;
+	margin-right:9em;
+}
+.button{
+    background-color:#0044cc;
+}
+.button:hover{
+    
+}
