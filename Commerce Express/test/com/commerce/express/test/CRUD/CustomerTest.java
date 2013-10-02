@@ -75,8 +75,8 @@ public class CustomerTest {
         Contact contact = ContactFactory.getContact("mikejoans@gmail.com", "0728374615", "0217057362", "0218392837");
 
         List<Roles> roles = new ArrayList<Roles>();
-        Roles role1 = RolesFactory.getRoles("CUSTOMER", "View products", "mikeJoans1234");
-        Roles role2 = RolesFactory.getRoles("CUSTOMER", "Write products", "mikeJoans1234");
+        Roles role1 = RolesFactory.getRoles("ROLE_CUSTOMER", "View products", "mikeJoans1234");
+        Roles role2 = RolesFactory.getRoles("ROLE_CUSTOMER", "Write products", "mikeJoans1234");
         roles.add(role1);
         roles.add(role2);
 
