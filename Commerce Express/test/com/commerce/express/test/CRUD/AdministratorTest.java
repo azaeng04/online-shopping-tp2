@@ -72,8 +72,8 @@ public class AdministratorTest {
         Contact contact = ContactFactory.getContact("johndoe@gmail.com", "0725643456", "0215463456", "0215647569");
 
         List<Roles> roles = new ArrayList<Roles>();
-        Roles role1 = RolesFactory.getRoles("ADMIN", "View products", "johnDoe1234");
-        Roles role2 = RolesFactory.getRoles("ADMIN", "Write products", "johnDoe1234");
+        Roles role1 = RolesFactory.getRoles("ROLE_ADMIN", "View products", "johnDoe1234");
+        Roles role2 = RolesFactory.getRoles("ROLE_ADMIN", "Write products", "johnDoe1234");
         roles.add(role1);
         roles.add(role2);
 
