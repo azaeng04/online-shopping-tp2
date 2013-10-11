@@ -17,7 +17,7 @@ public class OrdersFactory {
 
     public static class Builder {
 
-        private String orderID;
+        private String orderID = "ORD_";
         private Date dateCreated;
         private Date dateModified;
         private String status;

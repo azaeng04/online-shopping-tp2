@@ -46,9 +46,9 @@ public class Customer implements Users, Serializable {
     private List<Address> addresses;
     @Embedded
     private Contact contact;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "customer_ID")
-    private List<Orders> orders = new ArrayList<Orders>();
+    private List<Orders> orders;
 
     public Long getId() {
         return id;

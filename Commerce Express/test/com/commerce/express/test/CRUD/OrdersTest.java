@@ -100,7 +100,7 @@ public class OrdersTest {
                 .setDateCreated(date)
                 .setDateModified(date)
                 .setOrderLines(ordersList)
-                .setStatus("Available")
+                .setStatus("Pending Delivery")
                 .buildOrder();               
         
         ordersCrudService.persist(orders);
