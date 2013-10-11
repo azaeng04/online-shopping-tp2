@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
    <head>
@@ -30,7 +31,7 @@
 	<div class="navigationbar">
           <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
-	  <div class="positiningTopNavigation">
+	  <!-- <div class="positiningTopNavigation"> -->
             <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -99,7 +100,7 @@
             </form>
 			
           </div>
-        </div>
+        <!-- </div> -->
       </div>
      </div>
 
@@ -113,8 +114,10 @@
             <p>
                 <div class="categoryFont">Categories: &nbsp
                 <select id = "myList">
-                    <option value = "beverages">Beverages</option>
-                    <option value = "breadbakery">Bread/Bakery</option>
+                    <c:forEach var="category" items="${categories}">
+                        <option value = "categoryID=${category.id}">${category.categoryName}</option>
+                    </c:forEach>
+                    <!--<option value = "breadbakery">Bread/Bakery</option>
                     <option value = "cannedGoods">Canned Good</option>
                     <option value = "dairy">Dairy</option>
                     <option value = "dryGoods">Dry Goods</option>
@@ -127,7 +130,7 @@
                     <option value = "babyitems">Baby Items</option>
                     <option value = "frozenfoods">Frozen Foods</option>
                     <option value = "snacks">Snacks</option>
-                    <option value = "Spices">Spices</option>
+                    <option value = "Spices">Spices</option> -->
                 </select>&nbsp &nbsp <input type="text" name="searchItemName" placeholder="Search Item...">&nbsp &nbsp 
                 <button type="submit" class="btn">Search</button>
                 </div>
