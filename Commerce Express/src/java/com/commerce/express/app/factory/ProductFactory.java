@@ -4,10 +4,9 @@
  */
 package com.commerce.express.app.factory;
 
-import com.commerce.express.domain.Brand;
 import com.commerce.express.domain.Product;
 import com.commerce.express.domain.ProductStatus;
-import java.util.List;
+import com.commerce.express.domain.Rating;
 
 /**
  *
@@ -17,10 +16,12 @@ public class ProductFactory {
 
     public static class Builder {
 
-        private String productID;
+        private String productID = "PRD_";
         private String productName;
         private String description;
+        private Double productPrice;
         private String imageURL;
+        private Rating rating;
         private ProductStatus productStatus;
 
         public Builder(String productID) {
@@ -32,8 +33,18 @@ public class ProductFactory {
             return this;
         }
 
+        public Builder setRating(Rating rating) {
+            this.rating = rating;
+            return this;
+        }
+
         public Builder setDescription(String description) {
             this.description = description;
+            return this;
+        }
+
+        public Builder setProductPrice(Double productPrice) {
+            this.productPrice = productPrice;
             return this;
         }
 
@@ -55,7 +66,9 @@ public class ProductFactory {
             Product product = new Product();
             product.setProductID(object.productID);
             product.setProductName(object.productName);
+            product.setProductPrice(object.productPrice);
             product.setDescription(object.description);
+            product.setRating(object.rating);
             product.setImageURL(object.imageURL);
             product.setProductStatus(object.productStatus);
             return product;

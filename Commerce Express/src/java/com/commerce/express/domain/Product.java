@@ -5,12 +5,14 @@
 package com.commerce.express.domain;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -26,8 +28,11 @@ public class Product implements Serializable {
     private String productID;
     private String productName;
     private String description;
+    private Double productPrice;
     @Column(unique = true)
     private String imageURL;
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    private Rating rating;
     @Embedded
     private ProductStatus productStatus;
     
@@ -39,8 +44,24 @@ public class Product implements Serializable {
         this.id = id;
     }
 
+    public Rating getRating() {
+        return rating;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
+    }
+
     public String getProductID() {
         return productID;
+    }
+
+    public Double getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(Double productPrice) {
+        this.productPrice = productPrice;
     }
 
     public void setProductID(String productID) {
