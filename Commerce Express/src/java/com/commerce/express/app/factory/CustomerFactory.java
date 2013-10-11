@@ -4,7 +4,6 @@
  */
 package com.commerce.express.app.factory;
 
-import com.commerce.express.domain.AccessDetails;
 import com.commerce.express.domain.Address;
 import com.commerce.express.domain.Contact;
 import com.commerce.express.domain.Customer;
@@ -19,7 +18,7 @@ import java.util.List;
 public class CustomerFactory {
     public static class Builder {
 
-        private String customerNumber = "CUS";
+        private String customerNumber = "CUS_";
         private String firstName;
         private String lastName;
         private String middleName;

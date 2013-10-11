@@ -16,7 +16,7 @@ public class BrandFactory {
 
     public static class Builder {
 
-        private String brandID;
+        private String brandID = "BRA_";
         private String brandName;
         private String logoURL;
         private String description;

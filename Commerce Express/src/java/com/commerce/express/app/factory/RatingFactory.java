@@ -15,7 +15,7 @@ public class RatingFactory {
 
     public static class Builder {
 
-        private String ratingID;
+        private String ratingID = "RAT_";
         private Integer ratingNumber;
         private String ratingStatus;
         private Integer ratingQuantity;
@@ -25,20 +25,24 @@ public class RatingFactory {
             this.ratingID += ratingID;
         }
 
-        public void setRatingNumber(Integer ratingNumber) {
+        public Builder setRatingNumber(Integer ratingNumber) {
             this.ratingNumber = ratingNumber;
+            return this;
         }
 
-        public void setRatingStatus(String ratingStatus) {
+        public Builder setRatingStatus(String ratingStatus) {
             this.ratingStatus = ratingStatus;
+            return this;
         }
 
-        public void setRatingQuantity(Integer ratingQuantity) {
+        public Builder setRatingQuantity(Integer ratingQuantity) {
             this.ratingQuantity = ratingQuantity;
+            return this;
         }
 
-        public void setProduct(Product product) {
+        public Builder setProduct(Product product) {
             this.product = product;
+            return this;
         }
 
         public Rating buildRating() {

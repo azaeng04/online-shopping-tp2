@@ -7,9 +7,11 @@ package com.commerce.express.test.CRUD;
 import com.commerce.express.app.factory.CategoryFactory;
 import com.commerce.express.app.factory.ProductFactory;
 import com.commerce.express.app.factory.ProductStatusFactory;
+import com.commerce.express.app.factory.RatingFactory;
 import com.commerce.express.domain.Category;
 import com.commerce.express.domain.Product;
 import com.commerce.express.domain.ProductStatus;
+import com.commerce.express.domain.Rating;
 import com.commerce.express.service.crud.CategoryCrudService;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -68,9 +70,18 @@ public class CategoryTest {
                 .setDescription("On Special")
                 .setImageURL("www.google.com")
                 .setProductName("Milk")
+                .setProductPrice(9.95)
                 .setProductStatus(productStatus)
                 .buildProduct();
 
+        Rating rating = new RatingFactory.Builder("785745")
+                .setProduct(product)
+                .setRatingNumber(0)
+                .setRatingQuantity(0)
+                .setRatingStatus("Not Rated")
+                .buildRating();
+        
+        product.setRating(rating);
         List<Product> productList = new ArrayList<Product>();
         productList.add(product);
 
