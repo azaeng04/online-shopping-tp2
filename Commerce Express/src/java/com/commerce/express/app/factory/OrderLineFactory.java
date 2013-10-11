@@ -15,7 +15,7 @@ public class OrderLineFactory {
 
     public static OrderLine getOrderLine(String orderLineID, Integer quantity, Product product) {
         OrderLine orderline = new OrderLine();
-        orderline.setOrderLineID(orderLineID);
+        orderline.setOrderLineID("ORL_" + orderLineID);
         orderline.setQuantity(quantity);
         orderline.setProduct(product);
         return orderline;

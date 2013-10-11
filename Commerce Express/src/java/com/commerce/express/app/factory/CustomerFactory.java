@@ -8,6 +8,7 @@ import com.commerce.express.domain.Address;
 import com.commerce.express.domain.Contact;
 import com.commerce.express.domain.Customer;
 import com.commerce.express.domain.AccessDetails;
+import com.commerce.express.domain.Orders;
 import java.util.Date;
 import java.util.List;
 
@@ -27,7 +28,8 @@ public class CustomerFactory {
         private Contact contact;
         private AccessDetails accessDetails;
         private List<Address> addresses;
-
+        private List<Orders> orders;
+        
         public Builder(String customerNumber, AccessDetails accessDetails1) {
             this.customerNumber += customerNumber;
             this.accessDetails = accessDetails1;
@@ -68,6 +70,14 @@ public class CustomerFactory {
             return this;
         }
 
+        public List<Orders> getOrders() {
+            return orders;
+        }
+
+        public void setOrders(List<Orders> orders) {
+            this.orders = orders;
+        }
+
         public Customer buildCustomer() {
             return buildCustomer(this);
         }
@@ -83,6 +93,7 @@ public class CustomerFactory {
             customer.setLastName(object.lastName);
             customer.setMiddleName(object.middleName);
             customer.setContact(object.contact);
+            customer.setOrders(object.orders);
             return customer;
         }
     }
