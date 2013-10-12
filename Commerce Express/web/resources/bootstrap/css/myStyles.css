@@ -37,12 +37,12 @@ header p{
 }
 
 .carshow h2{
-        font-family : 'Droid Serif',Georgia, serif;
+/*        font-family : 'Droid Serif',Georgia, serif;*/
 	font-weight: normal;
 	margin: 0;
 	padding: 0;
 	padding-top: 10px;
-	color: #E2E6AC;
+	/*color: #E2E6AC;*/
 	font-size: 1.9em;
 	height: 30px;
 }
