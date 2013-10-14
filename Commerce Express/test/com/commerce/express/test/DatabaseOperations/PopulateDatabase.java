@@ -35,6 +35,7 @@ import com.commerce.express.service.crud.FAQCrudService;
 import com.commerce.express.service.crud.OrdersCrudService;
 import com.commerce.express.service.crud.ProductCrudService;
 import com.commerce.express.service.crud.WishListCrudService;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -476,14 +477,15 @@ public class PopulateDatabase {
             List<Product> productList = new ArrayList<Product>();
             uniqueNumbers.clear();
             Integer uniqueNum;
+            DecimalFormat decimalFormat = new DecimalFormat("###########.00");
             for (int i = 0; i < productName.size(); i++) {
                 randomPriceValue = generateRandomNumber(30, 100, new Random()).doubleValue();
                 uniqueNum = generateUniqueRandomNumber(10000, 99999, new Random());
                 Product product = new ProductFactory.Builder(uniqueNum.toString())
                         .setDescription("On Special")
-                        .setImageURL("www.google.com")
+                        .setImageURL("resources/images/product.jpg")
                         .setProductName(productName.get(i))
-                        .setProductPrice(new Double(9.95).toString())
+                        .setProductPrice(decimalFormat.format(randomPriceValue.doubleValue()))
                         .setProductStatus(productStatus)
                         .buildProduct();
 
