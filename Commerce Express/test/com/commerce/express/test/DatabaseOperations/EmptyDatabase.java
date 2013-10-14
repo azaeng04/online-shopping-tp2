@@ -5,17 +5,14 @@
 package com.commerce.express.test.DatabaseOperations;
 
 import com.commerce.express.domain.Administrator;
-import com.commerce.express.domain.Brand;
 import com.commerce.express.domain.Category;
 import com.commerce.express.domain.Customer;
 import com.commerce.express.service.crud.AdministratorCrudService;
-import com.commerce.express.service.crud.BrandCrudService;
 import com.commerce.express.service.crud.CategoryCrudService;
 import com.commerce.express.service.crud.CustomerCrudService;
 import com.commerce.express.service.crud.FAQCrudService;
 import com.commerce.express.service.crud.OrdersCrudService;
 import com.commerce.express.service.crud.WishListCrudService;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -37,7 +34,6 @@ public class EmptyDatabase {
     private static CustomerCrudService customerCrudService;
     private static OrdersCrudService ordersCrudService;
     private static CategoryCrudService categoryCrudService;
-    private static BrandCrudService brandCrudService;
     private static FAQCrudService fAQCrudService;
     private static WishListCrudService wishListCrudService;
     
@@ -56,7 +52,6 @@ public class EmptyDatabase {
         administratorCrudService = (AdministratorCrudService) ctx.getBean("AdministratorCrudService");
         customerCrudService = (CustomerCrudService) ctx.getBean("CustomerCrudService");
         ordersCrudService = (OrdersCrudService) ctx.getBean("OrdersCrudService");
-        brandCrudService = (BrandCrudService) ctx.getBean("BrandCrudService");
         wishListCrudService = (WishListCrudService) ctx.getBean("WishListCrudService");
         categoryCrudService = (CategoryCrudService) ctx.getBean("CategoryCrudService");
         fAQCrudService = (FAQCrudService) ctx.getBean("FAQCrudService");        
@@ -76,14 +71,12 @@ public class EmptyDatabase {
     
     @Test
     public void clearDB() {
-        List<Brand> brands = brandCrudService.findAll();
         List<Category> categories = categoryCrudService.findAll();
         List<Customer> customers = customerCrudService.findAll();
         List<Administrator> administrators = administratorCrudService.findAll();
         administratorCrudService.removeMultipleEntities(administrators);
         customerCrudService.removeMultipleEntities(customers);
         categoryCrudService.removeMultipleEntities(categories);
-        brandCrudService.removeMultipleEntities(brands);
         System.out.println("Database EMPTIED successfully");
     }
 }
