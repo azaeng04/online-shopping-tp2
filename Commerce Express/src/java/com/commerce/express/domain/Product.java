@@ -28,7 +28,7 @@ public class Product implements Serializable {
     private String productID;
     private String productName;
     private String description;
-    private Double productPrice;
+    private String productPrice;
     @Column(unique = true)
     private String imageURL;
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -56,11 +56,11 @@ public class Product implements Serializable {
         return productID;
     }
 
-    public Double getProductPrice() {
+    public String getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(Double productPrice) {
+    public void setProductPrice(String productPrice) {
         this.productPrice = productPrice;
     }
 

@@ -18,8 +18,8 @@ public class OrdersFactory {
     public static class Builder {
 
         private String orderID = "ORD_";
-        private Date dateCreated;
-        private Date dateModified;
+        private String dateCreated;
+        private String dateModified;
         private String status;
         private List<OrderLine> orderLines;
 
@@ -27,12 +27,12 @@ public class OrdersFactory {
             this.orderID += orderID;
         }
 
-        public Builder setDateCreated(Date dateCreated) {
+        public Builder setDateCreated(String dateCreated) {
             this.dateCreated = dateCreated;
             return this;
         }
 
-        public Builder setDateModified(Date dateModified) {
+        public Builder setDateModified(String dateModified) {
             this.dateModified = dateModified;
             return this;
         }

@@ -36,8 +36,7 @@ public class Customer implements Users, Serializable {
     private String firstName;
     private String lastName;
     private String middleName;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dateOfBirth;
+    private String dateOfBirth;
     private String gender;
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private AccessDetails accessDetails;
@@ -107,12 +106,12 @@ public class Customer implements Users, Serializable {
     }
 
     @Override
-    public Date getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
     @Override
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

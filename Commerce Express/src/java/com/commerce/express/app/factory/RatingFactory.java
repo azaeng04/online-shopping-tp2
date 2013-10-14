@@ -16,9 +16,9 @@ public class RatingFactory {
     public static class Builder {
 
         private String ratingID = "RAT_";
-        private Integer ratingNumber;
-        private String ratingStatus;
-        private Integer ratingQuantity;
+        private Integer ratingNumber = 0;
+        private String ratingStatus = "Not Rated";
+        private Integer ratingQuantity = 0;
         private Product product;
 
         public Builder(String ratingID) {

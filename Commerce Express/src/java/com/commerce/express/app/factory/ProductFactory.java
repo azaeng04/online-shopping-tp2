@@ -19,7 +19,7 @@ public class ProductFactory {
         private String productID = "PRD_";
         private String productName;
         private String description;
-        private Double productPrice;
+        private String productPrice;
         private String imageURL;
         private Rating rating;
         private ProductStatus productStatus;
@@ -43,7 +43,7 @@ public class ProductFactory {
             return this;
         }
 
-        public Builder setProductPrice(Double productPrice) {
+        public Builder setProductPrice(String productPrice) {
             this.productPrice = productPrice;
             return this;
         }
