@@ -59,7 +59,7 @@
                     <c:forEach items = "${products}" var = "product">
                         <div class="span4 carshow">
                             <h3>${product.productName}</h3>
-                            <h4>Price : ${product.productPrice}</h4>
+                            <h4>Price : R${product.productPrice}</h4>
                             <img src="${product.imageURL}" class="img-rounded" />
 
                             <div class="btn-group-vertical">
