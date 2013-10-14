@@ -14,9 +14,7 @@ import com.commerce.express.domain.ProductStatus;
 import com.commerce.express.domain.Rating;
 import com.commerce.express.service.crud.CategoryCrudService;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import static org.testng.Assert.*;
@@ -70,7 +68,7 @@ public class CategoryTest {
                 .setDescription("On Special")
                 .setImageURL("www.google.com")
                 .setProductName("Milk")
-                .setProductPrice(9.95)
+                .setProductPrice(new Double(9.95).toString())
                 .setProductStatus(productStatus)
                 .buildProduct();
 

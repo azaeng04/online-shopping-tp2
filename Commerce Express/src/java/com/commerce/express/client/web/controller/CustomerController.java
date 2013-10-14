@@ -3,10 +3,23 @@
  * and open the template in the editor.
  */
 package com.commerce.express.client.web.controller;
+
+import com.commerce.express.app.facade.CategoryFacade;
+import com.commerce.express.app.facade.CustomerFacade;
+import com.commerce.express.domain.Category;
+import com.commerce.express.domain.OrderLine;
+import com.commerce.express.domain.Product;
+import com.commerce.express.service.ProductService;
+import com.commerce.express.service.crud.OrderLineCrudService;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -14,83 +27,97 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class CustomerController {
-   
+
+    @Autowired
+    private ProductService productService;
+    private static CategoryFacade categoryFacade = CategoryFacade.getCategoryFacadeInstance();
+    private static CustomerFacade customerFacade = CustomerFacade.getCustomerFacadeInstance();
+    
     @RequestMapping(value = "/memberhome", method = RequestMethod.GET)
     public String memberIndex(Model model) {
+        categoryModel(model);
+        List<Product> products = categoryFacade.getProductCrudService().findAll();
+        model.addAttribute("products", products);
+        model.addAttribute("title", "Customer Home");
+        model.addAttribute("active", "/");
         return "customer/index";
     }
+
     @RequestMapping(value = "/memberaboutus", method = RequestMethod.GET)
     public String aboutUs(Model model) {
+        categoryModel(model);
+        model.addAttribute("title", "About Us");
+        model.addAttribute("active", "aboutus");
         return "customer/aboutus";
     }
+
     @RequestMapping(value = "/membercontactus", method = RequestMethod.GET)
     public String contactUs(Model model) {
+        categoryModel(model);
+        model.addAttribute("title", "Contact Us");
+        model.addAttribute("active", "contactus");
         return "customer/contactus";
     }
+
     @RequestMapping(value = "/memberhelp", method = RequestMethod.GET)
-    public String help(Model model) {
+    public String help(Model model) {        
+        categoryModel(model);
+        model.addAttribute("title", "Help");
+        model.addAttribute("active", "help");
         return "customer/help";
+    }    
+    
+    @RequestMapping(value = "/memberorders", method = RequestMethod.GET)
+    public String orders(Model model) {        
+        categoryModel(model);
+        model.addAttribute("title", "Orders");
+        model.addAttribute("active", "orders");
+        return "customer/orders";
     }
-    @RequestMapping(value = "/memberbabyitems", method = RequestMethod.GET)
-    public String babyitems(Model model) {
-        return "customer/babyitems";
+    
+    @RequestMapping(value = "/memberwishlist", method = RequestMethod.GET)
+    public String wishlist(Model model) {        
+        categoryModel(model);
+        model.addAttribute("title", "Wishlist");
+        model.addAttribute("active", "wishlist");
+        return "customer/wishlist";
     }
-    @RequestMapping(value = "/memberbakery", method = RequestMethod.GET)
-    public String bakery(Model model) {
-        return "customer/bakery";
+    
+    @RequestMapping(value = "/basket", method = RequestMethod.GET)
+    public String basket(Model model) {        
+        categoryModel(model);
+        model.addAttribute("title", "Basket");
+        return "customer/basket";
     }
-    @RequestMapping(value = "/memberbakinggoods", method = RequestMethod.GET)
-    public String bakinggoods(Model model) {
-        return "customer/bakinggoods";
+    
+    private void categoryModel(Model model) {
+        List<Category> categories = categoryFacade.getCategoryCrudService().findAll();
+        model.addAttribute("categories", categories);
     }
-    @RequestMapping(value = "/memberbeverages", method = RequestMethod.GET)
-    public String beverages(Model model) {
-        return "customer/beverages";
-    }
-    @RequestMapping(value = "/membercannedgoods", method = RequestMethod.GET)
-    public String cannedGoods(Model model) {
-        return "customer/cannedgoods";
-    }
-    @RequestMapping(value = "/membercleaners", method = RequestMethod.GET)
-    public String cleaners(Model model) {
-        return "customer/cleaners";
-    }
-    @RequestMapping(value = "/memberdairy", method = RequestMethod.GET)
-    public String dairy(Model model) {
-        return "customer/dairy";
-    }
-    @RequestMapping(value = "/memberdrygoods", method = RequestMethod.GET)
-    public String drygoods(Model model) {
-        return "customer/drygoods";
-    }
-    @RequestMapping(value = "/memberfrozenfoods", method = RequestMethod.GET)
-    public String frozenfoods(Model model) {
-        return "member/frozenfoods";
-    }
-    @RequestMapping(value = "/membermeat", method = RequestMethod.GET)
-    public String meat(Model model) {
-        return "member/meat";
-    }
-    @RequestMapping(value = "/memberpapergoods", method = RequestMethod.GET)
-    public String papergoods(Model model) {
-        return "member/papergoods";
-    }
-    @RequestMapping(value = "/memberpersonalcare", method = RequestMethod.GET)
-    public String personalcare(Model model) {
-        return "member/personalcare";
-    }
-    @RequestMapping(value = "/memberproduce", method = RequestMethod.GET)
-    public String produce(Model model) {
-        return "member/produce";
-    }
- 
-    @RequestMapping(value = "/membersnacks", method = RequestMethod.GET)
-    public String snacks(Model model) {
-        return "member/snacks";
-    }
-    @RequestMapping(value = "/memberspices", method = RequestMethod.GET)
-    public String spices(Model model) {
-        return "member/spices";
-    }
-   
+    
+//    @RequestMapping(value="/addToCart")
+//    public String addToCart(Model model,@ModelAttribute("OrderLineModel") OrderLineModel orderLine,@RequestParam("productID") String productID) {
+////        
+////        List<Category> categories = categoryFacade.getCategoryCrudService().findAll();
+////        List<Product> productsTest = categoryFacade.getProductCrudService().findAll();
+////        model.addAttribute("productsRow", productsTest);
+////        model.addAttribute("categories",categories);
+////        
+////       
+////        Product p = productService.getProductByProductID(productID);
+////        String quantity=orderLine.getQuantity();
+////        
+////        OrderLine o = new OrderLine();
+////        o.setOrderLineID("");
+////        o.setProduct(p);
+////        o.setQuantity(12);
+////        o.setId(Long.MIN_VALUE);
+////        
+////        orderLines.add(o);
+//////        model.addAttribute("orderLine",o);
+////        model.addAttribute("product",p);
+////        model.addAttribute("orderLines",orderLines);
+//////        
+//        return "customer/basket";
+//    }
 }

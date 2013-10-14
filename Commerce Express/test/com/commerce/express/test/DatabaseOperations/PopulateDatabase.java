@@ -238,7 +238,7 @@ public class PopulateDatabase {
         Customer customer = new CustomerFactory.Builder(userNumber, user)
                 .setAddresses(addresses)
                 .setContact(contact)
-    //            .setDateOfBirth(new SimpleDateFormat("EEEE dd MMM YYYY").format(dob))
+                .setDateOfBirth(new SimpleDateFormat("EEEE dd MMM YYYY").format(dob))
                 .setFirstName(name)
                 .setGender(gender)
                 .setLastName(surname)
@@ -266,8 +266,8 @@ public class PopulateDatabase {
         
         Date date = new DateTime().toDate();
         Orders order = new OrdersFactory.Builder(randomUniqueNum.toString())
-//                .setDateCreated(new SimpleDateFormat("EEEE dd MMM YYYY HH:mm:ss").format(date))
-//                .setDateModified(new SimpleDateFormat("EEEE dd MMM YYYY HH:mm:ss").format(date))
+                .setDateCreated(new SimpleDateFormat("EEEE dd MMM YYYY HH:mm:ss").format(date))
+                .setDateModified(new SimpleDateFormat("EEEE dd MMM YYYY HH:mm:ss").format(date))
                 .setOrderLines(ordersList)
                 .setStatus("Pending Delivery")
                 .buildOrder();               
@@ -325,7 +325,7 @@ public class PopulateDatabase {
         Customer customer = new CustomerFactory.Builder(userNumber, user)
                 .setAddresses(addresses)
                 .setContact(contact)
-//                .setDateOfBirth(new SimpleDateFormat("EEEE dd MMM YYYY").format(dob))
+                .setDateOfBirth(new SimpleDateFormat("EEEE dd MMM YYYY").format(dob))
                 .setFirstName(name)
                 .setGender(gender)
                 .setLastName(surname)
@@ -353,8 +353,8 @@ public class PopulateDatabase {
         
         Date date = new DateTime().toDate();
         Orders order = new OrdersFactory.Builder(randomUniqueNum.toString())
-//                .setDateCreated(new SimpleDateFormat("EEEE dd MMM YYYY HH:mm:ss").format(date))
-//                .setDateModified(new SimpleDateFormat("EEEE dd MMM YYYY HH:mm:ss").format(date))
+                .setDateCreated(new SimpleDateFormat("EEEE dd MMM YYYY HH:mm:ss").format(date))
+                .setDateModified(new SimpleDateFormat("EEEE dd MMM YYYY HH:mm:ss").format(date))
                 .setOrderLines(ordersList)
                 .setStatus("Pending Delivery")
                 .buildOrder();               
@@ -386,7 +386,7 @@ public class PopulateDatabase {
         Administrator administrator = new AdministratorFactory.Builder(adminNumber, user)
                 .setAddresses(addresses)
                 .setContact(contact)
-//                .setDateOfBirth(new SimpleDateFormat("EEEE dd MMM YYYY").format(dob))
+                .setDateOfBirth(new SimpleDateFormat("EEEE dd MMM YYYY").format(dob))
                 .setFirstName("Shannon")
                 .setGender("Female")
                 .setLastName("Weir")
@@ -413,7 +413,7 @@ public class PopulateDatabase {
         Administrator administrator = new AdministratorFactory.Builder(adminNumber, user)
                 .setAddresses(addresses)
                 .setContact(contact)
-//                .setDateOfBirth(new SimpleDateFormat("EEEE dd MMM YYYY").format(dob))
+                .setDateOfBirth(new SimpleDateFormat("EEEE dd MMM YYYY").format(dob))
                 .setFirstName("Nashrethen")
                 .setGender("Male")
                 .setLastName("Naidoo")
@@ -440,7 +440,7 @@ public class PopulateDatabase {
         Administrator administrator = new AdministratorFactory.Builder(adminNumber, user)
                 .setAddresses(addresses)
                 .setContact(contact)
-//                .setDateOfBirth(new SimpleDateFormat("EEEE dd MMM YYYY").format(dob))
+                .setDateOfBirth(new SimpleDateFormat("EEEE dd MMM YYYY").format(dob))
                 .setFirstName("Azariah")
                 .setGender("Male")
                 .setLastName("Engelbrecht")
@@ -483,7 +483,7 @@ public class PopulateDatabase {
                         .setDescription("On Special")
                         .setImageURL("www.google.com")
                         .setProductName(productName.get(i))
-//                        .setProductPrice(new Double(9.95).toString())
+                        .setProductPrice(new Double(9.95).toString())
                         .setProductStatus(productStatus)
                         .buildProduct();
 
