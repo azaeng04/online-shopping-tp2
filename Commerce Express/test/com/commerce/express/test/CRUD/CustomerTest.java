@@ -15,7 +15,9 @@ import com.commerce.express.domain.Customer;
 import com.commerce.express.domain.Roles;
 import com.commerce.express.domain.AccessDetails;
 import com.commerce.express.service.crud.CustomerCrudService;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.joda.time.DateTime;
 import org.springframework.context.ApplicationContext;
@@ -82,10 +84,11 @@ public class CustomerTest {
 
         AccessDetails user = AccessDetailsFactory.getAccessDetails("mikeJoans1234", "mikeJoans", false, roles);
 
+        Date dob = new DateTime(1989, 5, 5, 0, 0).toDate();
         Customer customer = new CustomerFactory.Builder("82118", user)
                 .setAddresses(addresses)
                 .setContact(contact)
-                .setDateOfBirth(new DateTime(1988, 4, 4, 0, 0).toDate())
+                .setDateOfBirth(new SimpleDateFormat("EEEE dd MMM YYYY").format(dob))
                 .setFirstName("Mike")
                 .setGender("Male")
                 .setLastName("Joans")

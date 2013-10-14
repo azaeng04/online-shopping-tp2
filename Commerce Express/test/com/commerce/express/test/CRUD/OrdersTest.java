@@ -16,6 +16,7 @@ import com.commerce.express.domain.Product;
 import com.commerce.express.domain.ProductStatus;
 import com.commerce.express.service.crud.CategoryCrudService;
 import com.commerce.express.service.crud.OrdersCrudService;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -97,8 +98,8 @@ public class OrdersTest {
         
         Date date = new DateTime().toDate();
         Orders orders = new OrdersFactory.Builder("8394829381")
-                .setDateCreated(date)
-                .setDateModified(date)
+                .setDateCreated(new SimpleDateFormat("EEEE dd MMM YYYY HH:mm:ss").format(date))
+                .setDateModified(new SimpleDateFormat("EEEE dd MMM YYYY HH:mm:ss").format(date))
                 .setOrderLines(ordersList)
                 .setStatus("Pending Delivery")
                 .buildOrder();               

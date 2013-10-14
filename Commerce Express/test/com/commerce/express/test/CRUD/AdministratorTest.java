@@ -15,7 +15,9 @@ import com.commerce.express.domain.Administrator;
 import com.commerce.express.domain.Contact;
 import com.commerce.express.domain.Roles;
 import com.commerce.express.service.crud.AdministratorCrudService;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.joda.time.DateTime;
 import org.springframework.context.ApplicationContext;
@@ -79,10 +81,11 @@ public class AdministratorTest {
 
         AccessDetails user = AccessDetailsFactory.getAccessDetails("johnDoe1234", "johnDoe", false, roles);
 
+        Date dob = new DateTime(1989, 5, 5, 0, 0).toDate();        
         Administrator administrator = new AdministratorFactory.Builder("82119", user)
                 .setAddresses(addresses)
                 .setContact(contact)
-                .setDateOfBirth(new DateTime(1989, 5, 5, 0, 0).toDate())
+                .setDateOfBirth(new SimpleDateFormat("EEEE dd MMM YYYY").format(dob))
                 .setFirstName("Susan")
                 .setGender("Female")
                 .setLastName("Andrews")
