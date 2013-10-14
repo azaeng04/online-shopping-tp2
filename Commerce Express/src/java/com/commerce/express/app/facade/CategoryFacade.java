@@ -5,7 +5,6 @@
 package com.commerce.express.app.facade;
 
 import com.commerce.express.app.config.GetContext;
-import com.commerce.express.service.crud.BrandCrudService;
 import com.commerce.express.service.crud.CategoryCrudService;
 import com.commerce.express.service.crud.ProductCrudService;
 import java.io.Serializable;
@@ -20,7 +19,6 @@ public class CategoryFacade implements Serializable {
     private final static ApplicationContext ctx = GetContext.getApplicationContext();
     private CategoryCrudService categoryCrudService;
     private ProductCrudService productCrudService;
-    private BrandCrudService brandCrudService;
 
     private CategoryFacade() {
     }
@@ -40,10 +38,5 @@ public class CategoryFacade implements Serializable {
     public CategoryCrudService getCategoryCrudService() {
         categoryCrudService = (CategoryCrudService) ctx.getBean("CategoryCrudService");
         return categoryCrudService;
-    }
-    
-    public BrandCrudService getBrandCrudService() {
-        brandCrudService = (BrandCrudService) ctx.getBean("BrandCrudService");
-        return brandCrudService;
     }
 }

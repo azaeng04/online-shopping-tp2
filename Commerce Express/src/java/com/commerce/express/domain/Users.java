@@ -34,9 +34,9 @@ public interface Users extends Serializable{
 
     public String getMiddleName();
 
-    public void setDateOfBirth(Date dateOfBirth);
+    public void setDateOfBirth(String dateOfBirth);
 
-    public Date getDateOfBirth();
+    public String getDateOfBirth();
 
     public void setGender(String gender);
 

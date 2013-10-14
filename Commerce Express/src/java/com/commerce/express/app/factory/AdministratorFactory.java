@@ -24,7 +24,7 @@ public class AdministratorFactory {
         private String lastName;
         private String middleName;
         private String gender;
-        private Date dateOfBirth;
+        private String dateOfBirth;
         private Contact contact;
         private AccessDetails accessDetails;
         private List<Address> addresses;
@@ -54,7 +54,7 @@ public class AdministratorFactory {
             return this;
         }
 
-        public Builder setDateOfBirth(Date dateOfBirth) {
+        public Builder setDateOfBirth(String dateOfBirth) {
             this.dateOfBirth = dateOfBirth;
             return this;
         }
