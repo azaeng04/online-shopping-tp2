@@ -67,8 +67,8 @@
                                     <button type="button" class="btn btn-default btn-info" onclick="qty(${product.id})">
                                         Add to Cart                                        
                                     </button>
-                                        <label>Quantity</label>    
-                                    <input id="${product.id}" name="quantity2" style="width:50px;" value="0" type="text"/>
+                                    <label>Quantity</label>    
+                                    <input id="${product.id}" onclick="qty('quantity2');" name="quantity2" style="width:50px;" value="0" type="text"/>
                                     
                                     <button type="button" class="btn btn-default btn-info">
                                         Add to Wishlist                                        
@@ -77,37 +77,10 @@
                             </div> 
                         </div>
                     </c:forEach>
-                    <ul class="dropdown-menu">
-                        <li>Product Name:<input type="text" name="productName" value="${product.productName}" /></li>
-                        <li>Price:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="description" placeholder="Price" value="${product.productPrice}"/></li>
-                        <li><input value ="0" type="text" id='${product.id}' name="quantity2"/><li>
-                            <div> 
-                                <button id="down" onclick="modify_qty(-1,${product.id});">-1</button>
-                                <button id="up" onclick="modify_qty(1,${product.id});" name="qty">+1</button>
-                            </div>
-                        <li>Product Name:<input type="text" name="quantity" value="12" /></li>   
-                        <li><a href="<%=request.getContextPath()%>/addToCart?productID=${product.productID}">
-                                <input type="submit" name="addToCart" value="Add to Cart" class="span0 btn-primary"></a></li>
-
-                    </ul>
                 </div> 
             </div>
         </div>
     </div>
-    <script>
-        function modify_qty(val,name) {
-            var qty = document.getElementById(name).value; 
-            var new_qty = parseInt(qty,10) + val;
-
-            if (new_qty < 0) {
-                new_qty = 0;
-            }
-
-            document.getElementById(name).value = new_qty;
-
-            return new_qty;
-        }
-    </script>
 </div>
 </div>
 <jsp:include page="../browser/main/footer.jsp" />
