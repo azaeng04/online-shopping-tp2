@@ -64,13 +64,13 @@
 
                             <div class="btn-group-vertical">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-info" onclick="qty(${product.id})">
+                                    <button name="'add'${product.id}" type="button" class="btn btn-default btn-info">
                                         Add to Cart                                        
                                     </button>
-                                    <label>Quantity</label>    
-                                    <input id="${product.id}" onclick="qty('quantity2');" name="quantity2" style="width:50px;" value="0" type="text"/>
-                                    
-                                    <button type="button" class="btn btn-default btn-info">
+
+                                    <input id="${product.id}" name="qty${product.id}" style="width:75px;" min="0" max="99" value="0" type="number"/>
+
+                                    <button name="'wish'${product.id}" type="button" class="btn btn-default btn-info">
                                         Add to Wishlist                                        
                                     </button>
                                 </div>

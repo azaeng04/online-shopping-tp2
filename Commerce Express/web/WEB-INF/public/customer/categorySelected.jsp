@@ -7,7 +7,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form"%>
-<jsp:include page="main/header.jsp"/>
+<jsp:include page="../browser/main/header.jsp"/>
 <body>
     <jsp:include page="main/topnavigationbar.jsp"/>
 
@@ -68,4 +68,4 @@
     </div>    
 </div>
 </div>
-<jsp:include page="main/footer.jsp" />
+<jsp:include page="../browser/main/footer.jsp" />

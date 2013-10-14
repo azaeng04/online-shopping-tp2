@@ -7,6 +7,7 @@ package com.commerce.express.client.web.controller;
 import com.commerce.express.app.facade.CategoryFacade;
 import com.commerce.express.client.web.model.AccessDetailsModel;
 import com.commerce.express.domain.Category;
+import com.commerce.express.domain.Product;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,7 @@ public class AccessDetailsController {
 
     @RequestMapping(value = "homepagedependentonrole")
     public String home(@ModelAttribute("AccessDetailsModel") AccessDetailsModel accessDetailsModel, Model model) {
+        List<Product> products = categoryFacade.getProductCrudService().findAll();
         categoryModel(model);
         String username = accessDetailsModel.getUsername();
         String password = accessDetailsModel.getPassword();
@@ -31,6 +33,7 @@ public class AccessDetailsController {
         if (username.equals("shannon") && password.equals("weir")) {
             page = "customer/index";
         }
+        model.addAttribute("products", products);
         model.addAttribute("active", "/");
         return page;
     }
