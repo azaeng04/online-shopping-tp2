@@ -53,16 +53,17 @@
                 <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
             </div>
 
+
             <div class="row">
                 <c:forEach items = "${products}" var = "product">
                     <div class="span4 carshow">
                         <h3>${product.productName}</h3>
                         <h4>Price : ${product.productPrice}</h4>
                         <img src="${product.imageURL}" class="img-rounded" />
-                        <br/>    
+                        <br/>
                     </div>
-                </c:forEach>
-            </div>                        
+                </c:forEach>  
+            </div>
         </div>
     </div>    
 </div>
