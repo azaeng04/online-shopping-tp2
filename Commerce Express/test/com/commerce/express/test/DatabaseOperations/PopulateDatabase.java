@@ -7,7 +7,6 @@ package com.commerce.express.test.DatabaseOperations;
 import com.commerce.express.app.factory.AccessDetailsFactory;
 import com.commerce.express.app.factory.AddressFactory;
 import com.commerce.express.app.factory.AdministratorFactory;
-import com.commerce.express.app.factory.BrandFactory;
 import com.commerce.express.app.factory.CategoryFactory;
 import com.commerce.express.app.factory.ContactFactory;
 import com.commerce.express.app.factory.CustomerFactory;
@@ -20,7 +19,6 @@ import com.commerce.express.app.factory.RolesFactory;
 import com.commerce.express.domain.AccessDetails;
 import com.commerce.express.domain.Address;
 import com.commerce.express.domain.Administrator;
-import com.commerce.express.domain.Brand;
 import com.commerce.express.domain.Category;
 import com.commerce.express.domain.Contact;
 import com.commerce.express.domain.Customer;
@@ -31,17 +29,16 @@ import com.commerce.express.domain.ProductStatus;
 import com.commerce.express.domain.Rating;
 import com.commerce.express.domain.Roles;
 import com.commerce.express.service.crud.AdministratorCrudService;
-import com.commerce.express.service.crud.BrandCrudService;
 import com.commerce.express.service.crud.CategoryCrudService;
 import com.commerce.express.service.crud.CustomerCrudService;
 import com.commerce.express.service.crud.FAQCrudService;
 import com.commerce.express.service.crud.OrdersCrudService;
 import com.commerce.express.service.crud.ProductCrudService;
 import com.commerce.express.service.crud.WishListCrudService;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -68,27 +65,34 @@ public class PopulateDatabase {
     private static OrdersCrudService ordersCrudService;
     private static CategoryCrudService categoryCrudService;
     private static ProductCrudService productCrudService;
-    private static BrandCrudService brandCrudService;
     private static FAQCrudService fAQCrudService;
     private static WishListCrudService wishListCrudService;
     static Integer numberMales = 1;
     static Integer numberFemales = 1;
     List<Integer> uniqueNumbers = new ArrayList<Integer>();
     Map<String, List<String>> categories = new TreeMap<String, List<String>>();
-//    List<String> categories = new ArrayList<String>(
-//            Arrays.asList("Ready made", "Breads", "Protein", "Fruit & Vegetables", "Long life"));
-    List<String> brands = new ArrayList<String>(
-            Arrays.asList("Blue Ribbon", "Fruit N Veg City", "Heinz", "Blaauwberg meats", "Gourmet meals"));
-    List<String> readyMade = new ArrayList<String>(
-            Arrays.asList("Samoosas", "Quiche", "Pasta", "Salad", "Kebabs", "Polony", "Dips", "Mini Hamburgers", "Ham", "Grated Cheese"));
-    List<String> breads = new ArrayList<String>(
+    
+    List<String> beverages = new ArrayList<String>(
+            Arrays.asList("Beverage1", "Beverage2", "Beverage3", "Beverage4", "Beverage5", "Beverage6", "Beverage7", "Beverage8", "Beverage9", "Beverage10"));
+    List<String> breadBakery = new ArrayList<String>(
             Arrays.asList("Bread1", "Bread2", "Bread3", "Bread4", "Bread5", "Bread6", "Bread7", "Bread8", "Bread9", "Bread10"));
-    List<String> protein = new ArrayList<String>(
-            Arrays.asList("Protein1", "Protein2", "Protein3", "Protein4", "Protein5", "Protein6", "Protein7", "Protein8", "Protein9", "Protein10"));
-    List<String> fruitNVeg = new ArrayList<String>(
-            Arrays.asList("FuitNVeg1", "FuitNVeg2", "FuitNVeg3", "FuitNVeg4", "FuitNVeg5", "FuitNVeg6", "FuitNVeg7", "FuitNVeg8", "FuitNVeg9", "FuitNVeg10"));
-    List<String> longLife = new ArrayList<String>(
-            Arrays.asList("LongLife1", "LongLife2", "LongLife3", "LongLife4", "LongLife5", "LongLife6", "LongLife7", "LongLife8", "LongLife9", "LongLife10"));
+    List<String> cannedGoods = new ArrayList<String>(
+            Arrays.asList("cannedGoods", "cannedGoods", "cannedGoods", "cannedGoods", "cannedGoods", "cannedGoods", "cannedGoods", "cannedGoods", "cannedGoods", "cannedGoods"));
+    List<String> dairy = new ArrayList<String>(
+            Arrays.asList("dairy", "dairy", "dairy", "dairy", "dairy", "dairy", "dairy", "dairy", "dairy", "dairy"));
+    List<String> dryGoods = new ArrayList<String>(
+            Arrays.asList("dryGoods", "dryGoods", "dryGoods", "dryGoods", "dryGoods", "dryGoods", "dryGoods", "dryGoods", "dryGoods", "dryGoods"));
+    List<String> bakingGoods = new ArrayList<String>(
+            Arrays.asList("bakingGoods", "bakingGoods", "bakingGoods", "bakingGoods", "bakingGoods", "bakingGoods", "bakingGoods", "bakingGoods", "bakingGoods", "bakingGoods"));
+    List<String> frozenFoods = new ArrayList<String>(
+            Arrays.asList("FrozenFoods", "FrozenFoods", "FrozenFoods", "FrozenFoods", "FrozenFoods", "FrozenFoods", "FrozenFoods", "FrozenFoods", "FrozenFoods", "FrozenFoods"));
+    List<String> meat = new ArrayList<String>(
+            Arrays.asList("meat", "meat", "meat", "meat", "meat", "meat", "meat", "meat", "meat", "meat"));
+    List<String> produce = new ArrayList<String>(
+            Arrays.asList("Produce1", "produce1", "produce1", "produce1", "produce1", "produce1", "produce1", "produce1","produce1", "produce1"));
+    List<String> snacks = new ArrayList<String>(
+            Arrays.asList("snacks", "snacks", "snacks", "snacks", "snacks", "snacks", "snacks", "snacks", "snacks", "snacks"));
+    
     List<String> boyNames = new ArrayList<String>(
             Arrays.asList("Ruwaal", "Devon", "Jade", "Jacob", "Ely", "Ethan", "Jody", "Jeff", "Evan", "Graham"));
     List<String> girlNames = new ArrayList<String>(
@@ -105,11 +109,16 @@ public class PopulateDatabase {
             Arrays.asList("West Coast", "Helderberg", "Cape Flats", "South Peninsula", "Atlanti Seaboard", "City Bowl", "Southern Suburb", "Northern Suburb"));
 
     public PopulateDatabase() {
-        categories.put("Ready made", readyMade);
-        categories.put("Breads", breads);
-        categories.put("Protein", protein);
-        categories.put("Fruit & Vegetables", fruitNVeg);
-        categories.put("Long life", longLife);
+        categories.put("Beverages", beverages);
+        categories.put("Bread/Bakery", breadBakery);
+        categories.put("Canned Goods", cannedGoods);
+        categories.put("Dairy", dairy);
+        categories.put("Dry Goods", dryGoods);
+        categories.put("Baking Goods", bakingGoods);
+        categories.put("Frozen Foods", frozenFoods);
+        categories.put("Meat", meat);
+        categories.put("Produce", produce);
+        categories.put("Snacks", snacks);
     }
 
     // TODO add test methods here.
@@ -124,7 +133,6 @@ public class PopulateDatabase {
         administratorCrudService = (AdministratorCrudService) ctx.getBean("AdministratorCrudService");
         customerCrudService = (CustomerCrudService) ctx.getBean("CustomerCrudService");
         ordersCrudService = (OrdersCrudService) ctx.getBean("OrdersCrudService");
-        brandCrudService = (BrandCrudService) ctx.getBean("BrandCrudService");
         wishListCrudService = (WishListCrudService) ctx.getBean("WishListCrudService");
         categoryCrudService = (CategoryCrudService) ctx.getBean("CategoryCrudService");
         productCrudService = (ProductCrudService) ctx.getBean("ProductCrudService");
@@ -147,12 +155,12 @@ public class PopulateDatabase {
     public void testFunction() {
         createCategories();
         
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 15; i++) {
             uniqueNumbers.clear();
             createMaleCustomer();
         }
 
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 15; i++) {
             uniqueNumbers.clear();
             createFemaleCustomer();
         }
@@ -226,11 +234,11 @@ public class PopulateDatabase {
         Integer year = generateRandomNumber(1969, 1991, random);
         Integer month = generateRandomNumber(1, 12, random);
         Integer day = generateRandomNumber(1, 25, random);
-
+        Date dob = new DateTime(year, month, day, 0, 0).toDate();
         Customer customer = new CustomerFactory.Builder(userNumber, user)
                 .setAddresses(addresses)
                 .setContact(contact)
-                .setDateOfBirth(new DateTime(year, month, day, 0, 0).toDate())
+                .setDateOfBirth(new SimpleDateFormat("EEEE dd MMM YYYY").format(dob))
                 .setFirstName(name)
                 .setGender(gender)
                 .setLastName(surname)
@@ -258,8 +266,8 @@ public class PopulateDatabase {
         
         Date date = new DateTime().toDate();
         Orders order = new OrdersFactory.Builder(randomUniqueNum.toString())
-                .setDateCreated(date)
-                .setDateModified(date)
+                .setDateCreated(new SimpleDateFormat("EEEE dd MMM YYYY HH:mm:ss").format(date))
+                .setDateModified(new SimpleDateFormat("EEEE dd MMM YYYY HH:mm:ss").format(date))
                 .setOrderLines(ordersList)
                 .setStatus("Pending Delivery")
                 .buildOrder();               
@@ -313,10 +321,11 @@ public class PopulateDatabase {
         Integer month = generateRandomNumber(1, 12, random);
         Integer day = generateRandomNumber(1, 25, random);
 
+        Date dob = new DateTime(year, month, day, 0, 0).toDate();
         Customer customer = new CustomerFactory.Builder(userNumber, user)
                 .setAddresses(addresses)
                 .setContact(contact)
-                .setDateOfBirth(new DateTime(year, month, day, 0, 0).toDate())
+                .setDateOfBirth(new SimpleDateFormat("EEEE dd MMM YYYY").format(dob))
                 .setFirstName(name)
                 .setGender(gender)
                 .setLastName(surname)
@@ -344,8 +353,8 @@ public class PopulateDatabase {
         
         Date date = new DateTime().toDate();
         Orders order = new OrdersFactory.Builder(randomUniqueNum.toString())
-                .setDateCreated(date)
-                .setDateModified(date)
+                .setDateCreated(new SimpleDateFormat("EEEE dd MMM YYYY HH:mm:ss").format(date))
+                .setDateModified(new SimpleDateFormat("EEEE dd MMM YYYY HH:mm:ss").format(date))
                 .setOrderLines(ordersList)
                 .setStatus("Pending Delivery")
                 .buildOrder();               
@@ -373,10 +382,11 @@ public class PopulateDatabase {
 
         uniqueNumbers.clear();
         String adminNumber = generateUniqueAdminNumber();
+        Date dob = new DateTime(1989, 5, 5, 0, 0).toDate();
         Administrator administrator = new AdministratorFactory.Builder(adminNumber, user)
                 .setAddresses(addresses)
                 .setContact(contact)
-                .setDateOfBirth(new DateTime(1989, 5, 5, 0, 0).toDate())
+                .setDateOfBirth(new SimpleDateFormat("EEEE dd MMM YYYY").format(dob))
                 .setFirstName("Shannon")
                 .setGender("Female")
                 .setLastName("Weir")
@@ -399,10 +409,11 @@ public class PopulateDatabase {
 
         uniqueNumbers.clear();
         String adminNumber = generateUniqueAdminNumber();
+        Date dob = new DateTime(1989, 5, 5, 0, 0).toDate();
         Administrator administrator = new AdministratorFactory.Builder(adminNumber, user)
                 .setAddresses(addresses)
                 .setContact(contact)
-                .setDateOfBirth(new DateTime(1989, 5, 5, 0, 0).toDate())
+                .setDateOfBirth(new SimpleDateFormat("EEEE dd MMM YYYY").format(dob))
                 .setFirstName("Nashrethen")
                 .setGender("Male")
                 .setLastName("Naidoo")
@@ -425,10 +436,11 @@ public class PopulateDatabase {
         uniqueNumbers.clear();
         String adminNumber = generateUniqueAdminNumber();
 
+        Date dob = new DateTime(1989, 5, 5, 0, 0).toDate();
         Administrator administrator = new AdministratorFactory.Builder(adminNumber, user)
                 .setAddresses(addresses)
                 .setContact(contact)
-                .setDateOfBirth(new DateTime(1989, 5, 5, 0, 0).toDate())
+                .setDateOfBirth(new SimpleDateFormat("EEEE dd MMM YYYY").format(dob))
                 .setFirstName("Azariah")
                 .setGender("Male")
                 .setLastName("Engelbrecht")
@@ -453,7 +465,6 @@ public class PopulateDatabase {
     }
 
     private void createCategories() {
-        int brandCount = 0;
         Double randomPriceValue;
 
         for (Map.Entry<String, List<String>> entry : categories.entrySet()) {
@@ -472,7 +483,7 @@ public class PopulateDatabase {
                         .setDescription("On Special")
                         .setImageURL("www.google.com")
                         .setProductName(productName.get(i))
-                        .setProductPrice(randomPriceValue)
+                        .setProductPrice(new Double(9.95).toString())
                         .setProductStatus(productStatus)
                         .buildProduct();
 
@@ -494,17 +505,6 @@ public class PopulateDatabase {
             Category category = CategoryFactory.getCategory(uniqueNum.toString(), categoryName, productList);
             categoryCrudService.persist(category);
 
-            uniqueNumbers.clear();
-            uniqueNum = generateUniqueRandomNumber(10000, 99999, new Random());
-            Brand brand = new BrandFactory.Builder(uniqueNum.toString())
-                    .setBrandName(brands.get(brandCount))
-                    .setDescription("On Special")
-                    .setLogoURL("imageURL")
-                    .setProducts(productList)
-                    .buildBrand();
-
-            brandCrudService.persist(brand);
-            brandCount += 1;
         }
     }
 }
