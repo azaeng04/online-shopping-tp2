@@ -20,16 +20,20 @@
         <link type="text/css" rel="stylesheet" src="jquery.dropdown.css" />
         <script type="text/javascript" src="jquery.dropdown.js"></script>        
         <script>
-            function qty(name)
+            function plus(name)
             { 
                 var qty = document.getElementById(name).value;
-                if(isNaN(qty))
-                    {
-                        alert("Invalid Idiot");
-                        document.getElementById(name).value=0;
-                    }
-                
+                if (qty!==100) {
+                    qty++;
+                }
             }
             
+            function minus(name)
+            { 
+                var qty = document.getElementById(name).value;
+                if (qty!==0) {
+                   qty--; 
+                }
+            }
         </script>
     </head>
