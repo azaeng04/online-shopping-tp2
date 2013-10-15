@@ -54,31 +54,36 @@
             </div>
 
             <!-- Example row of columns -->
-            <div class="row">
+            <form method="POST" action="session">
                 <div class="row">
-                    <c:forEach items = "${products}" var = "product">
-                        <div class="span4 carshow">
-                            <h3>${product.productName}</h3>
-                            <h4>Price : R${product.productPrice}</h4>
-                            <img src="${product.imageURL}" class="img-rounded" />
+                    <div class="row">
+                        <c:forEach items = "${products}" var = "product">
+                            <div class="span4 carshow">
+                                <h3>${product.productName}</h3>
+                                <h4>Price : R${product.productPrice}</h4>
+                                <img src="${product.imageURL}" class="img-rounded" />
 
-                            <div class="btn-group-vertical">
-                                <div class="btn-group">
-                                    <button name="'add'${product.id}" type="button" class="btn btn-default btn-info">
-                                        Add to Cart                                        
-                                    </button>
 
-                                    <input id="${product.id}" name="qty${product.id}" style="width:75px;" min="0" max="99" value="0" type="number"/>
+                                <div class="btn-group-vertical">
+                                    <div class="btn-group">
+                                        <input type="hidden" name="prd${product.id}" value="${product.id}"/>
+                                        <button type="submit" name="product" class="btn btn-default btn-info">
+                                            Add to Cart                                        
+                                        </button>
+                                        
+                                        <input id="${product.id}" name="qty${product.id}" style="width:75px;" min="0" max="99" value="0" type="number"/>
 
-                                    <button name="'wish'${product.id}" type="button" class="btn btn-default btn-info">
-                                        Add to Wishlist                                        
-                                    </button>
+                                        <input type="hidden" name="wish${product.id}" value="${product.id}"/>
+                                        <button type="button" class="btn btn-default btn-info">
+                                            Add to Wishlist                                        
+                                        </button>
+                                    </div>
                                 </div>
-                            </div> 
-                        </div>
-                    </c:forEach>
-                </div> 
-            </div>
+                            </div>
+                        </c:forEach>
+                    </div> 
+                </div>
+            </form>
         </div>
     </div>
 </div>

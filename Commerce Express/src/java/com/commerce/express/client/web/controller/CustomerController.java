@@ -39,6 +39,13 @@ public class CustomerController {
         return "customer/categorySelected";
     }
     
+    @RequestMapping(value = "/session", method = RequestMethod.POST)
+    public String session(Model model) {
+        categoryModel(model);
+        
+        return "customer/addToSession";
+    }
+    
     @RequestMapping(value = "/memberhome", method = RequestMethod.GET)
     public String memberIndex(Model model) {
         categoryModel(model);
