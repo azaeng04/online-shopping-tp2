@@ -82,7 +82,8 @@ public class HomeController {
     @RequestMapping(value = "/help", method = RequestMethod.GET)
     public String help(Model model) {
         categoryModel(model);
-        
+        model.addAttribute("title", "Help");
+        model.addAttribute("active", "help");
         return "browser/help";
     }
     
