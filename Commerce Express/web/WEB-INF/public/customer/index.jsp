@@ -63,7 +63,6 @@
                                 <h4>Price : R${product.productPrice}</h4>
                                 <img src="${product.imageURL}" class="img-rounded" />
 
-
                                 <div class="btn-group-vertical">
                                     <div class="btn-group">
                                         <input type="hidden" name="prd${product.id}" value="${product.id}"/>
