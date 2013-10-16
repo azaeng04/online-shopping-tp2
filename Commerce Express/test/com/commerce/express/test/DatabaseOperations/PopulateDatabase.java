@@ -230,7 +230,7 @@ public class PopulateDatabase {
         roles.add(role1);
         roles.add(role2);
 
-        AccessDetails user = AccessDetailsFactory.getAccessDetails(username, password, false, roles);
+        AccessDetails user = AccessDetailsFactory.getAccessDetails(username, password, true, roles);
 
         Integer year = generateRandomNumber(1969, 1991, random);
         Integer month = generateRandomNumber(1, 12, random);
@@ -316,7 +316,7 @@ public class PopulateDatabase {
         roles.add(role1);
         roles.add(role2);
 
-        AccessDetails user = AccessDetailsFactory.getAccessDetails(username, password, false, roles);
+        AccessDetails user = AccessDetailsFactory.getAccessDetails(username, password, true, roles);
 
         Integer year = generateRandomNumber(1969, 1991, random);
         Integer month = generateRandomNumber(1, 12, random);

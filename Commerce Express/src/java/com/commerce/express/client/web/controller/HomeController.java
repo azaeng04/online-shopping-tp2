@@ -87,13 +87,13 @@ public class HomeController {
         return "browser/help";
     }
     
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model) {
-        categoryModel(model);
-        model.addAttribute("title", "Login");
-        model.addAttribute("active", "login");
-        return "browser/login";
-    }
+//    @RequestMapping(value = "/login", method = RequestMethod.GET)
+//    public String login(Model model) {
+//        categoryModel(model);
+//        model.addAttribute("title", "Login");
+//        model.addAttribute("active", "login");
+//        return "browser/login";
+//    }
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signup(Model model) {
