@@ -17,7 +17,6 @@
 
     <div class= "content">
         <div class="container">
-            <p> 
             <table>
                 <tr>
                     <td>
@@ -33,7 +32,6 @@
                     </td>
                 </tr>
             </table>
-            </p>
             <br>
             <!-- Main hero unit for a primary marketing message or call to action -->
             <div id="myCarousel" class="carousel slide">
@@ -65,7 +63,5 @@
                 </c:forEach>  
             </div>
         </div>
-    </div>    
-</div>
-</div>
+    </div>
 <jsp:include page="../browser/main/footer.jsp" />

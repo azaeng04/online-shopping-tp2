@@ -11,7 +11,7 @@
     <script type="text/javascript" src="jquery.dropdown.js"></script>
 		
     <center>
-        Groceries
+        Select Category
         <c:forEach var="category" items="${categories}">
             <p>
                 <a href="<%=request.getContextPath()%>/categoryID=${category.id}"><button type="submit" class="btn btn-large btn btn-primary">${category.categoryName}</button></a>
