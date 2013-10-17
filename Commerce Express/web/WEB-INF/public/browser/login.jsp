@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="main/header.jsp"/>
 <body>
     <jsp:include page="main/topnavigationbar.jsp"/>
@@ -9,39 +10,37 @@
     <div class= "content">
         <div class="container">
             <h1>${title}</h1>
-            <!-- Main hero unit for a primary marketing message or call to action -->
-            <!--            <div id="myCarousel" class="carousel slide">
-                         Carousel items 
-                            <div class="carousel-inner">
-                                    <div class="active item"><img src="resources/images/product.jpg" alt="Car Carousel" /></div>
-                                    <div class="item"><img src="resources/images/product.jpg" alt="Car Carousel" /></div>
-                                    <div class="item"><img src="resources/images/product.jpg" alt="Car Carousel" /></div>
-                                    <div class="item"><img src="resources/images/product.jpg" alt="Car Carousel" /></div>
-                                    <div class="item"><img src="resources/images/product.jpg" alt="Car Carousel" /></div>
-                                    <div class="item"><img src="resources/images/product.jpg" alt="Car Carousel" /></div>
-                                    <div class="item"><img src="resources/images/product.jpg" alt="Car Carousel" /></div>
-                                    <div class="item"><img src="resources/images/product.jpg" alt="Car Carousel" /></div>
-                            </div>
-                       Carousel nav 
-                        <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-                        <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-                      </div>-->
-
-            <!-- Example row of columns -->
-        <!--    <form method="post" action="<%=request.getContextPath()%>/homepagedependentonrole"> -->
             <form method="POST" action="j_spring_security_check">
-                <tr>
-                    <td label path="userName">User Name:</td>
-                <input type="text" class="input-block-level" placeholder="username" name="j_username"> 
-                </tr>
-                <tr>
-                    <td label path="password">Password:</td>
-                <input type="password" class="input-block-level" placeholder="password" name="j_password"> 
-                </tr>
-                <tr>
-                    <td> <button type ="submit" class ="btn">Log In </button> </td>
-                </tr>
-                <!--       </form> -->
+                <div>
+                    <c:if test="${not empty error}">
+                        <div class="alert-info alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <strong>Error: </strong> 
+                            Your login attempt was not successful, try again.<br /> Caused by: ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+                        </div>
+                    </c:if>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for='j_username'>Username:</label>
+                    <div class="controls">
+                        <input type="text" id="j_username" name='j_username' placeholder="Enter username">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for='j_password'>Password:</label>
+                    <div class="controls">
+                        <input type="password" id="j_password" name='j_password' placeholder="Enter password">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <label class="checkbox">
+                            <input type="checkbox" type="_spring_security_remember_me" name='_spring_security_remember_me'> Remember me
+                        </label>
+                        <button type="submit" class="btn">Log in</button>
+                    </div>
+                </div>
             </form>       
         </div>        
     </div>                  

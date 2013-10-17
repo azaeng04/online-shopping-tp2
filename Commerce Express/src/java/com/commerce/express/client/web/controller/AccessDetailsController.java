@@ -21,33 +21,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class AccessDetailsController {
-
     private static CategoryFacade categoryFacade = CategoryFacade.getCategoryFacadeInstance();
-
-//    @RequestMapping(value = "homepagedependentonrole")
-//    public String home(@ModelAttribute("AccessDetailsModel") AccessDetailsModel accessDetailsModel, Model model) {
-//        List<Product> products = categoryFacade.getProductCrudService().findAll();
-//        categoryModel(model);
-//        String username = accessDetailsModel.getUsername();
-//        String password = accessDetailsModel.getPassword();
-//        String page = "browser/index";
-//        if (username.equals("shannon") && password.equals("weir")) {
-//            page = "customer/index";
-//        }
-//        model.addAttribute("products", products);
-//        model.addAttribute("active", "/");
-//        return page;
-//    }
     
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model) {
-        return "/customer/index";
+        categoryModel(model);
+        model.addAttribute("title", "Login");
+        model.addAttribute("active", "login");
+        return "browser/login";
     }
     
     @RequestMapping(value = "/logout")
     public String home(Model model) {
         categoryModel(model);        
         return "redirect:/";
+    }
+    
+    @RequestMapping({"/loginfailed"})
+    public String loginFailed(Model model) {
+        categoryModel(model);
+        model.addAttribute("error", "true");
+        model.addAttribute("title", "Login");
+        model.addAttribute("active", "login");
+        return "browser/login";
     }
     
     private void categoryModel(Model model) {
