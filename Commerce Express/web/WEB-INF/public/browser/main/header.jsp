@@ -1,11 +1,12 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
+        <meta charset="utf-8" />
         <title>${title}</title>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <link href="resources/threeRegion.css" rel="stylesheet" type="text/css"/>
         <link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet">
         <style type="text/css">
@@ -15,25 +16,16 @@
             }
         </style>
         <link href="resources/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-        <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
-        <link href="resources/bootstrap/css/myStyles.css" rel="stylesheet">
-        <link type="text/css" rel="stylesheet" src="jquery.dropdown.css" />
-        <script type="text/javascript" src="jquery.dropdown.js"></script>        
+        <link href="resources/bootstrap/css/myStyles.css" rel="stylesheet">     
+        <script src="resources/bootstrap/js/jquery.js"></script>
+        <script src="resources/bootstrap/js/bootstrap.js"></script>
         <script>
-            function plus(name)
-            { 
-                var qty = document.getElementById(name).value;
-                if (qty!==100) {
-                    qty++;
+            $(document).ready(function() {
+                try {
+                   
+                } catch (e) {
+                    alert("Error: " + e.toString());
                 }
-            }
-            
-            function minus(name)
-            { 
-                var qty = document.getElementById(name).value;
-                if (qty!==0) {
-                   qty--; 
-                }
-            }
+            });
         </script>
     </head>
