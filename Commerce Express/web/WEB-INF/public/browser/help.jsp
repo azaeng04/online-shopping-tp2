@@ -12,6 +12,5 @@
                 <h1>${title} Page</h1>
                 <label>Content here!</label>
             </div>
-                <%  out.println("<label>This is your name: "+session.getAttribute("username")+"</label>"); %>
 	</div>
 <jsp:include page="main/footer.jsp" />

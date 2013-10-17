@@ -18,8 +18,8 @@
         <intercept-url pattern="/browser/**" access="permitAll" />
         <intercept-url pattern="/customer/**" access="hasRole('ROLE_CUSTOMER')"/>
         <form-login login-page="/login" 
-                    default-target-url="/customer/index" 
-                    authentication-failure-url="/customer/login"
+                    default-target-url="/memberhome" 
+                    authentication-failure-url="/loginfailed"
         />
         <logout logout-success-url="/logout"/>
     </http>
