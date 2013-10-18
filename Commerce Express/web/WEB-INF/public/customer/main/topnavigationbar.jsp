@@ -1,3 +1,5 @@
+<%@page import="org.springframework.security.core.userdetails.UserDetails"%>
+<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
@@ -17,6 +19,15 @@
                 <li class="${active=='help' ? 'active' : ''}" ><a href="<%=request.getContextPath()%>/memberhelp">Help</a></li>
             </ul>
             <ul class="nav pull-right">
+                <li>
+                <%
+//                    Object principle = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//                    if(principle instanceof UserDetails){
+//                        String username = ((UserDetails)principle).getUsername();
+//                    } else {
+//                        String username = principle.toString();
+//                    }
+                %></li>
                 <li><a href="<%=request.getContextPath()%>/basket"><img src="resources/images/shopping-basket-icon.png" /></a></li>
                 <li><a href="<%=request.getContextPath()%>/logout">Logout</a></li>                
             </ul>
