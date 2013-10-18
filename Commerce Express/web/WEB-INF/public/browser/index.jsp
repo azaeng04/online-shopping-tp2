@@ -52,16 +52,17 @@
                 <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
                 <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
             </div>
-
             <div class="row">
-                <c:forEach items = "${products}" var = "product">
-                    <div class="span4 carshow">                        
-                        <h3>${product.productName}</h3>
-                        <h4>Price : R${product.productPrice}</h4>
-                        <img src="${product.imageURL}" class="img-rounded" />
-                        <br/>
-                    </div>
-                </c:forEach>
+                <table id="products">
+                    <c:forEach items = "${products}" var = "product">
+                        <div class="span4 carshow">                        
+                            <h3>${product.productName}</h3>
+                            <h4>Price : R${product.productPrice}</h4>
+                            <img src="${product.imageURL}" class="img-rounded" />
+                            <br/>
+                        </div>
+                    </c:forEach>
+                </table>
             </div>
         </div>
     </div>    

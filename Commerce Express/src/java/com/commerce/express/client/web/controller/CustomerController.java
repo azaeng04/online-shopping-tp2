@@ -4,13 +4,11 @@
  */
 package com.commerce.express.client.web.controller;
 
-import com.commerce.express.app.facade.CategoryFacade;
-import com.commerce.express.app.facade.CustomerFacade;
+import com.commerce.express.app.facade.CommerceExpressCRUD;
+import com.commerce.express.app.facade.CommerceExpressServices;
 import com.commerce.express.domain.Category;
 import com.commerce.express.domain.Product;
-import com.commerce.express.service.ProductService;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,15 +22,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class CustomerController {
 
-    @Autowired
-    private ProductService productService;
-    private static CategoryFacade categoryFacade = CategoryFacade.getCategoryFacadeInstance();
-    private static CustomerFacade customerFacade = CustomerFacade.getCustomerFacadeInstance();
+    private static CommerceExpressServices commerceExpressServices = CommerceExpressServices.getCommerceExpressServices();
+    private static CommerceExpressCRUD commerceExpressCRUD = CommerceExpressCRUD.getCommerceExpressCRUD();
     
     @RequestMapping(value = "/member/categoryID={id}", method = RequestMethod.GET)
     public String categorySelected(@PathVariable("id") Long id, Model model) {
         categoryModel(model);
-        List<Product> products = productService.getProducts(id);
+        List<Product> products = commerceExpressServices.getProductService().getProducts(id);
         model.addAttribute("products", products);
         model.addAttribute("title", "Products in Category");
 
@@ -49,7 +45,7 @@ public class CustomerController {
     @RequestMapping(value = "/memberhome", method = RequestMethod.GET)
     public String memberIndex(Model model) {
         categoryModel(model);
-        List<Product> products = categoryFacade.getProductCrudService().findAll();
+        List<Product> products = commerceExpressCRUD.getProductCrudService().findAll();
         model.addAttribute("products", products);
         model.addAttribute("title", "Customer Home");
         model.addAttribute("active", "/");
@@ -104,7 +100,7 @@ public class CustomerController {
     }
     
     private void categoryModel(Model model) {
-        List<Category> categories = categoryFacade.getCategoryCrudService().findAll();
+        List<Category> categories = commerceExpressCRUD.getCategoryCrudService().findAll();
         model.addAttribute("categories", categories);
     }
     
