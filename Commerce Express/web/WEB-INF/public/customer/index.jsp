@@ -17,23 +17,9 @@
 
     <div class= "content">
         <div class="container">
+            <jsp:include page="categorySearch.jsp" />
             <!-- Main hero unit for a primary marketing message or call to action -->
-            <div id="myCarousel" class="carousel slide">
-                <!-- Carousel items -->
-                <div class="carousel-inner">
-                    <div class="active item"><img src="resources/images/product.jpg" alt="Car Carousel" /></div>
-                    <div class="item"><img src="resources/images/product.jpg" alt="Car Carousel" /></div>
-                    <div class="item"><img src="resources/images/product.jpg" alt="Car Carousel" /></div>
-                    <div class="item"><img src="resources/images/product.jpg" alt="Car Carousel" /></div>
-                    <div class="item"><img src="resources/images/product.jpg" alt="Car Carousel" /></div>
-                    <div class="item"><img src="resources/images/product.jpg" alt="Car Carousel" /></div>
-                    <div class="item"><img src="resources/images/product.jpg" alt="Car Carousel" /></div>
-                    <div class="item"><img src="resources/images/product.jpg" alt="Car Carousel" /></div>
-                </div>
-                <!-- Carousel nav -->
-                <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-                <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-            </div>
+            <jsp:include page="carousel.jsp" />
 
             <!-- Example row of columns -->
             <form method="POST" action="session">

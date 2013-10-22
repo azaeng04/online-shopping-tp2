@@ -25,13 +25,14 @@ public class CustomerController {
     private static CommerceExpressServices commerceExpressServices = CommerceExpressServices.getCommerceExpressServices();
     private static CommerceExpressCRUD commerceExpressCRUD = CommerceExpressCRUD.getCommerceExpressCRUD();
     
-    @RequestMapping(value = "/member/categoryID={id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/categoryId={id}", method = RequestMethod.GET)
     public String categorySelected(@PathVariable("id") Long id, Model model) {
         categoryModel(model);
         List<Product> products = commerceExpressServices.getProductService().getProducts(id);
+        Category category = commerceExpressCRUD.getCategoryCrudService().findById(id);
         model.addAttribute("products", products);
         model.addAttribute("title", "Products in Category");
-
+        model.addAttribute("categoryName", category.getCategoryName());
         return "customer/categorySelected";
     }
     
@@ -46,6 +47,7 @@ public class CustomerController {
     public String memberIndex(Model model) {
         categoryModel(model);
         List<Product> products = commerceExpressCRUD.getProductCrudService().findAll();
+        model.addAttribute("categoryName", "All Categories");
         model.addAttribute("products", products);
         model.addAttribute("title", "Customer Home");
         model.addAttribute("active", "/");
@@ -103,30 +105,4 @@ public class CustomerController {
         List<Category> categories = commerceExpressCRUD.getCategoryCrudService().findAll();
         model.addAttribute("categories", categories);
     }
-    
-//    @RequestMapping(value="/addToCart")
-//    public String addToCart(Model model,@ModelAttribute("OrderLineModel") OrderLineModel orderLine,@RequestParam("productID") String productID) {
-////        
-////        List<Category> categories = categoryFacade.getCategoryCrudService().findAll();
-////        List<Product> productsTest = categoryFacade.getProductCrudService().findAll();
-////        model.addAttribute("productsRow", productsTest);
-////        model.addAttribute("categories",categories);
-////        
-////       
-////        Product p = productService.getProductByProductID(productID);
-////        String quantity=orderLine.getQuantity();
-////        
-////        OrderLine o = new OrderLine();
-////        o.setOrderLineID("");
-////        o.setProduct(p);
-////        o.setQuantity(12);
-////        o.setId(Long.MIN_VALUE);
-////        
-////        orderLines.add(o);
-//////        model.addAttribute("orderLine",o);
-////        model.addAttribute("product",p);
-////        model.addAttribute("orderLines",orderLines);
-//////        
-//        return "customer/basket";
-//    }
 }

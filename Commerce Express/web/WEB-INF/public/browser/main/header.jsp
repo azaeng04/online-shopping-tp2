@@ -20,12 +20,33 @@
         <script src="resources/bootstrap/js/jquery.js"></script>
         <script src="resources/bootstrap/js/bootstrap.js"></script>
         <script>
-            $(document).ready(function() {
-                try {
-                   
-                } catch (e) {
-                    alert("Error: " + e.toString());
-                }
+            $(function() {
+//                var url = document.getElementById(id).value;
+            <%
+                String url = request.getRequestURL().toString();
+                String baseURL = url.substring(0, url.length() - request.getRequestURI().length()) + request.getContextPath() + "/";
+//                    String catID = baseURL.
+//                    if(){
+//                        
+//                    } else{
+//                        
+//                    }
+//                    out.println("var availableTags = [");
+//
+//                    out.println("");
+//                    out.println("];");
+%>
+//                $("#tags").autocomplete({
+//                    source: availableTags
+//                });
             });
+
+            function goToPage(id) {
+                var url = document.getElementById(id).value;
+                if (url != "") {
+                    window.location = url;
+                }
+                return window.location;
+            }
         </script>
     </head>
