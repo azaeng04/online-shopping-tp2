@@ -17,21 +17,7 @@
 
     <div class= "content">
         <div class="container">
-            <table>
-                <tr>
-                    <td>
-                        <div class="categoryFont">Categories: &nbsp
-                            <select id = "myList">
-                                <c:forEach var="category" items="${categories}">
-                                    <option value = "categoryID=${category.id}">${category.categoryName}</option>
-                                </c:forEach>
-                            </select>
-                            &nbsp &nbsp <input type="text" name="searchItemName" placeholder="Search Item...">&nbsp &nbsp 
-                            <button type="submit" class="btn">Search</button>
-                        </div>
-                    </td>
-                </tr>
-            </table>
+            <jsp:include page="categorySearch.jsp" />
             <br>
             <!-- Main hero unit for a primary marketing message or call to action -->
             <div id="myCarousel" class="carousel slide">

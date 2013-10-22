@@ -28,13 +28,11 @@ public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model) {
         categoryModel(model);
-
         List<Product> products = commerceExpressCRUD.getProductCrudService().findAll();
-
         model.addAttribute("products", products);
         model.addAttribute("active", "/");
         model.addAttribute("title", "Home");
-
+        model.addAttribute("categoryName", "All Categories");
         return "browser/index";
     }
 
@@ -42,28 +40,16 @@ public class HomeController {
     public String categorySelected(@PathVariable("id") Long id, Model model) {
         categoryModel(model);
         List<Product> products = commerceExpressServices.getProductService().getProducts(id);
+        Category category = commerceExpressCRUD.getCategoryCrudService().findById(id);
         model.addAttribute("products", products);
         model.addAttribute("title", "Products in Category");
-
+        model.addAttribute("categoryName", category.getCategoryName());
         return "browser/categorySelected";
     }
     
     @RequestMapping(value = "/aboutus", method = RequestMethod.GET)
     public String aboutUs(Model model) {
         categoryModel(model);
-//                modelAndView.setViewName("browser/aboutus");
-//        Product p = new Product();
-//        p.setDescription("R500");
-//        p.setId(new Long(743764364));
-//        p.setImageURL("");
-//        p.setProductName("bread");
-//        p.setProductStatus(null);
-//        List<Product> products = new ArrayList<Product>();
-//        products.add(p);
-//        products.add(p);
-//        products.add(p);
-//        modelAndView.addObject(products);
-//        return modelAndView;
         model.addAttribute("title", "About Us");
         model.addAttribute("active", "aboutus");
         return "browser/aboutus";
@@ -84,14 +70,6 @@ public class HomeController {
         model.addAttribute("active", "help");
         return "browser/help";
     }
-    
-//    @RequestMapping(value = "/login", method = RequestMethod.GET)
-//    public String login(Model model) {
-//        categoryModel(model);
-//        model.addAttribute("title", "Login");
-//        model.addAttribute("active", "login");
-//        return "browser/login";
-//    }
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signup(Model model) {

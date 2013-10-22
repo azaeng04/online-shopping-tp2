@@ -8,7 +8,7 @@
 
     <div class= "content">
         <div class="container">
-            <h1>${title} Page</h1>
+            <h1>${title}</h1>
             <%
                     
 //                try {
