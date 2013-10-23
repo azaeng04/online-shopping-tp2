@@ -41,6 +41,7 @@ public class HomeController {
         categoryModel(model);
         List<Product> products = commerceExpressServices.getProductService().getProducts(id);
         Category category = commerceExpressCRUD.getCategoryCrudService().findById(id);
+        model.addAttribute("categoryName", category.getCategoryName());
         model.addAttribute("products", products);
         model.addAttribute("title", "Products in Category");
         model.addAttribute("categoryName", category.getCategoryName());

@@ -8,6 +8,8 @@ import com.commerce.express.app.config.GetContext;
 import com.commerce.express.service.AccessDetailsService;
 import com.commerce.express.service.AdministratorService;
 import com.commerce.express.service.CustomerService;
+import com.commerce.express.service.GeneralService;
+import com.commerce.express.service.OrderLineService;
 import com.commerce.express.service.OrderService;
 import com.commerce.express.service.ProductService;
 import org.springframework.context.ApplicationContext;
@@ -23,7 +25,9 @@ public class CommerceExpressServices {
     private static AdministratorService administratorService;
     private static CustomerService customerService;
     private static OrderService orderService;
+    private static OrderLineService orderLineService;
     private static ProductService productService;
+    private static GeneralService generalService;
     
     private CommerceExpressServices() {
     }
@@ -33,6 +37,16 @@ public class CommerceExpressServices {
             commerceExpressServices = new CommerceExpressServices();
         }
         return commerceExpressServices;
+    }
+    
+    public GeneralService getGeneralService() {
+        generalService = (GeneralService) ctx.getBean("GeneralService");
+        return generalService;
+    }
+    
+    public OrderLineService getOrderLineService() {
+        orderLineService = (OrderLineService) ctx.getBean("OrderLineService");
+        return orderLineService;
     }
     
     public AccessDetailsService getAccessDetailsService() {

@@ -7,6 +7,7 @@ package com.commerce.express.app.facade;
 import com.commerce.express.app.config.GetContext;
 import com.commerce.express.service.crud.AccessDetailsCrudService;
 import com.commerce.express.service.crud.AddressCrudService;
+import com.commerce.express.service.crud.AdministratorCrudService;
 import com.commerce.express.service.crud.CategoryCrudService;
 import com.commerce.express.service.crud.CustomerCrudService;
 import com.commerce.express.service.crud.FAQCrudService;
@@ -26,6 +27,7 @@ import org.springframework.context.ApplicationContext;
 public class CommerceExpressCRUD {
     private static CommerceExpressCRUD commerceExpressCRUD;
     private final static ApplicationContext ctx = GetContext.getApplicationContext();
+    private AdministratorCrudService administratorCrudService;
     private CategoryCrudService categoryCrudService;
     private ProductCrudService productCrudService;
     private CustomerCrudService customerCrudService;
@@ -47,6 +49,11 @@ public class CommerceExpressCRUD {
             commerceExpressCRUD = new CommerceExpressCRUD();
         }
         return commerceExpressCRUD;
+    }
+    
+    public AdministratorCrudService getAdministratorCrudService() {
+        administratorCrudService = (AdministratorCrudService) ctx.getBean("AdministratorCrudService");
+        return administratorCrudService;
     }
     
     public WishListCrudService getWishListCrudService() {

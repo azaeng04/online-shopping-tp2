@@ -4,6 +4,7 @@
  */
 package com.commerce.express.test.DatabaseOperations;
 
+import com.commerce.express.app.facade.CommerceExpressCRUD;
 import com.commerce.express.app.factory.AccessDetailsFactory;
 import com.commerce.express.app.factory.AddressFactory;
 import com.commerce.express.app.factory.AdministratorFactory;
@@ -28,13 +29,6 @@ import com.commerce.express.domain.Product;
 import com.commerce.express.domain.ProductStatus;
 import com.commerce.express.domain.Rating;
 import com.commerce.express.domain.Roles;
-import com.commerce.express.service.crud.AdministratorCrudService;
-import com.commerce.express.service.crud.CategoryCrudService;
-import com.commerce.express.service.crud.CustomerCrudService;
-import com.commerce.express.service.crud.FAQCrudService;
-import com.commerce.express.service.crud.OrdersCrudService;
-import com.commerce.express.service.crud.ProductCrudService;
-import com.commerce.express.service.crud.WishListCrudService;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -45,8 +39,6 @@ import java.util.Map;
 import java.util.Random;
 import java.util.TreeMap;
 import org.joda.time.DateTime;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 //import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -60,14 +52,7 @@ import org.testng.annotations.Test;
  */
 public class PopulateDatabase {
 
-    private static ApplicationContext ctx;
-    private static AdministratorCrudService administratorCrudService;
-    private static CustomerCrudService customerCrudService;
-    private static OrdersCrudService ordersCrudService;
-    private static CategoryCrudService categoryCrudService;
-    private static ProductCrudService productCrudService;
-    private static FAQCrudService fAQCrudService;
-    private static WishListCrudService wishListCrudService;
+    CommerceExpressCRUD commerceExpressCRUD = CommerceExpressCRUD.getCommerceExpressCRUD();
     static Integer numberMales = 1;
     static Integer numberFemales = 1;
     List<Integer> uniqueNumbers = new ArrayList<Integer>();
@@ -129,15 +114,6 @@ public class PopulateDatabase {
     // public void hello() {}
     @BeforeClass
     public static void setUpClass() throws Exception {
-        ctx = new ClassPathXmlApplicationContext("classpath:com/commerce/express/app/config/applicationContext-*.xml");
-
-        administratorCrudService = (AdministratorCrudService) ctx.getBean("AdministratorCrudService");
-        customerCrudService = (CustomerCrudService) ctx.getBean("CustomerCrudService");
-        ordersCrudService = (OrdersCrudService) ctx.getBean("OrdersCrudService");
-        wishListCrudService = (WishListCrudService) ctx.getBean("WishListCrudService");
-        categoryCrudService = (CategoryCrudService) ctx.getBean("CategoryCrudService");
-        productCrudService = (ProductCrudService) ctx.getBean("ProductCrudService");
-        fAQCrudService = (FAQCrudService) ctx.getBean("FAQCrudService");
     }
 
     @AfterClass
@@ -246,7 +222,7 @@ public class PopulateDatabase {
                 .setMiddleName(middleName)
                 .buildCustomer();
 
-        List<Product> products = productCrudService.findAll();
+        List<Product> products = commerceExpressCRUD.getProductCrudService().findAll();
         List<OrderLine> ordersList = new ArrayList<OrderLine>();
         
         Integer randomProduct;
@@ -278,7 +254,7 @@ public class PopulateDatabase {
         
         customer.setOrders(orders);
         
-        customerCrudService.persist(customer);
+        commerceExpressCRUD.getCustomerCrudService().persist(customer);
 
         numberMales++;
     }
@@ -333,7 +309,7 @@ public class PopulateDatabase {
                 .setMiddleName(middleName)
                 .buildCustomer();
 
-        List<Product> products = productCrudService.findAll();
+        List<Product> products = commerceExpressCRUD.getProductCrudService().findAll();
         List<OrderLine> ordersList = new ArrayList<OrderLine>();
         
         Integer randomProduct;
@@ -365,7 +341,7 @@ public class PopulateDatabase {
         
         customer.setOrders(orders);
         
-        customerCrudService.persist(customer);
+        commerceExpressCRUD.getCustomerCrudService().persist(customer);
 
         numberFemales++;
     }
@@ -394,7 +370,7 @@ public class PopulateDatabase {
                 .setMiddleName("")
                 .buildAdministrator();
 
-        administratorCrudService.persist(administrator);
+        commerceExpressCRUD.getAdministratorCrudService().persist(administrator);
     }
 
     private void createAdmin2() {
@@ -421,7 +397,7 @@ public class PopulateDatabase {
                 .setMiddleName("")
                 .buildAdministrator();
 
-        administratorCrudService.persist(administrator);
+        commerceExpressCRUD.getAdministratorCrudService().persist(administrator);
     }
 
     private void createAdmin3() {
@@ -448,7 +424,7 @@ public class PopulateDatabase {
                 .setMiddleName("Michal")
                 .buildAdministrator();
 
-        administratorCrudService.persist(administrator);
+        commerceExpressCRUD.getAdministratorCrudService().persist(administrator);
     }
 
     private List<Roles> returnAdminRoles(String userID) {
@@ -505,7 +481,7 @@ public class PopulateDatabase {
             uniqueNumbers.clear();
             uniqueNum = generateUniqueRandomNumber(10000, 99999, new Random());
             Category category = CategoryFactory.getCategory(uniqueNum.toString(), categoryName, productList);
-            categoryCrudService.persist(category);
+            commerceExpressCRUD.getCategoryCrudService().persist(category);
 
         }
     }

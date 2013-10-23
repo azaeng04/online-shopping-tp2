@@ -4,6 +4,7 @@
  */
 package com.commerce.express.service.impl;
 
+import com.commerce.express.app.facade.CommerceExpressCRUD;
 import com.commerce.express.app.facade.CommerceExpressServices;
 import com.commerce.express.domain.Customer;
 import org.testng.annotations.AfterClass;
@@ -16,10 +17,11 @@ import org.testng.annotations.Test;
  *
  * @author om95446
  */
-public class CustomerServiceImplNGTest {
+public class CustomerServiceTest {
     
     private static CommerceExpressServices commerceExpressServices = CommerceExpressServices.getCommerceExpressServices();
-    public CustomerServiceImplNGTest() {
+    private static CommerceExpressCRUD commerceExpressCRUD = CommerceExpressCRUD.getCommerceExpressCRUD();
+    public CustomerServiceTest() {
     }
 
     @BeforeClass
@@ -43,7 +45,7 @@ public class CustomerServiceImplNGTest {
      * Test of getCustomerByUsername method, of class CustomerServiceImpl.
      */
     @Test
-    public void testGetCustomerByUsername() {
-//        Customer customer = commerceExpressServices.getCustomerService().getCustomerByUsername("jRossouw1");
+    public void testGetCustomerByUsername() { 
+        Customer customer = commerceExpressServices.getCustomerService().getCustomerByUsername("eEngelbrecht1");
     }
 }

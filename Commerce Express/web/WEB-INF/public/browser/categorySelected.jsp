@@ -41,7 +41,7 @@
             <div class="row">
                 <c:forEach items = "${products}" var = "product">
                     <div class="span4 carshow">
-                        <h3>${product.productName}</h3>
+                        <h3>${product.id}. ${product.productName}</h3>
                         <h4>Price : ${product.productPrice}</h4>
                         <img src="${product.imageURL}" class="img-rounded" />
                         <br/>

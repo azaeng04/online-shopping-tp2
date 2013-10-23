@@ -3,11 +3,11 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.commerce.express.domain.Product"%>
 <%@page import="java.util.List"%>
-<%@page import="com.commerce.express.app.facade.CategoryFacade"%>
+<%@page import="com.commerce.express.app.facade.CommerceExpressCRUD"%>
 <%
     String qty;
-    CategoryFacade categoryFacade = CategoryFacade.getCategoryFacadeInstance();
-    List<Product> products = categoryFacade.getProductCrudService().findAll();
+    CommerceExpressCRUD commerceExpressCRUD = CommerceExpressCRUD.getCommerceExpressCRUD();
+    List<Product> products = commerceExpressCRUD.getProductCrudService().findAll();
     Map<String, String> cart = new TreeMap<String, String>();
     for (Product product : products) {
         qty = request.getParameter("qty" + product.getId());

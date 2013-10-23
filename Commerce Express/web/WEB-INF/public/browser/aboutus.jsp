@@ -1,5 +1,5 @@
 <jsp:include page="main/header.jsp"/>
-   <body>       
+<body>       
     <jsp:include page="main/topnavigationbar.jsp"/>	
 	<div class= "sidenavigation">
             <jsp:include page="main/sidenavigationbar.jsp" />

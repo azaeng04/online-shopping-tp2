@@ -10,7 +10,7 @@
 <jsp:include page="../browser/main/header.jsp"/>
 <body>
     <jsp:include page="main/topnavigationbar.jsp"/>
-
+    
     <div class= "sidenavigation">
         <jsp:include page="main/sidenavigationbar.jsp" /> 
     </div>
@@ -27,20 +27,20 @@
                     <div class="row">
                         <c:forEach items = "${products}" var = "product">
                             <div class="span4 carshow">
-                                <h3>${product.productName}</h3>
+                                <h3>${product.id}. ${product.productName}</h3>
                                 <h4>Price : R${product.productPrice}</h4>
                                 <img src="${product.imageURL}" class="img-rounded" />
 
                                 <div class="btn-group-vertical">
                                     <div class="btn-group">
-                                        <input type="hidden" name="prd${product.id}" value="${product.id}"/>
+                                        <input type="hidden" name="prd${product.id}" value="''${product.id}"/>
                                         <button type="submit" name="product" class="btn btn-default btn-info">
                                             Add to Cart                                        
                                         </button>
                                         
                                         <input id="${product.id}" name="qty${product.id}" style="width:75px;" min="0" max="99" value="0" type="number"/>
 
-                                        <input type="hidden" name="wish${product.id}" value="${product.id}"/>
+                                        <input type="hidden" name="wish${product.id}" value="''${product.id}"/>
                                         <button type="button" class="btn btn-default btn-info">
                                             Add to Wishlist                                        
                                         </button>
