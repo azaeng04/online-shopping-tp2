@@ -4,7 +4,9 @@
  */
 package com.commerce.express.service;
 
+import com.commerce.express.client.web.model.CustomerModel;
 import com.commerce.express.domain.Customer;
+import java.util.List;
 
 /**
  *
@@ -12,4 +14,5 @@ import com.commerce.express.domain.Customer;
  */
 public interface CustomerService {
     public Customer getCustomerByUsername(String username);
+    public List<Customer> createCustomer(CustomerModel model);
 }
