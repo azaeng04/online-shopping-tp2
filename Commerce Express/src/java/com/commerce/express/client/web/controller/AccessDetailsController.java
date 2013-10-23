@@ -33,6 +33,13 @@ public class AccessDetailsController {
         categoryModel(model);        
         return "redirect:/";
     }
+        
+    @RequestMapping(value = "/clearBasket")
+    public String clearBasket(Model model) {
+        
+        return "customer/clearBasket";
+    }
+    
     
     @RequestMapping({"/loginfailed"})
     public String loginFailed(Model model) {

@@ -21,11 +21,9 @@ import org.testng.annotations.Test;
  *
  * @author Ronald
  */
-public class ProductServiceImplTest {
-
-    private static ApplicationContext ctx;
+public class ProductServiceTest {
     
-    public ProductServiceImplTest() {
+    public ProductServiceTest() {
     }
 
     @BeforeClass

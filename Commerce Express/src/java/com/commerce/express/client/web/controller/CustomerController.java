@@ -7,8 +7,12 @@ package com.commerce.express.client.web.controller;
 import com.commerce.express.app.facade.CommerceExpressCRUD;
 import com.commerce.express.app.facade.CommerceExpressServices;
 import com.commerce.express.domain.Category;
+import com.commerce.express.domain.OrderLine;
 import com.commerce.express.domain.Product;
 import java.util.List;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+import org.apache.catalina.session.StandardSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +34,7 @@ public class CustomerController {
         categoryModel(model);
         List<Product> products = commerceExpressServices.getProductService().getProducts(id);
         Category category = commerceExpressCRUD.getCategoryCrudService().findById(id);
+        model.addAttribute("categoryName", category.getCategoryName());
         model.addAttribute("products", products);
         model.addAttribute("title", "Products in Category");
         model.addAttribute("categoryName", category.getCategoryName());
@@ -38,7 +43,6 @@ public class CustomerController {
     
     @RequestMapping(value = "/session", method = RequestMethod.POST)
     public String session(Model model) {
-        categoryModel(model);
         
         return "customer/addToSession";
     }
@@ -99,6 +103,18 @@ public class CustomerController {
         categoryModel(model);
         model.addAttribute("title", "Basket");
         return "customer/basket";
+    }
+    
+    @RequestMapping(value = "/orderID={id}", method = RequestMethod.GET)
+    public String productsOnOrder(@PathVariable("id") String orderID, Model model) {
+        categoryModel(model);
+        List<OrderLine> orderLines = commerceExpressServices.getOrderService().getOrderLines(orderID);
+        List<Product> products = commerceExpressServices.getOrderService().getProducts(orderID);
+        model.addAttribute("orderID", orderID);
+        model.addAttribute("orderLine", orderLines);
+        model.addAttribute("products", products);
+        model.addAttribute("title", "Products on Order");
+        return "customer/productsOnOrder";
     }
     
     private void categoryModel(Model model) {

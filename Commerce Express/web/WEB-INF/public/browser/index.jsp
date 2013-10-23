@@ -7,6 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="main/header.jsp"/>
 <body>
+    
     <jsp:include page="main/topnavigationbar.jsp"/>
 
     <div class= "sidenavigation">
@@ -15,7 +16,7 @@
 
     <div class= "content">
         <div class="container">
-            
+
             <jsp:include page="categorySearch.jsp" />
             <br>
             <!-- Main hero unit for a primary marketing message or call to action -->
@@ -24,7 +25,7 @@
                 <table id="products">
                     <c:forEach items = "${products}" var = "product">
                         <div class="span4 carshow">                        
-                            <h3>${product.productName}</h3>
+                            <h3>${product.id}. ${product.productName}</h3>
                             <h4>Price : R${product.productPrice}</h4>
                             <img src="${product.imageURL}" class="img-rounded" />
                             <br/>

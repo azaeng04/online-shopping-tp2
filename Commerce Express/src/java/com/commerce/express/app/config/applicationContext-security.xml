@@ -19,7 +19,7 @@
                     default-target-url="/memberhome"
                     authentication-failure-url="/loginfailed"
         />
-        <logout logout-success-url="/logout"/>
+        <logout logout-success-url="/clearBasket"/>
     </http>
     <!-- SECTION C -->
 

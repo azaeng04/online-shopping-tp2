@@ -1,3 +1,5 @@
+<%@page import="com.commerce.express.domain.Customer"%>
+<%@page import="com.commerce.express.app.facade.CommerceExpressServices"%>
 <%@page import="org.springframework.security.core.userdetails.UserDetails"%>
 <%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -21,15 +23,29 @@
             <ul class="nav pull-right">
                 <li>
                 <%
-//                    Object principle = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//                    if(principle instanceof UserDetails){
-//                        String username = ((UserDetails)principle).getUsername();
-//                    } else {
-//                        String username = principle.toString();
-//                    }
+                    session.setMaxInactiveInterval(0);
+                    try{
+                        Customer customer = (Customer) session.getAttribute("customer");
+                        out.println("<a>Welcome! "+customer.getFirstName()+"</a>");
+                    } catch (NullPointerException ex) {
+                        Object principle = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+                        CommerceExpressServices commerceExpressServices = CommerceExpressServices.getCommerceExpressServices();
+                        if(principle instanceof UserDetails){
+                            String username = ((UserDetails)principle).getUsername();
+                            Customer customer = commerceExpressServices.getCustomerService().getCustomerByUsername(username);
+                            session.setAttribute("customer", customer);
+                            out.println("<a>Welcome! "+customer.getFirstName()+"</a>");
+                        } else {
+                            String username = principle.toString();
+                            Customer customer = commerceExpressServices.getCustomerService().getCustomerByUsername(username);
+                            session.setAttribute("customer", customer);
+                            out.println("<a>Welcome! "+customer.getFirstName()+"</a>");
+                        }
+                    }
+                    
                 %></li>
-                <li><a href="<%=request.getContextPath()%>/basket"><img src="resources/images/shopping-basket-icon.png" /></a></li>
-                <li><a href="<%=request.getContextPath()%>/logout">Logout</a></li>                
+                <li><a href="<%=request.getContextPath()%>/basket">View Basket -><img src="resources/images/shopping-basket-icon.png" /></a></li>
+                <li><a href="<%=request.getContextPath()%>/clearBasket">Logout</a></li>                
             </ul>
         </div><!-- /.nav-collapse -->
     </div><!-- /navbar-inner -->

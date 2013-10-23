@@ -14,5 +14,6 @@
     <class>com.commerce.express.domain.Rating</class>
     <class>com.commerce.express.domain.Roles</class>
     <class>com.commerce.express.domain.WishList</class>
+    <class>com.commerce.express.domain.WishListLine</class>
   </persistence-unit>
 </persistence>

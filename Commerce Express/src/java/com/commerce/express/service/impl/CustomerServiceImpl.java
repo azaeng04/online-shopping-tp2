@@ -33,7 +33,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer getCustomerByUsername(String username) {
-        AccessDetails accessDetails = commerceExpressCRUD.getAccessDetailsCrudService().getByPropertyName("USERNAME", username);
+        AccessDetails accessDetails = commerceExpressCRUD.getAccessDetailsCrudService().getByPropertyName("username", username);
         List<Customer> customers = commerceExpressCRUD.getCustomerCrudService().findAll();
         Customer customer1 = new Customer();
         for (Customer customer : customers) {
