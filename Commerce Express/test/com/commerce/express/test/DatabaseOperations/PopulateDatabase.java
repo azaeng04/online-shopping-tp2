@@ -448,7 +448,7 @@ public class PopulateDatabase {
             String categoryName = entry.getKey();
             List<String> productName = entry.getValue();
 
-            ProductStatus productStatus = ProductStatusFactory.getProductStatus("InStock", 10000);
+            ProductStatus productStatus = ProductStatusFactory.getProductStatus("InStock", 10);
 
             List<Product> productList = new ArrayList<Product>();
             uniqueNumbers.clear();

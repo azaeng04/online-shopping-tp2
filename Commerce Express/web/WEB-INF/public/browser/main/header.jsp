@@ -20,10 +20,11 @@
         <script src="resources/bootstrap/js/jquery.js"></script>
         <script src="resources/bootstrap/js/bootstrap.js"></script>
         <script>
-            $(document).ready(function() {
+            $(document).ready(function createExcelSheet() {
                 try {
                     $("#dob").datepicker({
-                        dateFormat: "DD, d MM, yy"
+                        maxDate: '-18Y',
+                        dateFormat: "DD d M yy"
                     });
                 } catch (e) {
                     alert("Error: " + e.toString());

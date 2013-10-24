@@ -8,9 +8,10 @@ package com.commerce.express.service.impl;
 import com.commerce.express.app.facade.CommerceExpressCRUD;
 import com.commerce.express.app.facade.CommerceExpressServices;
 import com.commerce.express.domain.Category;
+import com.commerce.express.domain.OrderLine;
+import com.commerce.express.domain.Orders;
 import com.commerce.express.domain.Product;
 import java.util.List;
-import org.springframework.context.ApplicationContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -22,13 +23,15 @@ import org.testng.annotations.Test;
  * @author Ronald
  */
 public class ProductServiceTest {
+
+    CommerceExpressServices commerceExpressServices = CommerceExpressServices.getCommerceExpressServices();
+    CommerceExpressCRUD commerceExpressCRUD = CommerceExpressCRUD.getCommerceExpressCRUD();
     
     public ProductServiceTest() {
     }
 
     @BeforeClass
     public static void setUpClass() throws Exception {
-        
     }
 
     @AfterClass
@@ -54,15 +57,32 @@ public class ProductServiceTest {
      * Test of updateInStock method, of class ProductServiceImpl.
      */
     @Test
-    public void testUpdateInStock() {        
-        CommerceExpressServices commerceExpressServices = CommerceExpressServices.getCommerceExpressServices();
-        commerceExpressServices.getProductService().updateInStock();
+    public void testUpdateInStock() {
+        List<Orders> orders = commerceExpressCRUD.getOrdersCrudService().findAll();
+        Orders orders1 = orders.get(0);
+        List<OrderLine> orderLines = commerceExpressServices.getOrderService().getOrderLine(orders1.getOrderID());
+        System.out.println("Before");
+        for (OrderLine orderLine : orderLines) {
+            Product product = orderLine.getProduct();
+            System.out.println("Product ID: " + product.getProductID());
+            System.out.println("Quantity: " + orderLine.getQuantity());
+            System.out.println("In Stock: " + product.getProductStatus().getInStock());
+        }
+        
+        commerceExpressServices.getProductService().updateInStock(orders1.getOrderID());
+        
+        System.out.println("After");
+        orderLines = commerceExpressServices.getOrderService().getOrderLine(orders1.getOrderID());
+        for (OrderLine orderLine : orderLines) {
+            Product product = orderLine.getProduct();
+            System.out.println("Product ID: " + product.getProductID());
+            System.out.println("Quantity: " + orderLine.getQuantity());
+            System.out.println("In Stock: " + product.getProductStatus().getInStock());
+        }
     }
-    
+
     @Test(enabled = false)
     public void testGetProducts() {
-        CommerceExpressCRUD commerceExpressCRUD = CommerceExpressCRUD.getCommerceExpressCRUD();
-        CommerceExpressServices commerceExpressServices = CommerceExpressServices.getCommerceExpressServices();
         List<Category> categories = commerceExpressCRUD.getCategoryCrudService().findAll();
         List<Product> products = commerceExpressServices.getProductService().getProducts(categories.get(0).getId());
         System.out.println(products);

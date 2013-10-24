@@ -7,6 +7,7 @@ package com.commerce.express.app.facade;
 import com.commerce.express.app.config.GetContext;
 import com.commerce.express.service.AccessDetailsService;
 import com.commerce.express.service.AdministratorService;
+import com.commerce.express.service.CartService;
 import com.commerce.express.service.CustomerService;
 import com.commerce.express.service.GeneralService;
 import com.commerce.express.service.OrderLineService;
@@ -27,6 +28,7 @@ public class CommerceExpressServices {
     private static OrderService orderService;
     private static OrderLineService orderLineService;
     private static ProductService productService;
+    private static CartService cartService;
     private static GeneralService generalService;
     
     private CommerceExpressServices() {
@@ -42,6 +44,11 @@ public class CommerceExpressServices {
     public GeneralService getGeneralService() {
         generalService = (GeneralService) ctx.getBean("GeneralService");
         return generalService;
+    }
+    
+    public CartService getCartService() {
+        cartService = (CartService) ctx.getBean("CartService");
+        return cartService;
     }
     
     public OrderLineService getOrderLineService() {

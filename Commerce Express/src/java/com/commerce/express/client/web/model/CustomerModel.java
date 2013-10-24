@@ -4,11 +4,7 @@
  */
 package com.commerce.express.client.web.model;
 
-import com.commerce.express.domain.AccessDetails;
-import com.commerce.express.domain.Address;
-import com.commerce.express.domain.Contact;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  *
@@ -22,9 +18,15 @@ public class CustomerModel implements Serializable{
     private String middleName;
     private String dateOfBirth;
     private String gender;
-    private AccessDetails accessDetails;
-    private List<Address> addresses;
-    private Contact contact;
+    private String username;
+    private String password;
+    private String physicalAddress;
+    private String postalAddress;
+    private String postalCode;
+    private String emailAddress;
+    private String cellPhoneNumber;
+    private String homeNumber;
+    private String officeNumber;
 
     public String getUserID() {
         return userID;
@@ -74,27 +76,75 @@ public class CustomerModel implements Serializable{
         this.gender = gender;
     }
 
-    public AccessDetails getAccessDetails() {
-        return accessDetails;
+    public String getUsername() {
+        return username;
     }
 
-    public void setAccessDetails(AccessDetails accessDetails) {
-        this.accessDetails = accessDetails;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public List<Address> getAddresses() {
-        return addresses;
+    public String getPassword() {
+        return password;
     }
 
-    public void setAddresses(List<Address> addresses) {
-        this.addresses = addresses;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public Contact getContact() {
-        return contact;
+    public String getPhysicalAddress() {
+        return physicalAddress;
     }
 
-    public void setContact(Contact contact) {
-        this.contact = contact;
+    public void setPhysicalAddress(String physicalAddress) {
+        this.physicalAddress = physicalAddress;
+    }
+
+    public String getPostalAddress() {
+        return postalAddress;
+    }
+
+    public void setPostalAddress(String postalAddress) {
+        this.postalAddress = postalAddress;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public String getCellPhoneNumber() {
+        return cellPhoneNumber;
+    }
+
+    public void setCellPhoneNumber(String cellPhoneNumber) {
+        this.cellPhoneNumber = cellPhoneNumber;
+    }
+
+    public String getHomeNumber() {
+        return homeNumber;
+    }
+
+    public void setHomeNumber(String homeNumber) {
+        this.homeNumber = homeNumber;
+    }
+
+    public String getOfficeNumber() {
+        return officeNumber;
+    }
+
+    public void setOfficeNumber(String officeNumber) {
+        this.officeNumber = officeNumber;
     }
 }

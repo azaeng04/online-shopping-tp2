@@ -6,7 +6,9 @@ package com.commerce.express.client.web.controller;
 
 import com.commerce.express.app.facade.CommerceExpressCRUD;
 import com.commerce.express.domain.Category;
+import java.util.Enumeration;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class AccessDetailsController {
+
     private static CommerceExpressCRUD commerceExpressCRUD = CommerceExpressCRUD.getCommerceExpressCRUD();
-    
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model) {
         categoryModel(model);
@@ -27,21 +30,19 @@ public class AccessDetailsController {
         model.addAttribute("active", "login");
         return "browser/login";
     }
-    
-    @RequestMapping(value = "/logout")
-    public String home(Model model) {
-        categoryModel(model);        
-        return "redirect:/";
+
+    @RequestMapping(value = "/memberLogout")
+    public String home(Model model, HttpSession session) {
+        Enumeration<String> enuma = session.getAttributeNames();
+        while (enuma.hasMoreElements()) {
+            session.removeAttribute(enuma.nextElement());
+        }
+        session.invalidate();
+        categoryModel(model);
+        return "redirect:login";
     }
-        
-    @RequestMapping(value = "/clearBasket")
-    public String clearBasket(Model model) {
-        
-        return "customer/clearBasket";
-    }
-    
-    
-    @RequestMapping({"/loginfailed"})
+
+    @RequestMapping({"/loginFailed"})
     public String loginFailed(Model model) {
         categoryModel(model);
         model.addAttribute("error", "true");
@@ -49,7 +50,7 @@ public class AccessDetailsController {
         model.addAttribute("active", "login");
         return "browser/login";
     }
-    
+
     private void categoryModel(Model model) {
         List<Category> categories = commerceExpressCRUD.getCategoryCrudService().findAll();
         model.addAttribute("categories", categories);

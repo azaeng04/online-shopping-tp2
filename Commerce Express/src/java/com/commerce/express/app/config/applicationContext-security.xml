@@ -16,10 +16,10 @@
     <http auto-config="true" use-expressions="true">
         <intercept-url pattern="/member**" access="hasRole('ROLE_CUSTOMER')"/>
         <form-login login-page="/login" 
-                    default-target-url="/memberhome"
-                    authentication-failure-url="/loginfailed"
+                    default-target-url="/addCustomerToSession"
+                    authentication-failure-url="/loginFailed"
         />
-        <logout logout-success-url="/clearBasket"/>
+        <logout logout-success-url="/memberClearBasket"/>
     </http>
     <!-- SECTION C -->
 

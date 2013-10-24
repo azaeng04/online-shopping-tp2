@@ -7,7 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="main/header.jsp"/>
 <body>
-    
+
     <jsp:include page="main/topnavigationbar.jsp"/>
 
     <div class= "sidenavigation">
@@ -24,11 +24,21 @@
             <div class="row">
                 <table id="products">
                     <c:forEach items = "${products}" var = "product">
-                        <div class="span4 carshow">                        
-                            <h3>${product.id}. ${product.productName}</h3>
-                            <h4>Price : R${product.productPrice}</h4>
-                            <img src="${product.imageURL}" class="img-rounded" />
-                            <br/>
+                        <div class="span4 carshow">
+                            <c:choose>
+                                <c:when test="${product.productStatus.inStock == 0}">
+                                    <h3>${product.id}. ${product.productName}</h3>
+                                    <h4>Price : R${product.productPrice}</h4>
+                                    <h5>In Stock: ${product.productStatus.inStock}</h5>
+                                    <img src="<c:url value='resources/images/soldOut.png' />"  class="img-rounded" />
+                                </c:when>
+                                <c:otherwise>
+                                    <h3>${product.id}. ${product.productName}</h3>
+                                    <h4>Price : R${product.productPrice}</h4>
+                                    <h5>In Stock: ${product.productStatus.inStock}</h5>
+                                    <img src="${product.imageURL}" class="img-rounded" />
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </c:forEach>
                 </table>
