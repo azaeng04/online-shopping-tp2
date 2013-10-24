@@ -36,9 +36,9 @@
                 <div class="control-group">
                     <div class="controls">
                         <label class="checkbox">
-                            <input type="checkbox" type="_spring_security_remember_me" name='_spring_security_remember_me'> Remember me
+                            <input type="checkbox" name='_spring_security_remember_me'> Remember me
                         </label>
-                        <button type="submit" class="btn">Log in</button>
+                        <button type="submit" class="btn btn-primary">Log in</button>
                     </div>
                 </div>
             </form>       

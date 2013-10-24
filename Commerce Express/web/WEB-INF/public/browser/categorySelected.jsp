@@ -17,37 +17,31 @@
 
     <div class= "content">
         <div class="container">
-           <jsp:include page="categorySearch.jsp" />
+            <jsp:include page="categorySearch.jsp" />
             <br>
             <!-- Main hero unit for a primary marketing message or call to action -->
-            <div id="myCarousel" class="carousel slide">
-                <!-- Carousel items -->
-                <div class="carousel-inner">
-                    <div class="active item"><img src="resources/images/product.jpg" alt="Car Carousel" /></div>
-                    <div class="item"><img src="resources/images/product.jpg" alt="Car Carousel" /></div>
-                    <div class="item"><img src="resources/images/product.jpg" alt="Car Carousel" /></div>
-                    <div class="item"><img src="resources/images/product.jpg" alt="Car Carousel" /></div>
-                    <div class="item"><img src="resources/images/product.jpg" alt="Car Carousel" /></div>
-                    <div class="item"><img src="resources/images/product.jpg" alt="Car Carousel" /></div>
-                    <div class="item"><img src="resources/images/product.jpg" alt="Car Carousel" /></div>
-                    <div class="item"><img src="resources/images/product.jpg" alt="Car Carousel" /></div>
-                </div>
-                <!-- Carousel nav -->
-                <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-                <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-            </div>
-
+            <jsp:include page="carousel.jsp" />
 
             <div class="row">
                 <c:forEach items = "${products}" var = "product">
                     <div class="span4 carshow">
-                        <h3>${product.id}. ${product.productName}</h3>
-                        <h4>Price : ${product.productPrice}</h4>
-                        <img src="${product.imageURL}" class="img-rounded" />
-                        <br/>
+                        <c:choose>
+                            <c:when test="${product.productStatus.inStock == 0}">
+                                <h3>${product.id}. ${product.productName}</h3>
+                                <h4>Price : R${product.productPrice}</h4>
+                                <h5>In Stock: ${product.productStatus.inStock}</h5>
+                                <img src="<c:url value='resources/images/soldOut.png' />"  class="img-rounded" />
+                            </c:when>
+                            <c:otherwise>
+                                <h3>${product.id}. ${product.productName}</h3>
+                                <h4>Price : R${product.productPrice}</h4>
+                                <h5>In Stock: ${product.productStatus.inStock}</h5>
+                                <img src="${product.imageURL}" class="img-rounded" />
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </c:forEach>  
             </div>
         </div>
     </div> 
-<jsp:include page="main/footer.jsp" />
+    <jsp:include page="main/footer.jsp" />

@@ -25,10 +25,14 @@
                 } catch (NullPointerException ex) {
                     Customer customer = (Customer) session.getAttribute("customer");
                     CommerceExpressServices commerceExpressServices = CommerceExpressServices.getCommerceExpressServices();
-                    List<Orders> customersOrders = commerceExpressServices.getOrderService().getOrders(customer.getUserID());
-                    session.setAttribute("orders", customersOrders);
-                    String table = commerceExpressServices.getOrderService().orderTable(customersOrders);
-                    out.println(table);
+                    try {
+                        List<Orders> customersOrders = commerceExpressServices.getOrderService().getOrders(customer.getUserID());
+                        session.setAttribute("orders", customersOrders);
+                        String table = commerceExpressServices.getOrderService().orderTable(customersOrders);
+                        out.println(table);
+                    } catch (NullPointerException e) {
+                        out.println("<label>No orders made</label>");
+                    }
                 }
             %>              
         </div>

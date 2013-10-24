@@ -12,13 +12,18 @@
     for (Product product : products) {
         qty = request.getParameter("qty" + product.getId());
         try {
-            if (Integer.parseInt(qty) > 0) {
-                cart.put(product.getId().toString(), qty);
-                session.setAttribute("cart", cart);
+            Integer inStock = commerceExpressCRUD.getProductCrudService().getByPropertyName("productID", product.getProductID()).getProductStatus().getInStock();
+            if (Integer.parseInt(qty) <= inStock) {
+                if (Integer.parseInt(qty) > 0) {
+                    cart.put(product.getId().toString(), qty);
+                }
+            } else {
+                cart.put(product.getId().toString(), inStock.toString());
             }
         } catch (NumberFormatException ex) {
             request.setAttribute("qty" + product.getId(), "0");
         }
     }
-    response.sendRedirect("basket");
+    session.setAttribute("cart", cart);
+    response.sendRedirect("memberBasket");
 %>

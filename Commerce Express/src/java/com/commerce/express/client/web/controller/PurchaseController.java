@@ -6,9 +6,6 @@ package com.commerce.express.client.web.controller;
 
 import com.commerce.express.app.facade.CommerceExpressCRUD;
 import com.commerce.express.app.facade.CommerceExpressServices;
-import com.commerce.express.domain.Category;
-import com.commerce.express.domain.Product;
-import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

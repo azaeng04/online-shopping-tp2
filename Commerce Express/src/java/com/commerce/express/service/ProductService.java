@@ -14,5 +14,5 @@ import java.util.List;
 public interface ProductService {
     public List<Product> getProducts(Long categoryID);
     
-    public void updateInStock();
+    public void updateInStock(String order);
 }

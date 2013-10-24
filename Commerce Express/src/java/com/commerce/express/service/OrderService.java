@@ -26,5 +26,7 @@ public interface OrderService {
     
     public List<Product> getProducts(String orderNumber);
     
-    public List<OrderLine> getOrderLines(String orderNumber);
+    public List<OrderLine> getOrderLine(String orderNumber);
+    
+    public String displayProductsOnOrder(String orderID);
 }

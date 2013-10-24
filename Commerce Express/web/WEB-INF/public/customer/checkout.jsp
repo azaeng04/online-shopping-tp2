@@ -1,3 +1,4 @@
+<%@page import="java.util.TreeMap"%>
 <%@page import="com.commerce.express.app.facade.CommerceExpressServices"%>
 <%@page import="com.commerce.express.domain.Customer"%>
 <%@page import="java.util.Map"%>
@@ -6,5 +7,6 @@
     Customer customer = (Customer) session.getAttribute("customer");
     CommerceExpressServices commerceExpressServices = CommerceExpressServices.getCommerceExpressServices();
     commerceExpressServices.getOrderService().checkout(cart, customer);
-    response.sendRedirect("memberorders");
+    session.setAttribute("cart", null);
+    response.sendRedirect("memberOrders");
 %>
