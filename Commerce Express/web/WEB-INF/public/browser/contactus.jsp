@@ -9,7 +9,9 @@
 	<div class= "content">
             <div class="container">
                 <h1>${title}</h1>
-                <label>Content here!</label>
+                <p>
+                    Contact Us on 074 608 8976
+                <p>
             </div>
 	</div>
 <jsp:include page="main/footer.jsp" />
