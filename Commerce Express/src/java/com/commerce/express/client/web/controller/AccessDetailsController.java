@@ -51,6 +51,23 @@ public class AccessDetailsController {
         return "browser/login";
     }
 
+    @RequestMapping({"/loginAccessDenied"})
+    public String loginAccessedDenied(Model model) {
+        categoryModel(model);
+        model.addAttribute("error", "true");
+        model.addAttribute("title", "Login");
+        model.addAttribute("active", "login");
+        return "browser/login";
+    }
+    
+    @RequestMapping({"/pageNotFound"})
+    public String pageNotFound(Model model) {
+        categoryModel(model);
+        model.addAttribute("title", "Page Not Found");
+        model.addAttribute("message", "This page does not exist");
+        return "browser/pageNotFound";
+    }
+            
     private void categoryModel(Model model) {
         List<Category> categories = commerceExpressCRUD.getCategoryCrudService().findAll();
         model.addAttribute("categories", categories);

@@ -15,6 +15,7 @@
     <!-- SECTION C -->
     <http auto-config="true" use-expressions="true">
         <intercept-url pattern="/member**" access="hasRole('ROLE_CUSTOMER')"/>
+        <access-denied-handler error-page="/loginAccessDenied"/>
         <form-login login-page="/login" 
                     default-target-url="/addCustomerToSession"
                     authentication-failure-url="/loginFailed"

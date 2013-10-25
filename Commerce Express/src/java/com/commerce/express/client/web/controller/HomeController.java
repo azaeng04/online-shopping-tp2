@@ -6,7 +6,6 @@ package com.commerce.express.client.web.controller;
 
 import com.commerce.express.app.facade.CommerceExpressCRUD;
 import com.commerce.express.app.facade.CommerceExpressServices;
-import com.commerce.express.client.web.model.CustomerModel;
 import com.commerce.express.domain.Category;
 import com.commerce.express.domain.Product;
 import com.commerce.express.service.CustomerService;
@@ -14,11 +13,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -100,13 +97,8 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/createCustomer", method = RequestMethod.POST)
-    public String createCustomer(@ModelAttribute("CustomerModel") CustomerModel cust,
-            BindingResult result, Model model) {
-        ctx = new ClassPathXmlApplicationContext("classpath:com/commerce/express/app/config/applicationContext-*.xml");
-
-        customerService = (CustomerService) ctx.getBean("CustomerService");
-        customerService.createCustomer(cust);
-
-        return "browser/signup";
+    public String createCustomer(Model model) {
+        
+        return "browser/createCustomer";
     }
 }

@@ -1,3 +1,8 @@
+<%@page import="com.commerce.express.domain.Contact"%>
+<%@page import="java.util.List"%>
+<%@page import="com.commerce.express.app.facade.CommerceExpressCRUD"%>
+<%@page import="com.commerce.express.domain.Customer"%>
+<%@page import="com.commerce.express.app.facade.CommerceExpressServices"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -22,10 +27,10 @@
         <script>
             $(document).ready(function createExcelSheet() {
                 try {
-                    $("#dob").datepicker({
-                        maxDate: '-18Y',
-                        dateFormat: "DD d M yy"
-                    });
+//                    $("#dob").datepicker({
+//                        maxDate: '-18Y',
+//                        dateFormat: "DD d M yy"
+//                    });
                 } catch (e) {
                     alert("Error: " + e.toString());
                 }

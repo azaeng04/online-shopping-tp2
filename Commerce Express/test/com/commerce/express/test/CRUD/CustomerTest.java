@@ -88,7 +88,7 @@ public class CustomerTest {
         Customer customer = new CustomerFactory.Builder("82118", user)
                 .setAddresses(addresses)
                 .setContact(contact)
-                .setDateOfBirth(new SimpleDateFormat("EEEE dd MMM YYYY").format(dob))
+                .setDateOfBirth(new SimpleDateFormat("EEEE dd MMM yyyy").format(dob))
                 .setFirstName("Mike")
                 .setGender("Male")
                 .setLastName("Joans")

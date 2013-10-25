@@ -5,12 +5,14 @@
 package com.commerce.express.service.impl;
 
 import com.commerce.express.app.facade.CommerceExpressCRUD;
+import com.commerce.express.app.facade.CommerceExpressServices;
 import com.commerce.express.client.web.model.CustomerModel;
 import com.commerce.express.domain.AccessDetails;
 import com.commerce.express.domain.Customer;
 import com.commerce.express.service.CustomerService;
 import com.commerce.express.service.crud.CustomerCrudService;
 import java.util.List;
+import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,7 @@ import org.springframework.stereotype.Service;
 @Service("CustomerService")
 public class CustomerServiceImpl implements CustomerService {
 
+    CommerceExpressServices commerceExpressServices = CommerceExpressServices.getCommerceExpressServices();
     private static CommerceExpressCRUD commerceExpressCRUD = CommerceExpressCRUD.getCommerceExpressCRUD();
     private static CustomerServiceImpl customerServiceImpl;
     @Autowired
@@ -72,5 +75,22 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<Customer> getAllCustomer() {
         return commerceExpressCRUD.getCustomerCrudService().findAll();
+    }
+
+    @Override
+    public Integer getUniqueCustomerNumber() {
+        Random random = new Random();
+        Integer randomNumber = commerceExpressServices.getGeneralService().generateRandomNumber(10000, 99999, random);
+        Customer customer;
+        Boolean isFound = true;
+        while (isFound) {
+            customer = commerceExpressCRUD.getCustomerCrudService().getByPropertyName("userID", "CUS_" + randomNumber);
+            if (customer != null) {
+                randomNumber = commerceExpressServices.getGeneralService().generateRandomNumber(10000, 99999, random);
+            } else {
+                isFound = false;
+            }
+        }
+        return randomNumber;
     }
 }

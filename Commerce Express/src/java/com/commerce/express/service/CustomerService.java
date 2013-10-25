@@ -7,6 +7,8 @@ package com.commerce.express.service;
 import com.commerce.express.client.web.model.CustomerModel;
 import com.commerce.express.domain.Customer;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpRequest;
 
 /**
  *
@@ -19,4 +21,6 @@ public interface CustomerService {
     public List<Customer> createCustomer(CustomerModel model);
 
     public List<Customer> getAllCustomer();
+    
+    public Integer getUniqueCustomerNumber();
 }
