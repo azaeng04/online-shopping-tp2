@@ -232,4 +232,9 @@ public class OrderServiceImpl implements OrderService {
         table += "<tr>";
         return table;
     }
+    
+    @Override
+    public List<Orders> getAllOrders() {
+        return commerceExpressCRUD.getOrdersCrudService().findAll();
+    }
 }

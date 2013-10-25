@@ -4,7 +4,7 @@
  */
 package com.commerce.express.client.webservice.rest.assembler;
 
-import com.commerce.express.client.webservice.rest.Rest;
+import com.commerce.express.client.webservice.rest.ProductRest;
 import com.commerce.express.client.webservice.rest.resources.FAQResource;
 import com.commerce.express.domain.FAQ;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
@@ -19,14 +19,14 @@ import org.springframework.stereotype.Service;
 public class FAQAssembler extends ResourceAssemblerSupport<FAQ, FAQResource >{
   
     public FAQAssembler() {
-        super(Rest.class, FAQResource.class);
+        super(ProductRest.class, FAQResource.class);
     }
     
     @Override
     public FAQResource toResource(FAQ t) {
         FAQResource resource = instantiateResource(t);
         resource.setFaq(t);
-        resource.add(linkTo(Rest.class).slash(t.getId()).withSelfRel());
+        resource.add(linkTo(ProductRest.class).slash(t.getId()).withSelfRel());
         return resource;
     }
     

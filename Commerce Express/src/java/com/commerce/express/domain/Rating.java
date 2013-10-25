@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import org.codehaus.jackson.annotate.JsonBackReference;
 
 /**
  *
@@ -27,6 +28,8 @@ public class Rating implements Serializable {
     private Integer ratingNumber;
     private String ratingStatus;
     private Integer ratingQuantity;
+    
+    @JsonBackReference
     @OneToOne
     private Product product;
     
@@ -38,10 +41,12 @@ public class Rating implements Serializable {
         this.id = id;
     }
 
+    @JsonBackReference
     public Product getProduct() {
         return product;
     }
 
+    @JsonBackReference
     public void setProduct(Product product) {
         this.product = product;
     }

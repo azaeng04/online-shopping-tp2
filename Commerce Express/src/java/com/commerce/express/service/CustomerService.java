@@ -13,6 +13,10 @@ import java.util.List;
  * @author Owner
  */
 public interface CustomerService {
+
     public Customer getCustomerByUsername(String username);
+
     public List<Customer> createCustomer(CustomerModel model);
+
+    public List<Customer> getAllCustomer();
 }

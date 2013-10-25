@@ -4,10 +4,10 @@
  */
 package com.commerce.express.client.webservice.rest;
 
-import com.commerce.express.client.webservice.rest.assembler.ProductResourceAssembler;
+import com.commerce.express.client.webservice.rest.assembler.ProductAssembler;
 import com.commerce.express.client.webservice.rest.resources.ProductResource;
 import com.commerce.express.domain.Product;
-import com.commerce.express.service.rest.ProductRestService;
+import com.commerce.express.service.ProductService;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,22 +22,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author cna canal walk
  */
 @Controller
-@RequestMapping("api")
-public class Rest {
+@RequestMapping("product")
+public class ProductRest {
 
     @Autowired
-    private ProductRestService productRestService;
+    private ProductService productService;
     @Autowired
-    private ProductResourceAssembler productResourceAssembler;
-    
+    private ProductAssembler productResourceAssembler;
+
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<ProductResource>> getProduct() {
-        List<Product> products = productRestService.getProducts();
+        List<Product> products = productService.getProducts();
         List<ProductResource> resource = productResourceAssembler.toResources(products);
         return new ResponseEntity<List<ProductResource>>(resource, HttpStatus.OK);
     }
-    
-    
-    
-    
 }

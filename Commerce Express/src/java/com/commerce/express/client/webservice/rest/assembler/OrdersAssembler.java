@@ -4,7 +4,8 @@
  */
 package com.commerce.express.client.webservice.rest.assembler;
 
-import com.commerce.express.client.webservice.rest.Rest;
+import com.commerce.express.client.webservice.rest.OrderRest;
+import com.commerce.express.client.webservice.rest.ProductRest;
 import com.commerce.express.client.webservice.rest.resources.OrdersResource;
 import com.commerce.express.domain.Orders;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
@@ -19,14 +20,14 @@ import org.springframework.stereotype.Service;
 public class OrdersAssembler extends ResourceAssemblerSupport<Orders, OrdersResource> {
 
     public OrdersAssembler() {
-        super(Rest.class, OrdersResource.class);
+        super(OrderRest.class, OrdersResource.class);
     }
 
     @Override
     public OrdersResource toResource(Orders t) {
         OrdersResource resource = instantiateResource(t);
         resource.setOrders(t);
-        resource.add(linkTo(Rest.class).slash(t.getId()).withSelfRel());
+        resource.add(linkTo(OrderRest.class).slash(t.getId()).withSelfRel());
         return resource;
     }
 }

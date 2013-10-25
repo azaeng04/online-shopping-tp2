@@ -59,4 +59,9 @@ public class ProductServiceImpl implements ProductService {
         List<Product> products = category.getProducts();
         return products;
     }
+
+    @Override
+    public List<Product> getProducts() {
+        return commerceExpressCRUD.getProductCrudService().findAll();
+    }
 }

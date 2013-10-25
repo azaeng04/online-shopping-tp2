@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 /**
  *
@@ -31,6 +32,7 @@ public class Product implements Serializable {
     private String productPrice;
     @Column(unique = true)
     private String imageURL;
+    @JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private Rating rating;
     @Embedded
@@ -44,10 +46,12 @@ public class Product implements Serializable {
         this.id = id;
     }
 
+    @JsonManagedReference
     public Rating getRating() {
         return rating;
     }
 
+    @JsonManagedReference
     public void setRating(Rating rating) {
         this.rating = rating;
     }

@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 /**
  *
@@ -26,6 +27,7 @@ public class OrderLine implements Serializable {
     @Column(unique = true)
     private String orderLineID;
     private Integer quantity;
+    
     @OneToOne
     private Product product;
     
@@ -36,11 +38,11 @@ public class OrderLine implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
+    
     public Product getProduct() {
         return product;
     }
-
+    
     public void setProduct(Product product) {
         this.product = product;
     }

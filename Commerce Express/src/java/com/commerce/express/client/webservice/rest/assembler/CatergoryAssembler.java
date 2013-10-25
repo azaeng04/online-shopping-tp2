@@ -4,7 +4,7 @@
  */
 package com.commerce.express.client.webservice.rest.assembler;
 
-import com.commerce.express.client.webservice.rest.Rest;
+import com.commerce.express.client.webservice.rest.ProductRest;
 import com.commerce.express.client.webservice.rest.resources.CatergoryResource;
 import com.commerce.express.domain.Category;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
@@ -19,14 +19,14 @@ import org.springframework.stereotype.Service;
 public class CatergoryAssembler extends ResourceAssemblerSupport<Category, CatergoryResource> {
 
     public CatergoryAssembler() {
-        super(Rest.class, CatergoryResource.class);
+        super(ProductRest.class, CatergoryResource.class);
     }
 
     @Override
     public CatergoryResource toResource(Category t) {
         CatergoryResource resource = instantiateResource(t);
         resource.setCatergory(t);
-        resource.add(linkTo(Rest.class).slash(t.getId()).withSelfRel());
+        resource.add(linkTo(ProductRest.class).slash(t.getId()).withSelfRel());
         return resource;
     }
 }

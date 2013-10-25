@@ -8,6 +8,7 @@ import com.commerce.express.app.facade.CommerceExpressCRUD;
 import com.commerce.express.app.facade.CommerceExpressServices;
 import com.commerce.express.domain.OrderLine;
 import com.commerce.express.service.OrderLineService;
+import java.util.List;
 import java.util.Random;
 import org.springframework.stereotype.Service;
 
@@ -47,5 +48,10 @@ public class OrderLineServiceImpl implements OrderLineService {
             }
         }
         return randomNumber;
+    }
+
+    @Override
+    public List<OrderLine> getAllOrderLine() {
+        return commerceExpressCRUD.getOrderLineCrudService().findAll();
     }
 }
