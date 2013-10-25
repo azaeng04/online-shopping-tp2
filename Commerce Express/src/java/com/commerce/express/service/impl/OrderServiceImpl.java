@@ -89,8 +89,8 @@ public class OrderServiceImpl implements OrderService {
         uniqueID = commerceExpressServices.getOrderService().getUniqueOrderNumber().toString();
         Date date = new DateTime().toDate();
         order = new OrdersFactory.Builder(uniqueID)
-                .setDateCreated(new SimpleDateFormat("EEEE dd MMM YYYY HH:mm:ss").format(date))
-                .setDateModified(new SimpleDateFormat("EEEE dd MMM YYYY HH:mm:ss").format(date))
+                .setDateCreated(new SimpleDateFormat("EEEE dd MMM yyyy HH:mm:ss").format(date))
+                .setDateModified(new SimpleDateFormat("EEEE dd MMM yyyy HH:mm:ss").format(date))
                 .setOrderLines(orderLine)
                 .setStatus("Pending Delivery")
                 .buildOrder();

@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Commerce_Express">
+
+    <!--
+    see examples at http://testng.org/doc/documentation-main.html#testng-xml
+
+    <suite-files>
+        <suite-file path="./junit-suite.xml" />
+    </suite-files>
+
+    <test name="TimeOut">
+        <classes>
+            <class name="test.timeout.TimeOutTest" />
+            <class name="test.timeout.TimeOutFromXmlTest"/>
+            <class name="test.timeout.TimeOutThreadLocalSampleTest"/>
+        </classes>
+    </test>
+    -->
+    
+    <test name="com.commerce.express.test suite">
+        <packages>
+            <package name="com.commerce.express.test.CRUD.AdministratorTest"/>
+            <package name="com.commerce.express.test.CRUD.CategoryTest"/>
+            <package name="com.commerce.express.test.CRUD.CustomerTest"/>
+            <package name="com.commerce.express.test.CRUD.FAQTest"/>
+            <package name="com.commerce.express.test.CRUD.OrdersTest"/>
+            <package name="com.commerce.express.test.CRUD.WishListrTest"/>
+        </packages>
+    </test>
+
+</suite>

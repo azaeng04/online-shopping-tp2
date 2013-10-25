@@ -85,7 +85,7 @@ public class AdministratorTest {
         Administrator administrator = new AdministratorFactory.Builder("82119", user)
                 .setAddresses(addresses)
                 .setContact(contact)
-                .setDateOfBirth(new SimpleDateFormat("EEEE dd MMM YYYY").format(dob))
+                .setDateOfBirth(new SimpleDateFormat("EEEE dd MMM yyyy").format(dob))
                 .setFirstName("Susan")
                 .setGender("Female")
                 .setLastName("Andrews")
