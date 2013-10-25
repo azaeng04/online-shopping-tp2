@@ -68,4 +68,9 @@ public class CustomerServiceImpl implements CustomerService {
         customerCrudService.persist(cust);
         return customerCrudService.findAll();
     }
+
+    @Override
+    public List<Customer> getAllCustomer() {
+        return commerceExpressCRUD.getCustomerCrudService().findAll();
+    }
 }

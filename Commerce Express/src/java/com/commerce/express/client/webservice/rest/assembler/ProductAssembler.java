@@ -4,7 +4,7 @@
  */
 package com.commerce.express.client.webservice.rest.assembler;
 
-import com.commerce.express.client.webservice.rest.Rest;
+import com.commerce.express.client.webservice.rest.ProductRest;
 import com.commerce.express.client.webservice.rest.resources.ProductResource;
 import com.commerce.express.domain.Product;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
@@ -16,17 +16,17 @@ import org.springframework.stereotype.Service;
  * @author cna canal walk
  */
 @Service("productResourceAssembler")
-public class ProductResourceAssembler extends ResourceAssemblerSupport<Product, ProductResource> {
+public class ProductAssembler extends ResourceAssemblerSupport<Product, ProductResource> {
 
-    public ProductResourceAssembler() {
-        super(Rest.class, ProductResource.class);
+    public ProductAssembler() {
+        super(ProductRest.class, ProductResource.class);
     }
 
     @Override
     public ProductResource toResource(Product t) {
         ProductResource resource = instantiateResource(t);
         resource.setProduct(t);
-        resource.add(linkTo(Rest.class).slash(t.getId()).withSelfRel());
+        resource.add(linkTo(ProductRest.class).slash(t.getId()).withSelfRel());
         return resource;
     }
 }
