@@ -11,24 +11,30 @@ import com.commerce.express.app.factory.AdministratorFactory;
 import com.commerce.express.app.factory.CategoryFactory;
 import com.commerce.express.app.factory.ContactFactory;
 import com.commerce.express.app.factory.CustomerFactory;
+import com.commerce.express.app.factory.FAQFactory;
 import com.commerce.express.app.factory.OrderLineFactory;
 import com.commerce.express.app.factory.OrdersFactory;
 import com.commerce.express.app.factory.ProductFactory;
 import com.commerce.express.app.factory.ProductStatusFactory;
 import com.commerce.express.app.factory.RatingFactory;
 import com.commerce.express.app.factory.RolesFactory;
+import com.commerce.express.app.factory.WishListFactory;
+import com.commerce.express.app.factory.WishListLineFactory;
 import com.commerce.express.domain.AccessDetails;
 import com.commerce.express.domain.Address;
 import com.commerce.express.domain.Administrator;
 import com.commerce.express.domain.Category;
 import com.commerce.express.domain.Contact;
 import com.commerce.express.domain.Customer;
+import com.commerce.express.domain.FAQ;
 import com.commerce.express.domain.OrderLine;
 import com.commerce.express.domain.Orders;
 import com.commerce.express.domain.Product;
 import com.commerce.express.domain.ProductStatus;
 import com.commerce.express.domain.Rating;
 import com.commerce.express.domain.Roles;
+import com.commerce.express.domain.WishList;
+import com.commerce.express.domain.WishListLine;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -105,6 +111,28 @@ public class PopulateDatabase {
         categories.put("Meat", meat);
         categories.put("Produce", produce);
         categories.put("Snacks", snacks);
+        
+        categories.put("Beauty", beverages);
+        categories.put("Hair and Make-up", breadBakery);
+        categories.put("Free Range", cannedGoods);
+        categories.put("Fruits and Veg", dairy);
+        categories.put("Sweets", dryGoods);
+        categories.put("Swiss Chocolate", bakingGoods);
+        categories.put("Cheese", frozenFoods);
+        categories.put("Herbs", meat);
+        categories.put("Winery", produce);
+        categories.put("Ready-made", snacks);
+        
+        categories.put("Toys", beverages);
+        categories.put("Home Ware", breadBakery);
+        categories.put("Electronics", cannedGoods);
+        categories.put("PC Hardware", dairy);
+        categories.put("PC Software", dryGoods);
+        categories.put("Lighting", bakingGoods);
+        categories.put("Audio and Visual", frozenFoods);
+        categories.put("Car Accessories", meat);
+        categories.put("Stylers Wear", produce);
+        categories.put("Summer Wear", snacks);
     }
 
     // TODO add test methods here.
@@ -130,6 +158,7 @@ public class PopulateDatabase {
 
     @Test
     public void testFunction() {
+        Integer randomUniqueNum = generateUniqueRandomNumber(10000, 99999, new Random());
         createCategories();
         
         for (int i = 0; i < 15; i++) {
@@ -142,9 +171,21 @@ public class PopulateDatabase {
             createFemaleCustomer();
         }
 
+        for (int i = 0; i < 15; i++) {
+            uniqueNumbers.clear();
+            createMaleAdmin();
+        }
+
+        for (int i = 0; i < 15; i++) {
+            uniqueNumbers.clear();
+            createFemaleAdmin();
+        }
+          
         createAdmin1();
         createAdmin2();
         createAdmin3();
+        
+        addFAQs(randomUniqueNum);
         
         System.out.println("Database POPULATED successfully");
     }
@@ -254,6 +295,20 @@ public class PopulateDatabase {
         
         customer.setOrders(orders);
         
+        WishListLine wishListLine = null;
+        for (int i = 0; i < 5; i++) {
+            randomUniqueNum = generateUniqueRandomNumber(10000, 99999, random);   
+            wishListLine = WishListLineFactory.getWishListLine(randomUniqueNum.toString(), products.get(i));
+        }
+        
+        List<WishListLine> wishListLines = new ArrayList<WishListLine>();
+        wishListLines.add(wishListLine);
+
+        randomUniqueNum = generateUniqueRandomNumber(10000, 99999, random);
+        WishList wishList = WishListFactory.getWishList(randomUniqueNum.toString(), date, date, wishListLines);
+        
+        customer.setWishList(wishList);
+        
         commerceExpressCRUD.getCustomerCrudService().persist(customer);
 
         numberMales++;
@@ -341,11 +396,124 @@ public class PopulateDatabase {
         
         customer.setOrders(orders);
         
+        WishListLine wishListLine = null;
+        for (int i = 0; i < 5; i++) {
+            randomUniqueNum = generateUniqueRandomNumber(10000, 99999, random);   
+            wishListLine = WishListLineFactory.getWishListLine(randomUniqueNum.toString(), products.get(i));
+        }
+        
+        List<WishListLine> wishListLines = new ArrayList<WishListLine>();
+        wishListLines.add(wishListLine);
+
+        randomUniqueNum = generateUniqueRandomNumber(10000, 99999, random);
+        WishList wishList = WishListFactory.getWishList(randomUniqueNum.toString(), date, date, wishListLines);
+        
+        customer.setWishList(wishList);
+        
         commerceExpressCRUD.getCustomerCrudService().persist(customer);
 
         numberFemales++;
     }
 
+    private void createMaleAdmin() {
+        Random random = new Random();
+        String name = boyNames.get(generateRandomNumber(0, boyNames.size() - 1, random));
+        String middleName = middleNames.get(generateRandomNumber(0, middleNames.size() - 1, random));
+        String surname = surnames.get(generateRandomNumber(0, surnames.size() - 1, random));
+        String username = (name.substring(0, 1).toLowerCase() + surname + numberMales.toString()).replace(' ', '.');
+        String password = username;
+        String userNumber = generateUniqueRandomNumber(10000, 99999, random).toString();
+        String gender = "Male";
+
+        String postalCode = generateRandomNumber(1000, 9999, random).toString();
+        String postalType = postalTypes.get(generateRandomNumber(0, postalTypes.size() - 1, random));
+        String streetNumber = generateRandomNumber(100, 1000, random).toString();
+        String streetName = streetNames.get(generateRandomNumber(0, streetNames.size() - 1, random));
+        String physicalAddress = streetNumber + " " + streetName;
+
+        List<Address> addresses = new ArrayList<Address>();
+        Address address = AddressFactory.getAddress(postalType, physicalAddress, postalCode);
+        addresses.add(address);
+
+        Integer randomCellNum1 = generateRandomNumber(1000000, 9999999, random);
+        Integer randomCellNum2 = generateRandomNumber(1000000, 9999999, random);
+        Integer randomCellNum3 = generateRandomNumber(1000000, 9999999, random);
+
+        Contact contact = ContactFactory.getContact(username + "@cexpress.com", "072" + randomCellNum1, "021" + randomCellNum2, "021" + randomCellNum3);
+
+        List<Roles> roles = returnAdminRoles(username);
+
+        AccessDetails user = AccessDetailsFactory.getAccessDetails(username, password, true, roles);
+
+        Integer year = generateRandomNumber(1969, 1991, random);
+        Integer month = generateRandomNumber(1, 12, random);
+        Integer day = generateRandomNumber(1, 25, random);
+        Date dob = new DateTime(year, month, day, 0, 0).toDate();
+        Administrator administrator = new AdministratorFactory.Builder(userNumber, user)
+                .setAddresses(addresses)
+                .setContact(contact)
+                .setDateOfBirth(new SimpleDateFormat("EEEE dd MMM yyyy").format(dob))
+                .setFirstName(name)
+                .setGender(gender)
+                .setLastName(surname)
+                .setMiddleName(middleName)
+                .buildAdministrator();
+
+        commerceExpressCRUD.getAdministratorCrudService().persist(administrator);
+
+        numberMales++;
+    }
+
+    private void createFemaleAdmin() {
+        Random random = new Random();
+        String name = girlNames.get(generateRandomNumber(0, girlNames.size() - 1, random));
+        String middleName = middleNames.get(generateRandomNumber(0, middleNames.size() - 1, random));
+        String surname = surnames.get(generateRandomNumber(0, surnames.size() - 1, random));
+        String username = (name.substring(0, 1).toLowerCase() + surname + numberFemales.toString()).replace(' ', '.');
+        String password = username;
+        String userNumber = generateUniqueRandomNumber(10000, 99999, random).toString();
+        String gender = "Female";
+
+        String postalCode = generateRandomNumber(1000, 9999, random).toString();
+        String postalType = postalTypes.get(generateRandomNumber(0, postalTypes.size() - 1, random));
+        String streetNumber = generateRandomNumber(100, 1000, random).toString();
+        String streetName = streetNames.get(generateRandomNumber(0, streetNames.size() - 1, random));
+        String physicalAddress = streetNumber + " " + streetName;
+
+        List<Address> addresses = new ArrayList<Address>();
+        Address address = AddressFactory.getAddress(postalType, physicalAddress, postalCode);
+        addresses.add(address);
+
+        Integer randomCellNum1 = generateUniqueRandomNumber(1000000, 9999999, random);
+        Integer randomCellNum2 = generateRandomNumber(1000000, 9999999, random);
+        Integer randomCellNum3 = generateRandomNumber(1000000, 9999999, random);
+
+        Contact contact = ContactFactory.getContact(username + "@cexpress.com", "072" + randomCellNum1, "021" + randomCellNum2, "021" + randomCellNum3);
+
+        List<Roles> roles = returnAdminRoles(username);
+
+        AccessDetails user = AccessDetailsFactory.getAccessDetails(username, password, true, roles);
+
+        Integer year = generateRandomNumber(1969, 1991, random);
+        Integer month = generateRandomNumber(1, 12, random);
+        Integer day = generateRandomNumber(1, 25, random);
+        
+        Date dob = new DateTime(year, month, day, 0, 0).toDate();
+        Administrator administrator = new AdministratorFactory.Builder(userNumber, user)
+                .setAddresses(addresses)
+                .setContact(contact)
+                .setDateOfBirth(new SimpleDateFormat("EEEE dd MMM yyyy").format(dob))
+                .setFirstName(name)
+                .setGender(gender)
+                .setLastName(surname)
+                .setMiddleName(middleName)
+                .buildAdministrator();
+
+        commerceExpressCRUD.getAdministratorCrudService().persist(administrator);
+
+        numberFemales++;
+    }
+    
     private void createAdmin1() {
         List<Address> addresses = new ArrayList<Address>();
         Address address = AddressFactory.getAddress("333 Albert Avenue", "PO Box", "7223");
@@ -484,5 +652,15 @@ public class PopulateDatabase {
             commerceExpressCRUD.getCategoryCrudService().persist(category);
 
         }
+    }
+
+    private void addFAQs(Integer randomUniqueNum) {
+        List<FAQ> faqs = new ArrayList<FAQ>();
+        for (int i = 0; i < 30; i++) {
+            FAQ faq = FAQFactory.getFAQ(randomUniqueNum.toString(), "Question "+(i+1)+"?", "Answer " + (i+1));
+            randomUniqueNum = generateUniqueRandomNumber(10000, 99999, new Random());
+            faqs.add(faq);
+        }
+        commerceExpressCRUD.getFAQCrudService().persistMultipleEntities(faqs);
     }
 }

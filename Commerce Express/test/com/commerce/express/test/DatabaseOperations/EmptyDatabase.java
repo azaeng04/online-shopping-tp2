@@ -7,6 +7,7 @@ package com.commerce.express.test.DatabaseOperations;
 import com.commerce.express.domain.Administrator;
 import com.commerce.express.domain.Category;
 import com.commerce.express.domain.Customer;
+import com.commerce.express.domain.FAQ;
 import com.commerce.express.service.crud.AdministratorCrudService;
 import com.commerce.express.service.crud.CategoryCrudService;
 import com.commerce.express.service.crud.CustomerCrudService;
@@ -71,12 +72,14 @@ public class EmptyDatabase {
     
     @Test
     public void clearDB() {
+        List<FAQ> faqs = fAQCrudService.findAll();
         List<Category> categories = categoryCrudService.findAll();
         List<Customer> customers = customerCrudService.findAll();
         List<Administrator> administrators = administratorCrudService.findAll();
         administratorCrudService.removeMultipleEntities(administrators);
         customerCrudService.removeMultipleEntities(customers);
         categoryCrudService.removeMultipleEntities(categories);
+        fAQCrudService.removeMultipleEntities(faqs);
         System.out.println("Database EMPTIED successfully");
     }
 }
