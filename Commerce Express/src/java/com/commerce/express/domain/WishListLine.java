@@ -25,7 +25,6 @@ public class WishListLine implements Serializable {
     private Long id;
     @Column(unique = true)
     private String wishListLineID;
-    private Integer quantity;
     @OneToOne
     private Product product;    
     
@@ -51,14 +50,6 @@ public class WishListLine implements Serializable {
 
     public void setWishListLineID(String wishListLineID) {
         this.wishListLineID = wishListLineID;
-    }
-    
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
     }
 
     @Override

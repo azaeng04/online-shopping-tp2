@@ -45,6 +45,8 @@ public class Customer implements Users, Serializable {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "customer_ID")
     private List<Orders> orders;
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    private WishList wishList;
 
     public Long getId() {
         return id;
@@ -150,6 +152,14 @@ public class Customer implements Users, Serializable {
     @Override
     public void setUserID(String customerNumber) {
         this.userID = customerNumber;
+    }
+
+    public WishList getWishList() {
+        return wishList;
+    }
+
+    public void setWishList(WishList wishList) {
+        this.wishList = wishList;
     }
 
     @Override

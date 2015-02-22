@@ -14,7 +14,7 @@ public class FAQFactory {
 
     public static FAQ getFAQ(String faqID,String question, String answer) {
         FAQ faq = new FAQ();
-        faq.setFaqID(faqID);
+        faq.setFaqID("FAQ_" + faqID);
         faq.setQuestion(question);
         faq.setAnswer(answer);
         return faq;
