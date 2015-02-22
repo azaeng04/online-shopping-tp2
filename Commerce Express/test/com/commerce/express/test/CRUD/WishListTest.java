@@ -90,7 +90,7 @@ public class WishListTest {
 
         assertNotNull(category);
 
-        WishListLine wishListLine = WishListLineFactory.getWishListLine("748374828", 100, product);
+        WishListLine wishListLine = WishListLineFactory.getWishListLine("748374828", product);
         List<WishListLine> wishListLines = new ArrayList<WishListLine>();
         wishListLines.add(wishListLine);
 
