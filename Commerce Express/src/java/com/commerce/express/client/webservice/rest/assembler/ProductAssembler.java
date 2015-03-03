@@ -23,10 +23,10 @@ public class ProductAssembler extends ResourceAssemblerSupport<Product, ProductR
     }
 
     @Override
-    public ProductResource toResource(Product t) {
-        ProductResource resource = instantiateResource(t);
-        resource.setProduct(t);
-        resource.add(linkTo(ProductRest.class).slash(t.getId()).withSelfRel());
-        return resource;
+    public ProductResource toResource(Product product) {
+        ProductResource prodResource = instantiateResource(product);
+        prodResource.setProduct(product);
+        prodResource.add(linkTo(ProductRest.class).slash(product.getId()).withSelfRel());
+        return prodResource;
     }
 }
