@@ -24,7 +24,7 @@ import org.springframework.stereotype.Service;
 public class CustomerServiceImpl implements CustomerService {
 
     CommerceExpressServices commerceExpressServices = CommerceExpressServices.getCommerceExpressServices();
-    private static CommerceExpressCRUD commerceExpressCRUD = CommerceExpressCRUD.getCommerceExpressCRUD();
+    private static final CommerceExpressCRUD commerceExpressCRUD = CommerceExpressCRUD.getCommerceExpressCRUD();
     private static CustomerServiceImpl customerServiceImpl;
     @Autowired
     private CustomerCrudService customerCrudService;

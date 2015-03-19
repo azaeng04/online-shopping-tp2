@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 public class AccessDetailsServiceImpl implements AdministratorService {
 
     @Autowired
-    private AccessDetailsCrudService administratorCrudService;
     private static AccessDetailsServiceImpl accessDetailsServiceImpl;
     
     private AccessDetailsServiceImpl() {

@@ -13,6 +13,9 @@ import com.commerce.express.domain.Rating;
  */
 public class RatingFactory {
 
+    private RatingFactory() {
+    }
+
     public static class Builder {
 
         private String ratingID = "RAT_";

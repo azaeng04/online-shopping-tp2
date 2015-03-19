@@ -26,7 +26,7 @@ import org.springframework.context.ApplicationContext;
  */
 public class CommerceExpressCRUD {
     private static CommerceExpressCRUD commerceExpressCRUD;
-    private final static ApplicationContext ctx = GetContext.getApplicationContext();
+    private final static ApplicationContext CTX = GetContext.getApplicationContext();
     private AdministratorCrudService administratorCrudService;
     private CategoryCrudService categoryCrudService;
     private ProductCrudService productCrudService;
@@ -52,67 +52,67 @@ public class CommerceExpressCRUD {
     }
     
     public AdministratorCrudService getAdministratorCrudService() {
-        administratorCrudService = (AdministratorCrudService) ctx.getBean("AdministratorCrudService");
+        administratorCrudService = (AdministratorCrudService) CTX.getBean("AdministratorCrudService");
         return administratorCrudService;
     }
     
     public WishListCrudService getWishListCrudService() {
-        wishListCrudService = (WishListCrudService) ctx.getBean("WishListCrudService");
+        wishListCrudService = (WishListCrudService) CTX.getBean("WishListCrudService");
         return wishListCrudService;
     }
     
     public AddressCrudService getAddressCrudService() {
-        addressCrudService = (AddressCrudService) ctx.getBean("AddressCrudService");
+        addressCrudService = (AddressCrudService) CTX.getBean("AddressCrudService");
         return addressCrudService;
     }
     
     public FAQCrudService getFAQCrudService() {
-        fAQCrudService = (FAQCrudService) ctx.getBean("FAQCrudService");
+        fAQCrudService = (FAQCrudService) CTX.getBean("FAQCrudService");
         return fAQCrudService;
     }
     
     public RatingCrudService getRatingCrudService() {
-        ratingCrudService = (RatingCrudService) ctx.getBean("RatingCrudService");
+        ratingCrudService = (RatingCrudService) CTX.getBean("RatingCrudService");
         return ratingCrudService;
     }
     
     public OrdersCrudService getOrdersCrudService() {
-        ordersCrudService = (OrdersCrudService) ctx.getBean("OrdersCrudService");
+        ordersCrudService = (OrdersCrudService) CTX.getBean("OrdersCrudService");
         return ordersCrudService;
     }
     
     public RolesCrudService getRolesCrudService() {
-        rolesCrudService = (RolesCrudService) ctx.getBean("RolesCrudService");
+        rolesCrudService = (RolesCrudService) CTX.getBean("RolesCrudService");
         return rolesCrudService;
     }
     
     public UsersCrudService getUsersCrudService() {
-        usersCrudService = (UsersCrudService) ctx.getBean("UsersCrudService");
+        usersCrudService = (UsersCrudService) CTX.getBean("UsersCrudService");
         return usersCrudService;
     }
     
     public CustomerCrudService getCustomerCrudService() {
-        customerCrudService = (CustomerCrudService) ctx.getBean("CustomerCrudService");
+        customerCrudService = (CustomerCrudService) CTX.getBean("CustomerCrudService");
         return customerCrudService;
     }
     
     public OrderLineCrudService getOrderLineCrudService() {
-        orderLineCrudService = (OrderLineCrudService) ctx.getBean("OrderLineCrudService");
+        orderLineCrudService = (OrderLineCrudService) CTX.getBean("OrderLineCrudService");
         return orderLineCrudService;
     }
     
     public AccessDetailsCrudService getAccessDetailsCrudService() {
-        accessDetailsCrudService = (AccessDetailsCrudService) ctx.getBean("AccessDetailsCrudService");
+        accessDetailsCrudService = (AccessDetailsCrudService) CTX.getBean("AccessDetailsCrudService");
         return accessDetailsCrudService;
     }
     
     public ProductCrudService getProductCrudService() {
-        productCrudService = (ProductCrudService) ctx.getBean("ProductCrudService");
+        productCrudService = (ProductCrudService) CTX.getBean("ProductCrudService");
         return productCrudService;
     }
     
     public CategoryCrudService getCategoryCrudService() {
-        categoryCrudService = (CategoryCrudService) ctx.getBean("CategoryCrudService");
+        categoryCrudService = (CategoryCrudService) CTX.getBean("CategoryCrudService");
         return categoryCrudService;
     }
 }

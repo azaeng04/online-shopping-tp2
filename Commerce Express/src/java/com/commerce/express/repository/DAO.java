@@ -10,9 +10,9 @@ import java.util.List;
  *
  * @author boniface
  */
-public interface DAO<T, ID> {
+public interface DAO<T, D> {
 
-    public T findById(final ID id);
+    public T findById(final D id);
 
     public List<T> findAll();
 

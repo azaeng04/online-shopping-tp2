@@ -8,7 +8,6 @@ import com.commerce.express.domain.AccessDetails;
 import com.commerce.express.domain.Address;
 import com.commerce.express.domain.Contact;
 import com.commerce.express.domain.Administrator;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,6 +15,9 @@ import java.util.List;
  * @author Owner
  */
 public class AdministratorFactory {
+
+    private AdministratorFactory() {
+    }
 
     public static class Builder {
 

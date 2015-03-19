@@ -18,7 +18,7 @@ import javax.persistence.Id;
 @Entity
 public class Roles implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long SVERSION_UID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

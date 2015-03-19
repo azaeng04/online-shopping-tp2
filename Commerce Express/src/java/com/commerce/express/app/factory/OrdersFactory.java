@@ -6,7 +6,6 @@ package com.commerce.express.app.factory;
 
 import com.commerce.express.domain.OrderLine;
 import com.commerce.express.domain.Orders;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,6 +13,9 @@ import java.util.List;
  * @author cna canal walk
  */
 public class OrdersFactory {
+
+    private OrdersFactory() {
+    }
 
     public static class Builder {
 

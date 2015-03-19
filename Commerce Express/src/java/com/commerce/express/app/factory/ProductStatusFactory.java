@@ -12,9 +12,12 @@ import com.commerce.express.domain.ProductStatus;
  */
 public class ProductStatusFactory {
 
-    public static ProductStatus getProductStatus(String Status, int inStock) {
+    private ProductStatusFactory() {
+    }
+
+    public static ProductStatus getProductStatus(String status, int inStock) {
         ProductStatus productStatus = new ProductStatus();
-        productStatus.setStatus(Status);
+        productStatus.setStatus(status);
         productStatus.setInStock(inStock);
         return productStatus;
     }

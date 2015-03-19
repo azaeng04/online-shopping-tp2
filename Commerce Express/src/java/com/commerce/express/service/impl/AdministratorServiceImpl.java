@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 public class AdministratorServiceImpl implements AdministratorService {
 
     @Autowired
-    private AdministratorCrudService administratorCrudService;
     private static AdministratorServiceImpl administratorServiceImpl;
     
     private AdministratorServiceImpl() {

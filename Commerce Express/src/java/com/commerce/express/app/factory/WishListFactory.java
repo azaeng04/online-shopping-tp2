@@ -15,6 +15,9 @@ import java.util.List;
  */
 public class WishListFactory {
 
+    private WishListFactory() {
+    }
+
     public static WishList getWishList(String wishListID, Date dateCreated, Date dateModified, List<WishListLine> wishListLines) {
         WishList wishList = new WishList();
         wishList.setDateCreated(dateCreated);

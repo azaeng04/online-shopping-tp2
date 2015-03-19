@@ -16,7 +16,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class Address implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long SVERSION_UID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
