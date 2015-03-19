@@ -8,12 +8,7 @@ import com.commerce.express.app.facade.CommerceExpressCRUD;
 import com.commerce.express.app.facade.CommerceExpressServices;
 import com.commerce.express.domain.Category;
 import com.commerce.express.domain.Product;
-import com.commerce.express.service.CustomerService;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationContext;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,12 +24,6 @@ public class HomeController {
 
     private static CommerceExpressServices commerceExpressServices = CommerceExpressServices.getCommerceExpressServices();
     private static CommerceExpressCRUD commerceExpressCRUD = CommerceExpressCRUD.getCommerceExpressCRUD();
-    
-    @Autowired
-    @Qualifier("CustomerService")
-    private CustomerService customerService;
-
-    private static ApplicationContext ctx;
     
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model) {
@@ -97,7 +86,7 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/createCustomer", method = RequestMethod.POST)
-    public String createCustomer(Model model) {
+    public String createCustomer() {
         
         return "browser/createCustomer";
     }
