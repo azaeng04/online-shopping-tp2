@@ -14,6 +14,9 @@ import com.commerce.express.domain.Rating;
  */
 public class ProductFactory {
 
+    private ProductFactory() {
+    }
+
     public static class Builder {
 
         private String productID = "PRD_";

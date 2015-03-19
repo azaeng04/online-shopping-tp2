@@ -13,6 +13,9 @@ import com.commerce.express.domain.Product;
  */
 public class OrderLineFactory {
 
+    private OrderLineFactory() {
+    }
+
     public static OrderLine getOrderLine(String orderLineID, Integer quantity, Product product) {
         OrderLine orderline = new OrderLine();
         orderline.setOrderLineID("ORL_" + orderLineID);

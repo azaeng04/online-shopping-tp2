@@ -12,6 +12,9 @@ import com.commerce.express.domain.Roles;
  */
 public class RolesFactory {
 
+    private RolesFactory() {
+    }
+
     public static Roles getRoles(String roleName, String description, String username) {
         Roles roles = new Roles();
         roles.setRoleName(roleName);

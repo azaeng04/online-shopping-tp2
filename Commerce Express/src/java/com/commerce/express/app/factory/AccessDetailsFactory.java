@@ -15,6 +15,9 @@ import java.util.List;
  */
 public class AccessDetailsFactory {
 
+    private AccessDetailsFactory() {
+    }
+
     public static AccessDetails getAccessDetails(String username, String password, Boolean enabled, List<Roles> roles) {
         AccessDetails accessDetails = new AccessDetails();
         accessDetails.setUsername(username);

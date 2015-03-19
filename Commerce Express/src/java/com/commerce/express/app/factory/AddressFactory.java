@@ -12,6 +12,9 @@ import com.commerce.express.domain.Address;
  */
 public class AddressFactory {
 
+    private AddressFactory() {
+    }
+
     public static Address getAddress(String postalAddress, String physicalAddress, String postalCode) {
         Address address = new Address();
         address.setPostalAddress(postalAddress);

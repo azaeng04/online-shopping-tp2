@@ -10,9 +10,9 @@ import java.util.List;
  *
  * @author boniface
  */
-public interface Services<T, ID> {
+public interface Services<T, D> {
 
-    public T findById(final ID id);
+    public T findById(final D id);
 
     public List<T> findAll();
 

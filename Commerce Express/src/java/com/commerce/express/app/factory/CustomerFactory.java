@@ -10,7 +10,6 @@ import com.commerce.express.domain.Customer;
 import com.commerce.express.domain.AccessDetails;
 import com.commerce.express.domain.Orders;
 import com.commerce.express.domain.WishList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,6 +17,10 @@ import java.util.List;
  * @author Owner
  */
 public class CustomerFactory {
+
+    private CustomerFactory() {
+    }
+    
     public static class Builder {
 
         private String customerNumber = "CUS_";

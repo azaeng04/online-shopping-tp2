@@ -12,6 +12,10 @@ import com.commerce.express.domain.WishListLine;
  * @author Ronald
  */
 public class WishListLineFactory {
+
+    private WishListLineFactory() {
+    }
+    
     public static WishListLine getWishListLine(String wishListLineID, Product product) {
         WishListLine wishListLine = new WishListLine();
         wishListLine.setWishListLineID(wishListLineID);

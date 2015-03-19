@@ -12,6 +12,9 @@ import com.commerce.express.domain.FAQ;
  */
 public class FAQFactory {
 
+    private FAQFactory() {
+    }
+
     public static FAQ getFAQ(String faqID,String question, String answer) {
         FAQ faq = new FAQ();
         faq.setFaqID("FAQ_" + faqID);

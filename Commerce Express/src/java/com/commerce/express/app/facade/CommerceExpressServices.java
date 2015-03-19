@@ -21,7 +21,7 @@ import org.springframework.context.ApplicationContext;
  */
 public class CommerceExpressServices {
     private static CommerceExpressServices commerceExpressServices;
-    private final static ApplicationContext ctx = GetContext.getApplicationContext();
+    private final static ApplicationContext CTX = GetContext.getApplicationContext();
     private static AccessDetailsService accessDetailsService;
     private static AdministratorService administratorService;
     private static CustomerService customerService;
@@ -42,42 +42,42 @@ public class CommerceExpressServices {
     }
     
     public GeneralService getGeneralService() {
-        generalService = (GeneralService) ctx.getBean("GeneralService");
+        generalService = (GeneralService) CTX.getBean("GeneralService");
         return generalService;
     }
     
     public CartService getCartService() {
-        cartService = (CartService) ctx.getBean("CartService");
+        cartService = (CartService) CTX.getBean("CartService");
         return cartService;
     }
     
     public OrderLineService getOrderLineService() {
-        orderLineService = (OrderLineService) ctx.getBean("OrderLineService");
+        orderLineService = (OrderLineService) CTX.getBean("OrderLineService");
         return orderLineService;
     }
     
     public AccessDetailsService getAccessDetailsService() {
-        accessDetailsService = (AccessDetailsService) ctx.getBean("AccessDetailsService");
+        accessDetailsService = (AccessDetailsService) CTX.getBean("AccessDetailsService");
         return accessDetailsService;
     }
     
     public AdministratorService getAdministratorService() {
-        administratorService = (AdministratorService) ctx.getBean("AdministratorService");
+        administratorService = (AdministratorService) CTX.getBean("AdministratorService");
         return administratorService;
     }
     
     public CustomerService getCustomerService() {
-        customerService = (CustomerService) ctx.getBean("CustomerService");
+        customerService = (CustomerService) CTX.getBean("CustomerService");
         return customerService;
     }
     
     public OrderService getOrderService() {
-        orderService = (OrderService) ctx.getBean("OrderService");
+        orderService = (OrderService) CTX.getBean("OrderService");
         return orderService;
     }
     
     public ProductService getProductService() {
-        productService = (ProductService) ctx.getBean("ProductService");
+        productService = (ProductService) CTX.getBean("ProductService");
         return productService;
     }
 }

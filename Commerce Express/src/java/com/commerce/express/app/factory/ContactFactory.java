@@ -12,6 +12,9 @@ import com.commerce.express.domain.Contact;
  */
 public class ContactFactory {
 
+    private ContactFactory() {
+    }
+
     public static Contact getContact(String emailAddress, String cellPhoneNumber, String homeNumber, String officeNumber) {
         Contact contact = new Contact();
         contact.setEmailAddress(emailAddress);
