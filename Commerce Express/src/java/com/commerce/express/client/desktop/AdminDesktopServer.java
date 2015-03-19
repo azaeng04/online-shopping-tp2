@@ -155,13 +155,6 @@ public class AdminDesktopServer extends JFrame
         };
 
         //New created colours
-//    Color blueGreen = new Color (0,150,255);
-//        Color myNewGray = new Color(204, 204, 204);
-//    Color blueGreen = Color.decode("#158D90");
-//    Color maroon = Color.decode("#8A2E2E");
-//      Color maroon = new Color (0,150,255);
-//       Color blueGreen = Color.WHITE;
-//       Color black = Color.BLACK;
         Color maroon = new Color(0, 153, 204);
         Color blueGreen = new Color(0, 0, 51);
         Color black = Color.WHITE;
@@ -579,29 +572,6 @@ public class AdminDesktopServer extends JFrame
             } catch (Exception t) {
                 JOptionPane.showMessageDialog(null, "Delete unsuccessful");
             }
-
-            //Product product2 = productCrudService.getByPropertyName("productName",deletePickProductComboBox.getSelectedItem().toString());
-            //productCrudService.removeById(product2.getId());
-//            productCrudService.remove(product2);
-//            System.out.println("deleted");
-//            
-//            categoryCrudService.findAll();
-            //if(deleteProductTextField.getText().isEmpty())
-//          {
-//          	JOptionPane.showMessageDialog(null,"Please ensure that the you've entered/verified a product name","Verify Product...",JOptionPane.WARNING_MESSAGE);
-//          }
-//          else
-//          {
-//
-//           option = JOptionPane.showConfirmDialog(null,
-//       	  "Are you sure you want to delete "+""+"?",
-//       	  "Deleting Dvd Confirmation...",JOptionPane.YES_NO_OPTION);
-//          if(option == JOptionPane.YES_OPTION)
-//          {
-//            //Write code here if delete equals true
-//            JOptionPane.showMessageDialog(null,"Product has been deleted Successfully","Delete Successful...",JOptionPane.INFORMATION_MESSAGE);
-//          }
-//          }
         }
         if (source == startWithExitButton) {
             option = JOptionPane.showConfirmDialog(null,
@@ -677,14 +647,7 @@ public class AdminDesktopServer extends JFrame
 
             updateProductInfoNumberOfProductsInStockTextField.setText("0");
 
-//            else
-//                productInfoNumberOfProductsInStockTextField.setText(productData.getProductStatus().getInStock()+"");
-//            if(productData.getProductStatus().getStatus() == null)
-//            {
             updateProductInfoStatusTextField.setText("unknown");
-//            }
-//            else
-//                productInfoStatusTextField.setText(productData.getProductStatus().getStatus());
 
         }
         if (source == deleteCatComboBox) {

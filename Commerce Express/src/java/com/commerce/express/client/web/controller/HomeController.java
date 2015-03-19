@@ -22,13 +22,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
 
-    private static CommerceExpressServices commerceExpressServices = CommerceExpressServices.getCommerceExpressServices();
-    private static CommerceExpressCRUD commerceExpressCRUD = CommerceExpressCRUD.getCommerceExpressCRUD();
+    private static final CommerceExpressServices CE_SERVICES = CommerceExpressServices.getCommerceExpressServices();
+    private static final CommerceExpressCRUD CE_CRUDS = CommerceExpressCRUD.getCommerceExpressCRUD();
     
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model) {
         categoryModel(model);
-        List<Product> products = commerceExpressCRUD.getProductCrudService().findAll();
+        List<Product> products = CE_CRUDS.getProductCrudService().findAll();
         model.addAttribute("products", products);
         model.addAttribute("active", "/");
         model.addAttribute("title", "Home");
@@ -39,8 +39,8 @@ public class HomeController {
     @RequestMapping(value = "/categoryID={id}", method = RequestMethod.GET)
     public String categorySelected(@PathVariable("id") Long id, Model model) {
         categoryModel(model);
-        List<Product> products = commerceExpressServices.getProductService().getProducts(id);
-        Category category = commerceExpressCRUD.getCategoryCrudService().findById(id);
+        List<Product> products = CE_SERVICES.getProductService().getProducts(id);
+        Category category = CE_CRUDS.getCategoryCrudService().findById(id);
         model.addAttribute("categoryName", category.getCategoryName());
         model.addAttribute("products", products);
         model.addAttribute("title", "Products in Category");
@@ -81,7 +81,7 @@ public class HomeController {
     }
 
     private void categoryModel(Model model) {
-        List<Category> categories = commerceExpressCRUD.getCategoryCrudService().findAll();
+        List<Category> categories = CE_CRUDS.getCategoryCrudService().findAll();
         model.addAttribute("categories", categories);
     }
 
