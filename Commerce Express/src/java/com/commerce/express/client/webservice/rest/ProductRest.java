@@ -27,8 +27,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProductRest {
 
-    private static CommerceExpressServices ceServices = CommerceExpressServices.getCommerceExpressServices();
-    private static CommerceExpressCRUD ceCRUD = CommerceExpressCRUD.getCommerceExpressCRUD();
+    private static final CommerceExpressServices CE_SERVICES = CommerceExpressServices.getCommerceExpressServices();
+    private static final CommerceExpressCRUD CE_CRUDS = CommerceExpressCRUD.getCommerceExpressCRUD();
     List<Product> products = new ArrayList<Product>();
     
     @Autowired
@@ -37,7 +37,7 @@ public class ProductRest {
     @RequestMapping(value = "product/{id}", method = RequestMethod.GET)
     public ResponseEntity getProduct(@PathVariable("id") Long id) {
         clearProductListIfNotEmpty(products);
-        Product product = ceCRUD.getProductCrudService().findById(id);        
+        Product product = CE_CRUDS.getProductCrudService().findById(id);        
         products.add(product);
         List<ProductResource> resource = productResourceAssembler.toResources(products);
         return new ResponseEntity<List<ProductResource>>(resource, HttpStatus.OK);
@@ -46,7 +46,7 @@ public class ProductRest {
     @RequestMapping(value = "products", method = RequestMethod.GET)
     public ResponseEntity<List<ProductResource>> getProducts() {
         clearProductListIfNotEmpty(products);
-        products = ceServices.getProductService().getProducts();
+        products = CE_SERVICES.getProductService().getProducts();
         List<ProductResource> resource = productResourceAssembler.toResources(products);
         return new ResponseEntity<List<ProductResource>>(resource, HttpStatus.OK);
     }

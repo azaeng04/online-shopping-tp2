@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class AccessDetailsController {
 
-    private static CommerceExpressCRUD commerceExpressCRUD = CommerceExpressCRUD.getCommerceExpressCRUD();
+    private static final CommerceExpressCRUD CE_CRUDS = CommerceExpressCRUD.getCommerceExpressCRUD();
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model) {
@@ -69,7 +69,7 @@ public class AccessDetailsController {
     }
             
     private void categoryModel(Model model) {
-        List<Category> categories = commerceExpressCRUD.getCategoryCrudService().findAll();
+        List<Category> categories = CE_CRUDS.getCategoryCrudService().findAll();
         model.addAttribute("categories", categories);
     }
 }

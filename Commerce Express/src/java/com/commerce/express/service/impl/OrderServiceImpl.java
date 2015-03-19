@@ -30,8 +30,8 @@ import org.springframework.stereotype.Service;
 @Service("OrderService")
 public class OrderServiceImpl implements OrderService {
 
-    private static CommerceExpressCRUD commerceExpressCRUD = CommerceExpressCRUD.getCommerceExpressCRUD();
-    private static CommerceExpressServices commerceExpressServices = CommerceExpressServices.getCommerceExpressServices();
+    private static final CommerceExpressCRUD CE_CRUDS = CommerceExpressCRUD.getCommerceExpressCRUD();
+    private static final CommerceExpressServices CE_SERVICES = CommerceExpressServices.getCommerceExpressServices();
     private static OrderServiceImpl orderServiceImpl;
 
     private OrderServiceImpl() {
@@ -46,7 +46,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Orders> getOrders(String customerID) {
-        Customer customer = commerceExpressCRUD.getCustomerCrudService().getByPropertyName("userID", customerID);
+        Customer customer = CE_CRUDS.getCustomerCrudService().getByPropertyName("userID", customerID);
         List<Orders> orders = customer.getOrders();
         return orders;
     }
@@ -54,13 +54,13 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Integer getUniqueOrderNumber() {
         Random random = new Random();
-        Integer randomNumber = commerceExpressServices.getGeneralService().generateRandomNumber(10000, 99999, random);
+        Integer randomNumber = CE_SERVICES.getGeneralService().generateRandomNumber(10000, 99999, random);
         Orders orders1;
         Boolean isFound = true;
         while (isFound) {
-            orders1 = commerceExpressCRUD.getOrdersCrudService().getByPropertyName("orderID", "ORD_" + randomNumber);
+            orders1 = CE_CRUDS.getOrdersCrudService().getByPropertyName("orderID", "ORD_" + randomNumber);
             if (orders1 != null) {
-                randomNumber = commerceExpressServices.getGeneralService().generateRandomNumber(10000, 99999, random);
+                randomNumber = CE_SERVICES.getGeneralService().generateRandomNumber(10000, 99999, random);
             } else {
                 isFound = false;
             }
@@ -70,7 +70,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void checkout(Map<String, String> cart, Customer customer) {
-        List<Orders> orders = commerceExpressServices.getOrderService().getOrders(customer.getUserID());
+        List<Orders> orders = CE_SERVICES.getOrderService().getOrders(customer.getUserID());
         List<OrderLine> orderLine = new ArrayList<OrderLine>();
         String uniqueID;
         Product product;
@@ -81,12 +81,12 @@ public class OrderServiceImpl implements OrderService {
         for (Map.Entry<String, String> entry : cart.entrySet()) {
             productID = entry.getKey();
             quantity = entry.getValue();
-            product = commerceExpressCRUD.getProductCrudService().findById(Long.parseLong(productID));
-            uniqueID = commerceExpressServices.getOrderLineService().getUniqueOrderLineNumber().toString();
+            product = CE_CRUDS.getProductCrudService().findById(Long.parseLong(productID));
+            uniqueID = CE_SERVICES.getOrderLineService().getUniqueOrderLineNumber().toString();
             item = OrderLineFactory.getOrderLine(uniqueID, Integer.parseInt(quantity), product);
             orderLine.add(item);
         }
-        uniqueID = commerceExpressServices.getOrderService().getUniqueOrderNumber().toString();
+        uniqueID = CE_SERVICES.getOrderService().getUniqueOrderNumber().toString();
         Date date = new DateTime().toDate();
         order = new OrdersFactory.Builder(uniqueID)
                 .setDateCreated(new SimpleDateFormat("EEEE dd MMM yyyy HH:mm:ss").format(date))
@@ -96,8 +96,8 @@ public class OrderServiceImpl implements OrderService {
                 .buildOrder();
         orders.add(order);
         customer.setOrders(orders);
-        commerceExpressCRUD.getCustomerCrudService().merge(customer);
-        commerceExpressServices.getProductService().updateInStock(order.getOrderID());
+        CE_CRUDS.getCustomerCrudService().merge(customer);
+        CE_SERVICES.getProductService().updateInStock(order.getOrderID());
     }
 
     @Override
@@ -134,7 +134,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Product> getProducts(String orderNumber) {
-        Orders order = commerceExpressCRUD.getOrdersCrudService().getByPropertyName("orderID", orderNumber);
+        Orders order = CE_CRUDS.getOrdersCrudService().getByPropertyName("orderID", orderNumber);
         List<Product> products = new ArrayList<Product>();
         List<OrderLine> orderLines = order.getOrderLines();
         for (OrderLine orderLine : orderLines) {
@@ -145,15 +145,15 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderLine> getOrderLine(String orderNumber) {
-        Orders order = commerceExpressCRUD.getOrdersCrudService().getByPropertyName("orderID", orderNumber);
+        Orders order = CE_CRUDS.getOrdersCrudService().getByPropertyName("orderID", orderNumber);
         return order.getOrderLines();
     }
 
     @Override
     public String displayProductsOnOrder(String orderID) {
         DecimalFormat decimalFormat = new DecimalFormat("##########.00");
-        Orders order = commerceExpressCRUD.getOrdersCrudService().getByPropertyName("orderID", orderID);
-        List<Product> productsOnOrder = commerceExpressServices.getOrderService().getProducts(orderID);
+        Orders order = CE_CRUDS.getOrdersCrudService().getByPropertyName("orderID", orderID);
+        List<Product> productsOnOrder = CE_SERVICES.getOrderService().getProducts(orderID);
         List<OrderLine> orderLines = order.getOrderLines();
         Double subtotal = 0.0;
         Double grandTotal = 0.0;
@@ -235,6 +235,6 @@ public class OrderServiceImpl implements OrderService {
     
     @Override
     public List<Orders> getAllOrders() {
-        return commerceExpressCRUD.getOrdersCrudService().findAll();
+        return CE_CRUDS.getOrdersCrudService().findAll();
     }
 }

@@ -19,8 +19,8 @@ import org.springframework.stereotype.Service;
 @Service("OrderLineService")
 public class OrderLineServiceImpl implements OrderLineService {
 
-    private static CommerceExpressCRUD commerceExpressCRUD = CommerceExpressCRUD.getCommerceExpressCRUD();
-    private static CommerceExpressServices commerceExpressServices = CommerceExpressServices.getCommerceExpressServices();
+    private static final CommerceExpressCRUD CE_CRUDS = CommerceExpressCRUD.getCommerceExpressCRUD();
+    private static final CommerceExpressServices CE_SERVICES = CommerceExpressServices.getCommerceExpressServices();
     private static OrderLineServiceImpl orderLineServiceImpl;
 
     private OrderLineServiceImpl() {
@@ -36,13 +36,13 @@ public class OrderLineServiceImpl implements OrderLineService {
     @Override
     public Integer getUniqueOrderLineNumber() {
         Random random = new Random();
-        Integer randomNumber = commerceExpressServices.getGeneralService().generateRandomNumber(10000, 99999, random);
+        Integer randomNumber = CE_SERVICES.getGeneralService().generateRandomNumber(10000, 99999, random);
         OrderLine orderLine;
         Boolean isFound = true;
         while (isFound) {
-            orderLine = commerceExpressCRUD.getOrderLineCrudService().getByPropertyName("orderLineID", "ORL_" + randomNumber);
+            orderLine = CE_CRUDS.getOrderLineCrudService().getByPropertyName("orderLineID", "ORL_" + randomNumber);
             if (orderLine != null) {
-                randomNumber = commerceExpressServices.getGeneralService().generateRandomNumber(10000, 99999, random);
+                randomNumber = CE_SERVICES.getGeneralService().generateRandomNumber(10000, 99999, random);
             } else {
                 isFound = false;
             }
@@ -52,6 +52,6 @@ public class OrderLineServiceImpl implements OrderLineService {
 
     @Override
     public List<OrderLine> getAllOrderLine() {
-        return commerceExpressCRUD.getOrderLineCrudService().findAll();
+        return CE_CRUDS.getOrderLineCrudService().findAll();
     }
 }
