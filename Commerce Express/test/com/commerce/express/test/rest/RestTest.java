@@ -2,11 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.commerce.express.test.resttests;
+package com.commerce.express.test.rest;
 
 import com.commerce.express.client.webservice.rest.resources.ProductResource;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import org.springframework.web.client.RestTemplate;
 import static org.testng.Assert.fail;
@@ -23,7 +22,7 @@ import org.testng.annotations.Test;
 public class RestTest {
 
     private static final String BASE_URI = "http://localhost:8080/Commerce_Express/";
-
+    
     public RestTest() {
     }
     // TODO add test methods here.
@@ -63,21 +62,5 @@ public class RestTest {
         } catch (Exception ex) {
             fail("Exception: " + ex.getMessage());
         }
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @BeforeMethod
-    public void setUpMethod() throws Exception {
-    }
-
-    @AfterMethod
-    public void tearDownMethod() throws Exception {
     }
 }
