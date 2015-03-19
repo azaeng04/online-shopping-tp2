@@ -39,13 +39,13 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/addCustomerToSession", method = RequestMethod.GET)
-    public String addCustomerToSession(Model model) {
+    public String addCustomerToSession() {
 
         return "customer/addCustomerToSession";
     }
     
     @RequestMapping(value = "/memberSession", method = RequestMethod.POST)
-    public String session(Model model) {
+    public String session() {
 
         return "customer/addToSession";
     }

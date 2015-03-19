@@ -23,26 +23,10 @@ import static org.testng.Assert.*;
  */
 public class OrderServiceTest {
 
-    CommerceExpressServices commerceExpressServices = CommerceExpressServices.getCommerceExpressServices();
-    CommerceExpressCRUD commerceExpressCRUD = CommerceExpressCRUD.getCommerceExpressCRUD();
+    private static final CommerceExpressServices commerceExpressServices = CommerceExpressServices.getCommerceExpressServices();
+    private static final CommerceExpressCRUD commerceExpressCRUD = CommerceExpressCRUD.getCommerceExpressCRUD();
 
     public OrderServiceTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @BeforeMethod
-    public void setUpMethod() throws Exception {
-    }
-
-    @AfterMethod
-    public void tearDownMethod() throws Exception {
     }
 
     /**
