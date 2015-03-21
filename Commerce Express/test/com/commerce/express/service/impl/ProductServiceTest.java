@@ -1,10 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.commerce.express.service.impl;
 
-//import static org.testng.Assert.*;
 import com.commerce.express.app.facade.CommerceExpressCRUD;
 import com.commerce.express.app.facade.CommerceExpressServices;
 import com.commerce.express.domain.Category;
@@ -20,8 +15,8 @@ import org.testng.annotations.Test;
  */
 public class ProductServiceTest {
 
-    private static final CommerceExpressServices commerceExpressServices = CommerceExpressServices.getCommerceExpressServices();
-    private static final CommerceExpressCRUD commerceExpressCRUD = CommerceExpressCRUD.getCommerceExpressCRUD();
+    private static final CommerceExpressServices CE_SERVICES = CommerceExpressServices.getCommerceExpressServices();
+    private static final CommerceExpressCRUD CE_CRUDS = CommerceExpressCRUD.getCommerceExpressCRUD();
     
     public ProductServiceTest() {
     }
@@ -38,9 +33,9 @@ public class ProductServiceTest {
      */
     @Test
     public void testUpdateInStock() {
-        List<Orders> orders = commerceExpressCRUD.getOrdersCrudService().findAll();
+        List<Orders> orders = CE_CRUDS.getOrdersCrudService().findAll();
         Orders orders1 = orders.get(0);
-        List<OrderLine> orderLines = commerceExpressServices.getOrderService().getOrderLine(orders1.getOrderID());
+        List<OrderLine> orderLines = CE_SERVICES.getOrderService().getOrderLine(orders1.getOrderID());
         System.out.println("Before");
         for (OrderLine orderLine : orderLines) {
             Product product = orderLine.getProduct();
@@ -49,10 +44,10 @@ public class ProductServiceTest {
             System.out.println("In Stock: " + product.getProductStatus().getInStock());
         }
         
-        commerceExpressServices.getProductService().updateInStock(orders1.getOrderID());
+        CE_SERVICES.getProductService().updateInStock(orders1.getOrderID());
         
         System.out.println("After");
-        orderLines = commerceExpressServices.getOrderService().getOrderLine(orders1.getOrderID());
+        orderLines = CE_SERVICES.getOrderService().getOrderLine(orders1.getOrderID());
         for (OrderLine orderLine : orderLines) {
             Product product = orderLine.getProduct();
             System.out.println("Product ID: " + product.getProductID());
@@ -63,8 +58,8 @@ public class ProductServiceTest {
 
     @Test(enabled = false)
     public void testGetProducts() {
-        List<Category> categories = commerceExpressCRUD.getCategoryCrudService().findAll();
-        List<Product> products = commerceExpressServices.getProductService().getProducts(categories.get(0).getId());
+        List<Category> categories = CE_CRUDS.getCategoryCrudService().findAll();
+        List<Product> products = CE_SERVICES.getProductService().getProducts(categories.get(0).getId());
         System.out.println(products);
     }
 }

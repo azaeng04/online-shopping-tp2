@@ -1,16 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.commerce.express.client.webservice.rest;
 
-import com.commerce.express.client.webservice.rest.assembler.CustomerAssembler;
 import com.commerce.express.client.webservice.rest.assembler.OrderLineAssembler;
-import com.commerce.express.client.webservice.rest.resources.CustomerResource;
 import com.commerce.express.client.webservice.rest.resources.OrderLineResource;
-import com.commerce.express.domain.Customer;
 import com.commerce.express.domain.OrderLine;
-import com.commerce.express.service.CustomerService;
 import com.commerce.express.service.OrderLineService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

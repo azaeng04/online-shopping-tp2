@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.commerce.express.domain;
 
 import java.io.Serializable;
@@ -11,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import org.codehaus.jackson.annotate.JsonManagedReference;
 
 /**
  *

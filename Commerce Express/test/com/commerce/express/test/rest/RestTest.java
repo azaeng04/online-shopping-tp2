@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.commerce.express.test.rest;
 
 import com.commerce.express.client.webservice.rest.resources.ProductResource;
@@ -9,10 +5,6 @@ import java.util.Iterator;
 import java.util.List;
 import org.springframework.web.client.RestTemplate;
 import static org.testng.Assert.fail;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
