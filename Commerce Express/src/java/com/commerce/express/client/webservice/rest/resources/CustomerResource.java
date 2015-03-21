@@ -1,10 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.commerce.express.client.webservice.rest.resources;
 
-import com.commerce.express.domain.Category;
 import com.commerce.express.domain.Customer;
 import org.springframework.hateoas.ResourceSupport;
 

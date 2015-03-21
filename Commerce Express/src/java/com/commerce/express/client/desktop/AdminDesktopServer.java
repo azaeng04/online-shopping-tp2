@@ -1,9 +1,5 @@
 package com.commerce.express.client.desktop;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 import com.commerce.express.app.facade.CommerceExpressCRUD;
 import com.commerce.express.app.factory.ProductFactory;
 import com.commerce.express.app.factory.ProductStatusFactory;

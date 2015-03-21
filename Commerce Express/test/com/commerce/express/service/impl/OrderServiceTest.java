@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.commerce.express.service.impl;
 
 import com.commerce.express.app.facade.CommerceExpressCRUD;
@@ -10,10 +6,6 @@ import com.commerce.express.domain.Customer;
 import com.commerce.express.domain.Orders;
 import com.commerce.express.domain.Product;
 import java.util.List;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
@@ -23,51 +15,44 @@ import static org.testng.Assert.*;
  */
 public class OrderServiceTest {
 
-    private static final CommerceExpressServices commerceExpressServices = CommerceExpressServices.getCommerceExpressServices();
-    private static final CommerceExpressCRUD commerceExpressCRUD = CommerceExpressCRUD.getCommerceExpressCRUD();
+    private static final CommerceExpressServices CE_SERVICES = CommerceExpressServices.getCommerceExpressServices();
+    private static final CommerceExpressCRUD CE_CRUDS = CommerceExpressCRUD.getCommerceExpressCRUD();
 
     public OrderServiceTest() {
     }
-
-    /**
-     * Test of getInstance method, of class OrderServiceImpl.
-     */
-    @Test
-    public void testGetInstance() {
-    }
-
+    
     /**
      * Test of getOrders method, of class OrderServiceImpl.
      */
     @Test
     public void testGetOrders() {
-        List<Customer> customers = commerceExpressCRUD.getCustomerCrudService().findAll();
-        List<Orders> orders = commerceExpressServices.getOrderService().getOrders(customers.get(0).getUserID());
+        List<Customer> customers = CE_CRUDS.getCustomerCrudService().findAll();
+        List<Orders> orders = CE_SERVICES.getOrderService().getOrders(customers.get(0).getUserID());
 
-        assertTrue(orders.size() > 0);
+        assertTrue(!orders.isEmpty());
         System.out.println("Order size: " + orders.size());
     }
 
     @Test
     public void getUniqueOrderNumber() {
-        Integer randomNumber = commerceExpressServices.getOrderService().getUniqueOrderNumber();
+        Integer randomNumber = CE_SERVICES.getOrderService().getUniqueOrderNumber();
         System.out.println("Order Number: " + randomNumber);
     }
     
     @Test
     public void createOrderTable() {
-        List<Orders> orders = commerceExpressCRUD.getOrdersCrudService().findAll();
+        List<Orders> orders = CE_CRUDS.getOrdersCrudService().findAll();
         
-        String orderTable = commerceExpressServices.getOrderService().orderTable(orders);
+        String orderTable = CE_SERVICES.getOrderService().orderTable(orders);
         
         System.out.println(orderTable);
     }
     
     @Test
     public void getProductsOnOrder() {
-        List<Orders> orders = commerceExpressCRUD.getOrdersCrudService().findAll();
+        List<Orders> orders = CE_CRUDS.getOrdersCrudService().findAll();
         
-        List<Product> products = commerceExpressServices.getOrderService().getProducts(orders.get(0).getOrderID());
+        List<Product> products = CE_SERVICES.getOrderService().getProducts(orders.get(0).getOrderID());
         
         System.out.println(products);
     }

@@ -1,11 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.commerce.express.client.webservice.rest.assembler;
 
 import com.commerce.express.client.webservice.rest.OrderRest;
-import com.commerce.express.client.webservice.rest.ProductRest;
 import com.commerce.express.client.webservice.rest.resources.OrdersResource;
 import com.commerce.express.domain.Orders;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.commerce.express.service;
 
 import com.commerce.express.domain.Customer;
@@ -10,7 +6,6 @@ import com.commerce.express.domain.Orders;
 import com.commerce.express.domain.Product;
 import java.util.List;
 import java.util.Map;
-import javax.persistence.criteria.Order;
 
 /**
  *

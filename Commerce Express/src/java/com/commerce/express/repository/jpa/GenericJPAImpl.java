@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.commerce.express.repository.jpa;
 
 import com.commerce.express.repository.GenericDAO;
@@ -15,6 +11,7 @@ import org.springframework.stereotype.Repository;
 /**
  *
  * @author boniface
+ * @param <T>
  */
 @Repository("dao")
 public class GenericJPAImpl< T extends Serializable> implements GenericDAO<T> {

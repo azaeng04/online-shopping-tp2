@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.commerce.express.service.impl;
 
 import com.commerce.express.app.facade.CommerceExpressServices;
@@ -15,7 +11,7 @@ import static org.testng.Assert.*;
  */
 public class CustomerServiceTest {
 
-    private static final CommerceExpressServices commerceExpressServices = CommerceExpressServices.getCommerceExpressServices();
+    private static final CommerceExpressServices CE_SERVICES = CommerceExpressServices.getCommerceExpressServices();
 
     public CustomerServiceTest() {
     }
@@ -25,7 +21,7 @@ public class CustomerServiceTest {
      */
     @Test
     public void testGetCustomerByUsername() {
-        Customer customer = commerceExpressServices.getCustomerService().getCustomerByUsername("eEngelbrecht1");
+        Customer customer = CE_SERVICES.getCustomerService().getCustomerByUsername("eEngelbrecht1");
         
         assertTrue(!customer.getId().toString().isEmpty());
     }

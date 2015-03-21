@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.commerce.express.app.facade;
 
 import com.commerce.express.app.config.GetContext;

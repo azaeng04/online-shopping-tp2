@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.commerce.express.client.webservice.rest;
 
 import com.commerce.express.client.webservice.rest.assembler.OrdersAssembler;
